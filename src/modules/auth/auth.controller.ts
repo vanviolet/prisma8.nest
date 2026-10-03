@@ -1,5 +1,6 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Post } from "@nestjs/common";
-import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiTags } from "@nestjs/swagger";
+import { ApiEndpoint } from "../../common/decorators/api.endpoint.decorator";
 import { ApiDataResponse, ApiErrorResponses } from "../../common/decorators/api.response.decorator";
 import { CurrentUser } from "../../common/decorators/current.user.decorator";
 import { Public } from "../../common/decorators/public.decorator";
@@ -15,8 +16,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Get("me")
-  @ApiBearerAuth()
-  @ApiOperation({ operationId: "getCurrentUser", summary: "Get the authenticated user" })
+  @ApiEndpoint({ summary: "Get the authenticated user" })
   @ApiDataResponse(UserResponseDto)
   @ApiErrorResponses()
   getCurrentUser(@CurrentUser() user: AuthenticatedUser): Promise<UserResponseDto> {
@@ -24,9 +24,9 @@ export class AuthController {
   }
 
   @Post("login")
+  @ApiEndpoint({ summary: "Create an access token" })
   @Public()
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ operationId: "login", summary: "Create an access token" })
   @ApiDataResponse(LoginResponseDto)
   @ApiErrorResponses()
   login(@Body() body: LoginDto): Promise<LoginResponseDto> {

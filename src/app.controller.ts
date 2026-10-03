@@ -1,5 +1,6 @@
 import { Controller, Get } from "@nestjs/common";
-import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiTags } from "@nestjs/swagger";
+import { ApiEndpoint } from "./common/decorators/api.endpoint.decorator";
 import { ApiDataResponse } from "./common/decorators/api.response.decorator";
 import { Public } from "./common/decorators/public.decorator";
 import { RootResponseDto } from "./common/dto/root.response.dto";
@@ -8,8 +9,8 @@ import { RootResponseDto } from "./common/dto/root.response.dto";
 @Controller()
 export class AppController {
   @Get()
+  @ApiEndpoint({ summary: "Get application status" })
   @Public()
-  @ApiOperation({ operationId: "getRoot", summary: "Get application status" })
   @ApiDataResponse(RootResponseDto)
   getRoot(): RootResponseDto {
     return { status: "ok" };

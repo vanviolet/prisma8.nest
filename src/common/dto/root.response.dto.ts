@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { StringField } from "../decorators/field.decorator";
 
 export class RootResponseDto {
-  @ApiProperty({ example: "ok" })
+  @StringField({ example: "ok" })
   status!: string;
 }

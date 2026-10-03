@@ -1,9 +1,6 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query } from "@nestjs/common";
-import {
-  ApiBearerAuth,
-  ApiOperation,
-  ApiTags,
-} from "@nestjs/swagger";
+import { ApiTags } from "@nestjs/swagger";
+import { ApiEndpoint } from "../../common/decorators/api.endpoint.decorator";
 import { ApiDataResponse, ApiErrorResponses, ApiMessageResponse, ApiPaginatedResponse } from "../../common/decorators/api.response.decorator";
 import { Public } from "../../common/decorators/public.decorator";
 import { Roles } from "../../common/decorators/roles.decorator";
@@ -21,19 +18,17 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @ApiBearerAuth()
+  @ApiEndpoint({ summary: "List users" })
   @Roles(UserRole.ADMIN)
-  @ApiOperation({ operationId: "getUsers", summary: "List users" })
   @ApiPaginatedResponse(UserResponseDto)
   @ApiErrorResponses()
   getUsers(@Query() query: PaginationQueryDto): Promise<UsersResponseDto> {
     return this.usersService.getUsers(query);
   }
 
-  @Get(":id")
-  @ApiBearerAuth()
+  @Get("users/:id")
+  @ApiEndpoint({ summary: "Get a user by ID" })
   @Roles(UserRole.ADMIN)
-  @ApiOperation({ operationId: "getUser", summary: "Get a user by ID" })
   @ApiDataResponse(UserResponseDto)
   @ApiErrorResponses()
   getUser(@Param("id", ParseIntPipe) id: number): Promise<UserResponseDto> {
@@ -41,8 +36,8 @@ export class UsersController {
   }
 
   @Post()
+  @ApiEndpoint({ summary: "Register a user" })
   @Public()
-  @ApiOperation({ operationId: "createUser", summary: "Register a user" })
   @ApiDataResponse(UserResponseDto, 201)
   @ApiErrorResponses()
   createUser(@Body() body: CreateUserDto): Promise<UserResponseDto> {
@@ -50,9 +45,8 @@ export class UsersController {
   }
 
   @Patch(":id")
-  @ApiBearerAuth()
+  @ApiEndpoint({ summary: "Update a user" })
   @Roles(UserRole.ADMIN)
-  @ApiOperation({ operationId: "updateUser", summary: "Update a user" })
   @ApiDataResponse(UserResponseDto)
   @ApiErrorResponses()
   updateUser(
@@ -63,9 +57,8 @@ export class UsersController {
   }
 
   @Delete(":id")
-  @ApiBearerAuth()
+  @ApiEndpoint({ summary: "Delete a user" })
   @Roles(UserRole.ADMIN)
-  @ApiOperation({ operationId: "deleteUser", summary: "Delete a user" })
   @ApiMessageResponse()
   @ApiErrorResponses()
   deleteUser(@Param("id", ParseIntPipe) id: number): Promise<{ message: string }> {

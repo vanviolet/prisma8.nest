@@ -1,12 +1,12 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { IntField, StringField } from "../../../../common/decorators/field.decorator";
 
 export class LoginResponseDto {
-  @ApiProperty({ example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." })
+  @StringField({ example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", maxLength: 4096 })
   accessToken!: string;
 
-  @ApiProperty({ example: "Bearer" })
+  @StringField({ example: "Bearer", maxLength: 32 })
   tokenType!: string;
 
-  @ApiProperty({ example: 3600 })
+  @IntField({ example: 3600, min: 1 })
   expiresIn!: number;
 }

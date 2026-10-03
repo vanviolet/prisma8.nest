@@ -1,6 +1,4 @@
-import { Type } from "class-transformer";
-import { ApiPropertyOptional } from "@nestjs/swagger";
-import { IsEnum, IsIn, IsInt, IsOptional, IsString, Max, MaxLength, Min, MinLength } from "class-validator";
+import { EnumField, IntField, StringField } from "../decorators/field.decorator";
 import { UserRole } from "../enums/user-role.enum";
 import { SortOrder } from "../enums/sort-order.enum";
 
@@ -8,38 +6,29 @@ export const USER_SORT_FIELDS = ["createdAt", "email", "name", "username", "role
 export type UserSortField = (typeof USER_SORT_FIELDS)[number];
 
 export class PaginationQueryDto {
-  @ApiPropertyOptional({ minimum: 1, default: 1 })
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  page = 1;
+  @IntField({ required: false, min: 1, default: 1 })
+  page: number = 1;
 
-  @ApiPropertyOptional({ minimum: 1, maximum: 100, default: 20 })
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  @Max(100)
-  limit = 20;
+  @IntField({ required: false, min: 1, max: 100, default: 20 })
+  limit: number = 20;
 
-  @ApiPropertyOptional({ maxLength: 100 })
-  @IsOptional()
-  @IsString()
-  @MinLength(1)
-  @MaxLength(100)
+  @StringField({ required: false, maxLength: 100 })
   search?: string;
 
-  @ApiPropertyOptional({ enum: USER_SORT_FIELDS, enumName: "UserSortField", default: "createdAt" })
-  @IsOptional()
-  @IsIn(USER_SORT_FIELDS)
+  @EnumField(USER_SORT_FIELDS, {
+    enumName: "UserSortField",
+    required: false,
+    default: "createdAt",
+  })
   sortBy: UserSortField = "createdAt";
 
-  @ApiPropertyOptional({ enum: [SortOrder.ASC, SortOrder.DESC], enumName: "SortOrder", default: SortOrder.DESC })
-  @IsOptional()
-  @IsEnum(SortOrder)
+  @EnumField(SortOrder, {
+    enumName: "SortOrder",
+    required: false,
+    default: SortOrder.DESC,
+  })
   sortOrder: SortOrder = SortOrder.DESC;
 
-  @ApiPropertyOptional({ enum: UserRole, enumName: "UserRole" })
-  @IsOptional()
-  @IsEnum(UserRole)
+  @EnumField(UserRole, { enumName: "UserRole", required: false })
   role?: UserRole;
 }

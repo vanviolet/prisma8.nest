@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { StringField } from "../decorators/field.decorator";
 
 export class MessageResponseDto {
-  @ApiProperty({ example: "User successfully deleted" })
+  @StringField({ example: "User successfully deleted" })
   message!: string;
 }

@@ -1,5 +1,6 @@
 import { Controller, Get } from "@nestjs/common";
-import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiTags } from "@nestjs/swagger";
+import { ApiEndpoint } from "../../common/decorators/api.endpoint.decorator";
 import { ApiDataResponse, ApiErrorResponses } from "../../common/decorators/api.response.decorator";
 import { Public } from "../../common/decorators/public.decorator";
 import { HealthResponseDto } from "./dto/health.response.dto";
@@ -8,8 +9,8 @@ import { HealthResponseDto } from "./dto/health.response.dto";
 @Controller("health")
 export class HealthController {
   @Get()
+  @ApiEndpoint({ summary: "Check application health" })
   @Public()
-  @ApiOperation({ operationId: "getHealth", summary: "Check application health" })
   @ApiDataResponse(HealthResponseDto)
   @ApiErrorResponses()
   getHealth(): HealthResponseDto {

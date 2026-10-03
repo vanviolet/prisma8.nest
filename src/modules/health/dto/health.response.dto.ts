@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { EnumField } from "../../../common/decorators/field.decorator";
 
 export class HealthResponseDto {
-  @ApiProperty({ enum: ["ok"], enumName: "HealthStatus", example: "ok" })
+  @EnumField(["ok"], { enumName: "HealthStatus", example: "ok" })
   status!: "ok";
 }

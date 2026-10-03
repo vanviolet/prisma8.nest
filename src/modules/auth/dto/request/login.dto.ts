@@ -1,15 +1,9 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsString, MaxLength, MinLength } from "class-validator";
+import { EmailField, PasswordField } from "../../../../common/decorators/field.decorator";
 
 export class LoginDto {
-  @ApiProperty({ example: "alex@example.com" })
-  @IsEmail()
-  @MaxLength(254)
+  @EmailField({ example: "alex@example.com", maxLength: 254 })
   email!: string;
 
-  @ApiProperty({ minLength: 12, maxLength: 128, writeOnly: true })
-  @IsString()
-  @MinLength(12)
-  @MaxLength(128)
+  @PasswordField({ minLength: 12, maxLength: 128 })
   password!: string;
 }

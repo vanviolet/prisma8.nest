@@ -1,15 +1,15 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { IntField } from "../decorators/field.decorator";
 
 export class PaginationMetaDto {
-  @ApiProperty({ example: 1, minimum: 1 })
+  @IntField({ example: 1, min: 1 })
   page!: number;
 
-  @ApiProperty({ example: 20, minimum: 1, maximum: 100 })
+  @IntField({ example: 20, min: 1, max: 100 })
   limit!: number;
 
-  @ApiProperty({ example: 100, minimum: 0 })
+  @IntField({ example: 100, min: 0 })
   total!: number;
 
-  @ApiProperty({ example: 5, minimum: 0 })
+  @IntField({ example: 5, min: 0 })
   totalPages!: number;
 }

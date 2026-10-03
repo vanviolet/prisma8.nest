@@ -1,11 +1,11 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { NestedField } from "../../../../common/decorators/field.decorator";
 import { PaginationMetaDto } from "../../../../common/dto/pagination.meta.dto";
 import { UserResponseDto } from "./user.response.dto";
 
 export class UsersResponseDto {
-  @ApiProperty({ type: [UserResponseDto] })
+  @NestedField(() => UserResponseDto, { each: true })
   data!: UserResponseDto[];
 
-  @ApiProperty({ type: PaginationMetaDto })
+  @NestedField(() => PaginationMetaDto)
   meta!: PaginationMetaDto;
 }

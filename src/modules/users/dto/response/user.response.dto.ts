@@ -1,22 +1,39 @@
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import {
+  EmailField,
+  EnumField,
+  IntField,
+  StringField,
+} from "../../../../common/decorators/field.decorator";
 import { UserRole } from "../../../../common/enums/user-role.enum";
 
 export class UserResponseDto {
-  @ApiProperty({ example: 42 })
+  @IntField({ example: 42 })
   id!: number;
 
-  @ApiProperty({ example: "alex@example.com" })
+  @EmailField({ example: "alex@example.com", maxLength: 254 })
   email!: string;
 
-  @ApiPropertyOptional({ example: "alex", nullable: true })
+  @StringField({
+    required: false,
+    nullable: true,
+    example: "alex",
+    minLength: 0,
+    maxLength: 50,
+  })
   username!: string | null;
 
-  @ApiPropertyOptional({ example: "Alex Morgan", nullable: true })
+  @StringField({
+    required: false,
+    nullable: true,
+    example: "Alex Morgan",
+    minLength: 0,
+    maxLength: 100,
+  })
   name!: string | null;
 
-  @ApiProperty({ enum: UserRole, enumName: "UserRole", example: UserRole.USER })
+  @EnumField(UserRole, { enumName: "UserRole", example: UserRole.USER })
   role!: UserRole;
 
-  @ApiProperty({ type: String, format: "date-time" })
+  @StringField({ format: "date-time", maxLength: 40 })
   createdAt!: string;
 }

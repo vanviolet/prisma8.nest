@@ -1,30 +1,35 @@
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import {
+  EnumField,
+  IntField,
+  NestedField,
+  StringField,
+} from "../decorators/field.decorator";
 import { ErrorCode } from "../enums/error-code.enum";
 
 export class ValidationErrorDto {
-  @ApiProperty({ example: "email" })
+  @StringField({ example: "email" })
   field!: string;
 
-  @ApiProperty({ example: "email must be an email" })
+  @StringField({ example: "email must be an email" })
   message!: string;
 }
 
 export class ErrorResponseDto {
-  @ApiProperty({ example: 422 })
+  @IntField({ example: 422 })
   statusCode!: number;
 
-  @ApiProperty({ enum: ErrorCode, enumName: "ErrorCode" })
-  code!: string;
+  @EnumField(ErrorCode, { enumName: "ErrorCode" })
+  code!: ErrorCode;
 
-  @ApiProperty({ example: "Validation failed" })
+  @StringField({ example: "Validation failed" })
   message!: string;
 
-  @ApiPropertyOptional({ type: [ValidationErrorDto] })
+  @NestedField(() => ValidationErrorDto, { required: false, each: true })
   errors?: ValidationErrorDto[];
 
-  @ApiProperty({ example: "2026-10-04T00:00:00.000Z" })
+  @StringField({ format: "date-time", example: "2026-10-04T00:00:00.000Z" })
   timestamp!: string;
 
-  @ApiProperty({ example: "/api/users" })
+  @StringField({ example: "/api/users", maxLength: 2048 })
   path!: string;
 }
