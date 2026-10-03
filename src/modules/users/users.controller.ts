@@ -5,11 +5,11 @@ import { ApiDataResponse, ApiErrorResponses, ApiMessageResponse, ApiPaginatedRes
 import { Public } from "../../common/decorators/public.decorator";
 import { Roles } from "../../common/decorators/roles.decorator";
 import { UserRole } from "../../common/enums/user-role.enum";
-import { PaginationQueryDto } from "../../common/dto/pagination.query.dto";
-import { CreateUserDto } from "./dto/request/create.user.dto";
-import { UpdateUserDto } from "./dto/request/update.user.dto";
-import { UserResponseDto } from "./dto/response/user.response.dto";
-import { UsersResponseDto } from "./dto/response/users.response.dto";
+import { UserQueryDto } from "./d.query/user.query.dto";
+import { CreateUserDto } from "./d.request/user.create.dto";
+import { UpdateUserDto } from "./d.request/user.update.dto";
+import { UserResponseDto } from "./d.response/user.response.dto";
+import { UsersResponseDto } from "./d.response/users.response.dto";
 import { UsersService } from "./users.service";
 
 @ApiTags("Users")
@@ -22,7 +22,7 @@ export class UsersController {
   @Roles(UserRole.ADMIN)
   @ApiPaginatedResponse(UserResponseDto)
   @ApiErrorResponses()
-  getUsers(@Query() query: PaginationQueryDto): Promise<UsersResponseDto> {
+  getUsers(@Query() query: UserQueryDto): Promise<UsersResponseDto> {
     return this.usersService.getUsers(query);
   }
 

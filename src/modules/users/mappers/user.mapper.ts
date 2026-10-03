@@ -1,5 +1,5 @@
 import type { Models } from "../../../prisma/contract.d.ts";
-import type { UserResponseDto } from "../dto/response/user.response.dto";
+import type { UserResponseDto } from "../d.response/user.response.dto";
 
 type PublicUserFields = Pick<
   Models.public_User,

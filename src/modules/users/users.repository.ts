@@ -1,14 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { or } from "@prisma/orm-postgres/orm-client";
 import { PrismaService } from "../../prisma/prisma.service";
-import type { PaginationQueryDto } from "../../common/dto/pagination.query.dto";
-import type { UserResponseDto } from "./dto/response/user.response.dto";
+import type { UserQueryDto } from "./d.query/user.query.dto";
+import type { UserResponseDto } from "./d.response/user.response.dto";
 
 @Injectable()
 export class UsersRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findMany(query: PaginationQueryDto): Promise<{ users: UserResponseDto[]; total: number }> {
+  async findMany(query: UserQueryDto): Promise<{ users: UserResponseDto[]; total: number }> {
     let collection = this.prisma.db.orm.public.User;
 
     if (query.search) {

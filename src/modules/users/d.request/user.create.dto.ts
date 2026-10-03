@@ -2,7 +2,7 @@ import {
   EmailField,
   PasswordField,
   StringField,
-} from "../../../../common/decorators/field.decorator";
+} from "../../../common/decorators/field.decorator";
 
 export class CreateUserDto {
   @EmailField({ example: "alex@example.com", maxLength: 254 })

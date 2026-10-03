@@ -6,9 +6,10 @@ import { JwtAuthGuard } from "./modules/auth/guards/auth.guard";
 import { RolesGuard } from "./modules/auth/guards/roles.guard";
 import { HealthModule } from "./modules/health/health.module";
 import { UsersModule } from "./modules/users/users.module";
+import { PostsModule } from "./modules/posts/posts.module";
 
 @Module({
-  imports: [AuthModule, HealthModule, UsersModule],
+  imports: [AuthModule, HealthModule, UsersModule, PostsModule],
   controllers: [AppController],
   providers: [
     { provide: APP_GUARD, useClass: JwtAuthGuard },

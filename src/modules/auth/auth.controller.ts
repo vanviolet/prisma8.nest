@@ -5,10 +5,10 @@ import { ApiDataResponse, ApiErrorResponses } from "../../common/decorators/api.
 import { CurrentUser } from "../../common/decorators/current.user.decorator";
 import { Public } from "../../common/decorators/public.decorator";
 import type { AuthenticatedUser } from "../../common/types/request-context.type";
-import { LoginDto } from "./dto/request/login.dto";
-import { LoginResponseDto } from "./dto/response/login.response.dto";
+import { LoginDto } from "./d.request/auth.login.dto";
+import { LoginResponseDto } from "./d.response/auth.login.response.dto";
 import { AuthService } from "./auth.service";
-import { UserResponseDto } from "../users/dto/response/user.response.dto";
+import { UserResponseDto } from "../users/d.response/user.response.dto";
 
 @ApiTags("Authentication")
 @Controller("auth")

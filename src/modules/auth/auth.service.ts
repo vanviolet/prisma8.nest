@@ -4,8 +4,8 @@ import { environment } from "../../config/env.config";
 import type { AuthenticatedUser } from "../../common/types/request-context.type";
 import { verifyPassword } from "../../common/utils/password.util";
 import { normalizeEmail } from "../../common/utils/string.util";
-import type { UserResponseDto } from "../users/dto/response/user.response.dto";
-import type { LoginDto } from "./dto/request/login.dto";
+import type { UserResponseDto } from "../users/d.response/user.response.dto";
+import type { LoginDto } from "./d.request/auth.login.dto";
 import { AUTH_TOKEN_TYPE } from "./auth.constant";
 import { UsersService } from "../users/users.service";
 

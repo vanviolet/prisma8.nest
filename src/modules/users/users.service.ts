@@ -3,9 +3,9 @@ import { AppException } from "../../common/exceptions/app.exception";
 import { ErrorCode } from "../../common/enums/error-code.enum";
 import { hashPassword } from "../../common/utils/password.util";
 import { normalizeEmail } from "../../common/utils/string.util";
-import type { PaginationQueryDto } from "../../common/dto/pagination.query.dto";
-import type { CreateUserDto } from "./dto/request/create.user.dto";
-import type { UpdateUserDto } from "./dto/request/update.user.dto";
+import type { UserQueryDto } from "./d.query/user.query.dto";
+import type { CreateUserDto } from "./d.request/user.create.dto";
+import type { UpdateUserDto } from "./d.request/user.update.dto";
 import { mapUser } from "./mappers/user.mapper";
 import { UsersRepository } from "./users.repository";
 
@@ -13,7 +13,7 @@ import { UsersRepository } from "./users.repository";
 export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
-  async getUsers(query: PaginationQueryDto) {
+  async getUsers(query: UserQueryDto) {
     const { users, total } = await this.usersRepository.findMany(query);
 
     return {
