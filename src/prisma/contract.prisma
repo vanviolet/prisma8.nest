@@ -1,13 +1,21 @@
 // use prisma-8
 
+enum user_role {
+  @@type("pg/text@1")
+  USER  = "USER"
+  ADMIN = "ADMIN"
+}
+
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  username  String?
-  name      String?
-  posts     Post[]
-  createdAt TimestamptzString @default(now())
-  updatedAt temporal.updatedAtString()
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  username     String?
+  name         String?
+  passwordHash String?
+  role         user_role @default(USER)
+  posts        Post[]
+  createdAt    TimestamptzString @default(now())
+  updatedAt    temporal.updatedAtString()
 }
 
 model Post {

@@ -5,6 +5,7 @@ import "temporal-polyfill/global";
 import service from "../../service.ts";
 import type { Contract } from "./contract.d.ts";
 import contractJson from "./contract.json" with { type: "json" };
+import { getDatabaseUrl } from "../config/database.config";
 
 function loadComposerDatabase() {
   try {
@@ -14,10 +15,13 @@ function loadComposerDatabase() {
   }
 }
 
+const composerDatabase = loadComposerDatabase();
+const databaseUrl = composerDatabase ? undefined : getDatabaseUrl();
+
 export const db =
-  loadComposerDatabase() ??
-  (process.env.DATABASE_URL
-    ? postgres<Contract>({ contractJson, url: process.env.DATABASE_URL })
+  composerDatabase ??
+  (databaseUrl
+    ? postgres<Contract>({ contractJson, url: databaseUrl })
     : postgres<Contract>({ contractJson }));
 
 let connection: Promise<void> | undefined;

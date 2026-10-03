@@ -16,6 +16,21 @@
   "domain": {
     "namespaces": {
       "public": {
+        "enum": {
+          "user_role": {
+            "codecId": "pg/text@1",
+            "members": [
+              {
+                "name": "USER",
+                "value": "USER"
+              },
+              {
+                "name": "ADMIN",
+                "value": "ADMIN"
+              }
+            ]
+          }
+        },
         "models": {
           "Post": {
             "fields": {
@@ -135,6 +150,26 @@
                   "kind": "scalar"
                 }
               },
+              "passwordHash": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "role": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                },
+                "valueSet": {
+                  "entityKind": "enum",
+                  "entityName": "user_role",
+                  "namespaceId": "public",
+                  "plane": "domain"
+                }
+              },
               "updatedAt": {
                 "nullable": false,
                 "type": {
@@ -180,6 +215,12 @@
                 },
                 "name": {
                   "column": "name"
+                },
+                "passwordHash": {
+                  "column": "passwordHash"
+                },
+                "role": {
+                  "column": "role"
                 },
                 "updatedAt": {
                   "column": "updatedAt"
@@ -278,6 +319,13 @@
               "uniques": []
             },
             "User": {
+              "checks": [
+                {
+                  "expression": "\"role\" IN ('USER', 'ADMIN')",
+                  "name": "User_role_check_1954e8c0",
+                  "prefix": "User_role_check"
+                }
+              ],
               "columns": {
                 "createdAt": {
                   "codecId": "pg/timestamptz-string@1",
@@ -307,6 +355,26 @@
                   "nativeType": "text",
                   "nullable": true
                 },
+                "passwordHash": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": true
+                },
+                "role": {
+                  "codecId": "pg/text@1",
+                  "default": {
+                    "kind": "literal",
+                    "value": "USER"
+                  },
+                  "nativeType": "text",
+                  "nullable": false,
+                  "valueSet": {
+                    "entityKind": "valueSet",
+                    "entityName": "user_role",
+                    "namespaceId": "public",
+                    "plane": "storage"
+                  }
+                },
                 "updatedAt": {
                   "codecId": "pg/timestamptz-string@1",
                   "nativeType": "timestamptz",
@@ -333,13 +401,22 @@
                 }
               ]
             }
+          },
+          "valueSet": {
+            "user_role": {
+              "kind": "valueSet",
+              "values": [
+                "USER",
+                "ADMIN"
+              ]
+            }
           }
         },
         "id": "public",
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "91e7f9f035806fa2789a4d726ef7724cad434fd6b00014d47ebf12d6e6bb784e"
+    "storageHash": "3a0a23daeb3210f62332cca0ff6f131e79db2f735472dee823066c0bfc41c502"
   },
   "execution": {
     "executionHash": "796fa270d853489edb1c3e0d332d596412292127a259b856b495a498c752882a",

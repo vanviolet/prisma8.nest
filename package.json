@@ -7,7 +7,9 @@
     "node": "^22.18.0 || >=24.11.0"
   },
   "scripts": {
-    "build": "tsdown",
+    "build": "bun run build:direct && bun run build:composer",
+    "build:composer": "tsdown --config tsdown.composer.config.ts",
+    "build:direct": "tsdown --config tsdown.config.ts",
     "composer:deploy": "prisma deploy module.ts",
     "composer:dev": "prisma dev module.ts",
     "contract:emit": "prisma contract emit",
@@ -22,20 +24,26 @@
     "migration:show": "prisma migration show",
     "migration:status": "prisma migration status",
     "skills:sync": "prisma skills sync || exit 0",
-    "start": "node dist/server.mjs",
+    "start": "node --env-file-if-exists=.env dist/server.mjs",
     "postinstall": "prisma skills sync || exit 0"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.17",
     "@nestjs/core": "^11.1.17",
     "@nestjs/platform-express": "^11.1.17",
+    "@nestjs/swagger": "11.4.7",
     "@prisma/composer": "0.24.0",
     "@prisma/composer-prisma-cloud": "0.24.0",
     "@prisma/orm-postgres": "8.0.0-rc.12",
     "alchemy": "2.0.0-beta.78",
+    "arktype": "^2.2.7",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
-    "temporal-polyfill": "^1.0.4"
+    "swagger-ui-express": "^5.0.1",
+    "temporal-polyfill": "^1.0.4",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@prisma/dev": "0.25.2",

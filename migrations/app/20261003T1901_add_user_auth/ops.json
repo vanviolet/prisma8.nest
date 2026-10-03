@@ -1,0 +1,128 @@
+[
+  {
+    "id": "column.public.User.passwordHash",
+    "label": "Add column \"passwordHash\" to \"User\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "passwordHash",
+        "table": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"passwordHash\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "User",
+          "passwordHash"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"passwordHash\"",
+        "sql": "ALTER TABLE \"public\".\"User\" ADD COLUMN \"passwordHash\" text"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"passwordHash\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "User",
+          "passwordHash"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "column.public.User.role",
+    "label": "Add column \"role\" to \"User\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "role",
+        "table": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"role\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "User",
+          "role"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"role\"",
+        "sql": "ALTER TABLE \"public\".\"User\" ADD COLUMN \"role\" text DEFAULT 'USER' NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"role\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "User",
+          "role"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "checkConstraint.User.User_role_check_1954e8c0",
+    "label": "Add check constraint \"User_role_check_1954e8c0\" on \"User\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "checkConstraint",
+        "name": "User_role_check_1954e8c0",
+        "table": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"User_role_check_1954e8c0\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "User_role_check_1954e8c0",
+          "public",
+          "\"public\".\"User\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add check constraint \"User_role_check_1954e8c0\"",
+        "sql": "ALTER TABLE \"public\".\"User\" ADD CONSTRAINT \"User_role_check_1954e8c0\" CHECK (\"role\" IN ('USER', 'ADMIN'))"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"User_role_check_1954e8c0\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "User_role_check_1954e8c0",
+          "public",
+          "\"public\".\"User\""
+        ]
+      }
+    ]
+  }
+]

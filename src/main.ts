@@ -1,20 +1,14 @@
 import "reflect-metadata";
 
-import { NestFactory } from "@nestjs/core";
+import { Logger } from "@nestjs/common";
+import { environment } from "./config/env.config";
+import { bootstrapApplication } from "./bootstrap";
 
-import { AppModule } from "./app.module";
-
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const rawPort = (process.env.PORT ?? "").trim();
-  const parsedPort = rawPort.length > 0 ? Number(rawPort) : Number.NaN;
-  const port =
-    Number.isFinite(parsedPort) && parsedPort >= 0 && parsedPort <= 65535 ? parsedPort : 3000;
-  await app.listen(port);
-  console.log(`Server running at http://localhost:${port}`);
-}
-
-bootstrap().catch((error) => {
-  console.error("Failed to start server", error);
-  process.exit(1);
+bootstrapApplication(environment).catch(() => {
+  Logger.error(
+    "Application failed to start; check environment and database configuration",
+    undefined,
+    "Bootstrap",
+  );
+  process.exitCode = 1;
 });
