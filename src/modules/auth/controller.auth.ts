@@ -8,23 +8,23 @@ import type { AuthenticatedUser } from "@/common/types/type.request.context";
 import { LoginDto } from "./d.request/dto.auth.login";
 import { LoginResponseDto } from "./d.response/dto.auth.login.response";
 import { AuthService } from "./service.auth";
-import { UserResponseDto } from "@/modules/users/d.response/dto.user.response";
+import { AuthMeResponseDto } from "./d.response/dto.auth.me.response";
 
-@ApiTags("Authentication")
+@ApiTags("Autentikasi")
 @Controller("auth")
 export class AuthController {
   constructor(private readonly auth_service: AuthService) {}
 
   @Get("me")
-  @ApiEndpoint({ summary: "Get the authenticated user" })
-  @ApiDataResponse(UserResponseDto)
+  @ApiEndpoint({ summary: "Lihat identitas HRMS dan actor aktif" })
+  @ApiDataResponse(AuthMeResponseDto)
   @ApiErrorResponses()
-  get_current_user(@CurrentUser() user: AuthenticatedUser): Promise<UserResponseDto> {
+  get_current_user(@CurrentUser() user: AuthenticatedUser): AuthMeResponseDto {
     return this.auth_service.get_current_user(user);
   }
 
   @Post("login")
-  @ApiEndpoint({ summary: "Create an access token" })
+  @ApiEndpoint({ summary: "Login melalui HRMS dan pilih konteks actor" })
   @Public()
   @HttpCode(HttpStatus.OK)
   @ApiDataResponse(LoginResponseDto)

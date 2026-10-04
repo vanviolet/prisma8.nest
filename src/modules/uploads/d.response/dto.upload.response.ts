@@ -16,8 +16,8 @@ export class UploadResponseDto {
   @IntField({ example: 2048, min: 0 })
   size!: number;
 
-  @IntField({ example: 7 })
-  uploaded_by_id!: number;
+  @StringField({ example: "220031", min_length: 1, max_length: 100 })
+  uploaded_by_username!: string;
 
   @StringField({ format: "date-time", max_length: 40 })
   created_at!: string;

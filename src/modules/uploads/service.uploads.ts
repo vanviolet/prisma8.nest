@@ -4,7 +4,6 @@ import { access, unlink } from "node:fs/promises";
 import { join } from "node:path";
 import { AppException } from "@/common/exceptions/exception.app";
 import { ErrorCode } from "@/common/enums/enum.error.code";
-import { user_role } from "@/common/enums/enum.user.role";
 import type { AuthenticatedUser } from "@/common/types/type.request.context";
 import type { UploadQueryDto } from "./d.query/dto.upload.query";
 import type { UploadResponseDto } from "./d.response/dto.upload.response";
@@ -18,8 +17,7 @@ export class UploadsService {
   constructor(private readonly uploads_repository: UploadsRepository) {}
 
   async get_uploads(query: UploadQueryDto, user: AuthenticatedUser) {
-    const uploaded_by_id = user.role === user_role.admin ? undefined : user.sub;
-    const { uploads, total } = await this.uploads_repository.find_many(query, uploaded_by_id);
+    const { uploads, total } = await this.uploads_repository.find_many(query, user.username);
 
     return {
       data: uploads.map(map_upload),
@@ -45,11 +43,11 @@ export class UploadsService {
     try {
       const original_name = this.get_safe_original_name(file.originalname);
       const upload = await this.uploads_repository.create({
-        original_name,
-        storage_name: file.filename,
-        mime_type: file.mimetype,
-        size: file.size,
-        uploaded_by_id: user.sub,
+        nama_asli: original_name,
+        nama_penyimpanan: file.filename,
+        tipe_mime: file.mimetype,
+        ukuran: file.size,
+        diunggah_oleh_id_pegawai: user.username,
       });
       return map_upload(upload);
     } catch (error) {
@@ -65,7 +63,7 @@ export class UploadsService {
 
   async get_download(id: number, user: AuthenticatedUser) {
     const upload = await this.find_accessible_upload(id, user);
-    const path = this.get_storage_path(upload.storage_name);
+    const path = this.get_storage_path(upload.nama_penyimpanan);
 
     try {
       await access(path, fsConstants.R_OK);
@@ -75,15 +73,15 @@ export class UploadsService {
 
     return {
       path,
-      mime_type: upload.mime_type,
-      original_name: upload.original_name,
-      size: upload.size,
+      mime_type: upload.tipe_mime,
+      original_name: upload.nama_asli,
+      size: upload.ukuran,
     };
   }
 
   async delete_upload(id: number, user: AuthenticatedUser): Promise<{ message: string }> {
     const upload = await this.find_accessible_upload(id, user);
-    const path = this.get_storage_path(upload.storage_name);
+    const path = this.get_storage_path(upload.nama_penyimpanan);
 
     await this.uploads_repository.delete(id);
     await unlink(path).catch((error: unknown) => {
@@ -98,7 +96,7 @@ export class UploadsService {
     const upload = await this.uploads_repository.find_by_id(id);
     if (
       !upload ||
-      (user.role !== user_role.admin && upload.uploaded_by_id !== user.sub)
+      upload.diunggah_oleh_id_pegawai !== user.username
     ) {
       throw this.upload_not_found();
     }

@@ -1,9 +1,9 @@
-import { EmailField, PasswordField } from "@/common/decorators/decorator.field";
+import { PasswordField, StringField } from "@/common/decorators/decorator.field";
 
 export class LoginDto {
-  @EmailField({ example: "alex@example.com", max_length: 254 })
-  email!: string;
+  @StringField({ example: "220031", min_length: 3, max_length: 100 })
+  username!: string;
 
-  @PasswordField({ min_length: 12, max_length: 128 })
+  @PasswordField({ min_length: 1, max_length: 128 })
   password!: string;
 }

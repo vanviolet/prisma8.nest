@@ -1,46 +1,1045 @@
 // use prisma-8
-
-enum UserRole {
+enum JenisAktor {
   @@type("pg/text@1")
-  USER  = "USER"
-  ADMIN = "ADMIN"
+  YAYASAN = "YAYASAN"
+  UNIVERSITAS = "UNIVERSITAS"
+  FAKULTAS = "FAKULTAS"
+  PROGRAM_STUDI = "PROGRAM_STUDI"
+  LEMBAGA = "LEMBAGA"
+  KEUANGAN = "KEUANGAN"
+  KHUSUS = "KHUSUS"
 }
 
-model user {
-  id            Int       @id @default(autoincrement())
-  email         String    @unique
-  username      String?
-  name          String?
-  password_hash String?   @map("passwordHash")
-  role          UserRole @default(USER)
-  posts         post[]
-  created_at    TimestamptzString @default(now()) @map("createdAt")
-  updated_at    temporal.updatedAtString() @map("updatedAt")
-
-  @@map("User")
+enum JenisAset {
+  @@type("pg/text@1")
+  aset_tetap = "aset_tetap"
+  barang_habis_pakai = "barang_habis_pakai"
 }
 
-model uploaded_file {
-  id              Int       @id @default(autoincrement())
-  original_name   String    @map("originalName")
-  storage_name    String    @unique @map("storageName")
-  mime_type       String    @map("mimeType")
-  size            Int
-  uploaded_by_id  Int       @map("uploadedById")
-  created_at      TimestamptzString @default(now()) @map("createdAt")
-
-  @@index([uploaded_by_id, created_at], map: "UploadedFile_uploadedById_createdAt_idx_7e8cc7c7")
-  @@map("UploadedFile")
+enum JenisMutasiAset {
+  @@type("pg/text@1")
+  penerimaan = "penerimaan"
+  pengiriman_permintaan = "pengiriman_permintaan"
+  pengembalian_ke_gudang = "pengembalian_ke_gudang"
+  transfer_masuk = "transfer_masuk"
+  transfer_keluar = "transfer_keluar"
+  mutasi = "mutasi"
+  penyesuaian = "penyesuaian"
+  penghapusan = "penghapusan"
 }
 
-model post {
-  id         Int      @id @default(autoincrement())
-  title      String
-  content    String?
-  author     user     @relation(fields: [author_id], references: [id])
-  author_id  Int      @map("authorId")
-  created_at TimestamptzString @default(now()) @map("createdAt")
-  updated_at temporal.updatedAtString() @map("updatedAt")
+enum JenisTempat {
+  @@type("pg/text@1")
+  kampus = "kampus"
+  gedung = "gedung"
+  lantai = "lantai"
+  ruangan = "ruangan"
+  zona = "zona"
+  area_lantai = "area_lantai"
+  lainnya = "lainnya"
+}
 
-  @@map("Post")
+enum StatusPermintaan {
+  @@type("pg/text@1")
+  draf = "draf"
+  diajukan = "diajukan"
+  dalam_peninjauan = "dalam_peninjauan"
+  disetujui = "disetujui"
+  ditolak = "ditolak"
+  dibatalkan = "dibatalkan"
+}
+
+enum JenisSumberPemenuhan {
+  @@type("pg/text@1")
+  gudang = "gudang"
+  pengadaan = "pengadaan"
+}
+
+enum StatusPemenuhan {
+  @@type("pg/text@1")
+  diusulkan = "diusulkan"
+  diterima_dc = "diterima_dc"
+  ditolak_dc = "ditolak_dc"
+  menunggu_yayasan = "menunggu_yayasan"
+  ditolak_yayasan = "ditolak_yayasan"
+  dibatalkan = "dibatalkan"
+}
+
+enum JenisPengadaan {
+  @@type("pg/text@1")
+  mandiri = "mandiri"
+  berbasis_permintaan = "berbasis_permintaan"
+}
+
+enum AlurPengadaan {
+  @@type("pg/text@1")
+  rab = "rab"
+  insidentil = "insidentil"
+  langsung = "langsung"
+}
+
+enum StatusPengadaan {
+  @@type("pg/text@1")
+  draf = "draf"
+  menunggu_persetujuan = "menunggu_persetujuan"
+  ditolak = "ditolak"
+  disetujui = "disetujui"
+  dalam_pembelian = "dalam_pembelian"
+  dalam_pengiriman = "dalam_pengiriman"
+  dibatalkan = "dibatalkan"
+}
+
+enum StatusItemPengadaan {
+  @@type("pg/text@1")
+  draf = "draf"
+  menunggu_persetujuan = "menunggu_persetujuan"
+  ditolak = "ditolak"
+  disetujui = "disetujui"
+  dibatalkan = "dibatalkan"
+}
+
+enum SumberDana {
+  @@type("pg/text@1")
+  anggaran_organisasi = "anggaran_organisasi"
+  hibah = "hibah"
+  donasi = "donasi"
+  lainnya = "lainnya"
+}
+
+enum StatusAset {
+  @@type("pg/text@1")
+  tersedia = "tersedia"
+  digunakan = "digunakan"
+  hilang = "hilang"
+}
+
+enum KondisiAset {
+  @@type("pg/text@1")
+  baik = "baik"
+  rusak_ringan = "rusak_ringan"
+  rusak_berat = "rusak_berat"
+}
+
+enum StatusReservasi {
+  @@type("pg/text@1")
+  direservasi = "direservasi"
+  dibatalkan = "dibatalkan"
+  dilepas = "dilepas"
+}
+
+enum JenisMutasiStok {
+  @@type("pg/text@1")
+  penerimaan = "penerimaan"
+  pengiriman = "pengiriman"
+  pengembalian_ke_gudang = "pengembalian_ke_gudang"
+  transfer_masuk = "transfer_masuk"
+  transfer_keluar = "transfer_keluar"
+  mutasi = "mutasi"
+  penyesuaian = "penyesuaian"
+  penghapusan = "penghapusan"
+}
+
+enum StatusPengiriman {
+  @@type("pg/text@1")
+  disiapkan = "disiapkan"
+  dikirim = "dikirim"
+  dibatalkan = "dibatalkan"
+}
+
+enum StatusRetur {
+  @@type("pg/text@1")
+  diajukan = "diajukan"
+  disetujui = "disetujui"
+  ditolak = "ditolak"
+  diselesaikan = "diselesaikan"
+}
+
+enum TindakLanjutRetur {
+  @@type("pg/text@1")
+  kirim_ulang = "kirim_ulang"
+  kembali_ke_sumber = "kembali_ke_sumber"
+  penghapusan = "penghapusan"
+}
+
+enum StatusMutasi {
+  @@type("pg/text@1")
+  disiapkan = "disiapkan"
+  selesai = "selesai"
+  dibatalkan = "dibatalkan"
+}
+
+enum StatusTransfer {
+  @@type("pg/text@1")
+  disiapkan = "disiapkan"
+  dikirim = "dikirim"
+  dibatalkan = "dibatalkan"
+}
+
+enum JenisPenghapusan {
+  @@type("pg/text@1")
+  dijual = "dijual"
+  disumbangkan = "disumbangkan"
+  dimusnahkan = "dimusnahkan"
+  hilang = "hilang"
+  lainnya = "lainnya"
+}
+
+enum StatusTagihan {
+  @@type("pg/text@1")
+  diajukan = "diajukan"
+  dibatalkan = "dibatalkan"
+}
+
+enum JenisDokumenPengadaan {
+  @@type("pg/text@1")
+  tagihan = "tagihan"
+  bukti_pembayaran = "bukti_pembayaran"
+  bukti_penerimaan = "bukti_penerimaan"
+  bukti_perbedaan = "bukti_perbedaan"
+  surat_persetujuan = "surat_persetujuan"
+  lainnya = "lainnya"
+}
+
+namespace public {
+  model berkas {
+    id                       Int               @id @default(autoincrement())
+    nama_asli                String
+    nama_penyimpanan         String            @unique
+    tipe_mime                String
+    ukuran                   Int
+    diunggah_oleh_id_pegawai String
+    dibuat_pada              TimestamptzString @default(now())
+
+    pengunggah               sarpras.pengguna  @relation(fields: [diunggah_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@index([diunggah_oleh_id_pegawai, dibuat_pada], name: "ix_upfi_1")
+  }
+}
+
+namespace sarpras {
+  model aktor {
+    id          Uuid              @id @default(uuid())
+    kode        String            @unique
+    jenis       JenisAktor
+    nama        String
+    aktif       Boolean           @default(true)
+    dibuat_pada TimestamptzString @default(now())
+    diubah_pada TimestamptzString @default(now())
+
+    @@index([jenis, aktif], name: "ix_ac_1")
+    @@check(expression: "char_length(kode) > 0 AND char_length(kode) <= 10 AND char_length(nama) <= 100", name: "actor_hrms_code_and_name_lengths")
+  }
+
+  model pengguna {
+    id_pegawai  String            @id
+    nama        String
+    dibuat_pada TimestamptzString @default(now())
+    diubah_pada TimestamptzString @default(now())
+
+    @@check(expression: "char_length(id_pegawai) <= 100 AND char_length(nama) <= 100", name: "pengguna_hrms_lengths")
+  }
+
+  model kategori_aset {
+    id          Uuid              @id @default(uuid())
+    kode        String            @unique
+    nama        String
+    jenis       JenisAset
+    aktif       Boolean           @default(true)
+    dibuat_pada TimestamptzString @default(now())
+
+    @@unique([nama, jenis], map: "uq_asca_1")
+  }
+
+  model variasi_aset {
+    id               Uuid              @id @default(uuid())
+    id_kategori_aset Uuid
+    kode             String?
+    nama             String
+    satuan           String
+    aktif            Boolean           @default(true)
+    dibuat_pada      TimestamptzString @default(now())
+
+    kategori_aset    kategori_aset     @relation(fields: [id_kategori_aset], references: [id], onDelete: Restrict)
+
+    @@unique([id_kategori_aset, nama], map: "uq_asva_1")
+    @@index([id_kategori_aset, aktif], name: "ix_asva_1")
+  }
+
+  model merek {
+    id          Uuid              @id @default(uuid())
+    nama        String            @unique
+    aktif       Boolean           @default(true)
+    dibuat_pada TimestamptzString @default(now())
+  }
+
+  model variasi_aset_merek {
+    id              Uuid         @id @default(uuid())
+    id_variasi_aset Uuid
+    id_merek        Uuid
+    aktif           Boolean      @default(true)
+
+    variasi_aset    variasi_aset @relation(fields: [id_variasi_aset], references: [id], onDelete: Restrict)
+    merek           merek        @relation(fields: [id_merek], references: [id], onDelete: Restrict)
+
+    @@unique([id_variasi_aset, id_merek], map: "uq_asvabr_1")
+    @@index([id_merek], name: "ix_asvabr_1")
+  }
+
+  model pemasok {
+    id            Uuid              @id @default(uuid())
+    kode          String?           @unique
+    nama          String
+    alamat        String?
+    nomor_telepon String?
+    surel         String?
+    aktif         Boolean           @default(true)
+    dibuat_pada   TimestamptzString @default(now())
+  }
+
+  model katalog_pemasok {
+    id                    Uuid               @id @default(uuid())
+    id_pemasok            Uuid
+    id_variasi_aset_merek Uuid
+    harga_referensi       Numeric(14, 2)?
+    aktif                 Boolean            @default(true)
+    dibuat_pada           TimestamptzString  @default(now())
+
+    pemasok               pemasok            @relation(fields: [id_pemasok], references: [id], onDelete: Restrict)
+    variasi_aset_merek    variasi_aset_merek @relation(fields: [id_variasi_aset_merek], references: [id], onDelete: Restrict)
+
+    @@unique([id_pemasok, id_variasi_aset_merek], map: "uq_suca_1")
+    @@unique([id, id_variasi_aset_merek], map: "uq_suca_2")
+    @@index([id_variasi_aset_merek], name: "supplier_catalog_brand")
+  }
+
+  model tempat {
+    id               Uuid              @id @default(uuid())
+    id_tempat_induk  Uuid?
+    id_aktor_pemilik Uuid?
+    jenis            JenisTempat
+    kode             String?
+    nama             String
+    deskripsi        String?
+    aktif            Boolean           @default(true)
+    dibuat_pada      TimestamptzString @default(now())
+    diubah_pada      TimestamptzString @default(now())
+
+    tempat_induk     tempat?           @relation("hierarki_tempat", fields: [id_tempat_induk], references: [id], onDelete: Restrict)
+    aktor_pemilik    aktor?            @relation(fields: [id_aktor_pemilik], references: [id], onDelete: Restrict)
+
+    @@unique([id_tempat_induk, kode], map: "uq_pl_1")
+    @@index([id_aktor_pemilik, jenis, aktif], name: "ix_pl_1")
+  }
+
+  model gudang {
+    id          Uuid              @id @default(uuid())
+    id_tempat   Uuid              @unique
+    kode        String            @unique
+    aktif       Boolean           @default(true)
+    dibuat_pada TimestamptzString @default(now())
+
+    tempat      tempat            @relation(fields: [id_tempat], references: [id], onDelete: Restrict)
+  }
+
+  model permintaan {
+    id                     Uuid               @id @default(uuid())
+    nomor_permintaan       String             @unique
+    id_aktor_peminta       Uuid
+    id_tempat_tujuan       Uuid
+    status                 StatusPermintaan   @default(draf)
+    catatan                String?
+    dibuat_oleh_id_pegawai String
+    diajukan_pada          TimestamptzString?
+    dibuat_pada            TimestamptzString  @default(now())
+    diubah_pada            TimestamptzString  @default(now())
+
+    aktor_peminta          aktor              @relation(fields: [id_aktor_peminta], references: [id], onDelete: Restrict)
+    tempat_tujuan          tempat             @relation(fields: [id_tempat_tujuan], references: [id], onDelete: Restrict)
+    pembuat                pengguna           @relation(fields: [dibuat_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@check(expression: "(status = 'draf' AND diajukan_pada IS NULL) OR (status <> 'draf' AND diajukan_pada IS NOT NULL)", name: "request_submission_timestamp_matches_status")
+    @@index([id_aktor_peminta, status, dibuat_pada], name: "ix_re_1")
+    @@index([id_tempat_tujuan], name: "ix_re_2")
+  }
+
+  model item_permintaan {
+    id              Uuid         @id @default(uuid())
+    id_permintaan   Uuid
+    id_variasi_aset Uuid
+    jumlah          Int
+    catatan         String?
+
+    permintaan      permintaan   @relation(fields: [id_permintaan], references: [id], onDelete: Restrict)
+    variasi_aset    variasi_aset @relation(fields: [id_variasi_aset], references: [id], onDelete: Restrict)
+
+    @@unique([id_permintaan, id_variasi_aset], map: "uq_reit_1")
+    @@check(expression: "jumlah > 0", name: "request_item_quantity_positive")
+    @@index([id_variasi_aset], name: "ix_reit_1")
+  }
+
+  model sumber_pemenuhan_permintaan {
+    id                     Uuid                 @id @default(uuid())
+    id_item_permintaan     Uuid
+    jenis                  JenisSumberPemenuhan
+    id_variasi_aset_merek  Uuid
+    id_gudang              Uuid?
+    id_katalog_pemasok     Uuid?
+    jumlah                 Int
+    status                 StatusPemenuhan      @default(diusulkan)
+    alasan_penolakan       String?
+    dibuat_oleh_id_pegawai String
+    dibuat_pada            TimestamptzString    @default(now())
+    diubah_pada            TimestamptzString    @default(now())
+
+    item_permintaan        item_permintaan      @relation(fields: [id_item_permintaan], references: [id], onDelete: Restrict)
+    variasi_aset_merek     variasi_aset_merek   @relation(fields: [id_variasi_aset_merek], references: [id], onDelete: Restrict)
+    gudang                 gudang?              @relation(fields: [id_gudang], references: [id], onDelete: Restrict)
+    katalog_pemasok        katalog_pemasok?     @relation(fields: [id_katalog_pemasok], references: [id], onDelete: Restrict)
+    pembuat                pengguna             @relation(fields: [dibuat_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@check(expression: "(jenis = 'gudang' AND id_gudang IS NOT NULL AND id_katalog_pemasok IS NULL) OR (jenis = 'pengadaan' AND id_gudang IS NULL AND id_katalog_pemasok IS NOT NULL)", name: "request_source_reference_matches_kind")
+    @@check(expression: "jumlah > 0", name: "request_source_quantity_positive")
+    @@index([id_item_permintaan, status], name: "ix_refuso_1")
+    @@index([id_variasi_aset_merek], name: "rfs_asset_brand")
+  }
+
+  model riwayat_status_sumber_pemenuhan {
+    id                             Uuid                        @id @default(uuid())
+    id_sumber_pemenuhan_permintaan Uuid
+    status_sebelumnya              StatusPemenuhan?
+    status_baru                    StatusPemenuhan
+    dilakukan_oleh_id_pegawai      String
+    id_aktor_konteks               Uuid?
+    catatan                        String?
+    dibuat_pada                    TimestamptzString           @default(now())
+
+    sumber_pemenuhan               sumber_pemenuhan_permintaan @relation(fields: [id_sumber_pemenuhan_permintaan], references: [id], onDelete: Restrict)
+    pelaku                         pengguna                    @relation(fields: [dilakukan_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+    aktor_konteks                  aktor?                      @relation(fields: [id_aktor_konteks], references: [id], onDelete: Restrict)
+
+    @@index([id_sumber_pemenuhan_permintaan, dibuat_pada], name: "ix_refuhi_1")
+    @@index([id_aktor_konteks, dibuat_pada], name: "ix_refuhi_2")
+  }
+
+  model riwayat_status_permintaan {
+    id                        Uuid              @id @default(uuid())
+    id_permintaan             Uuid
+    status_sebelumnya         StatusPermintaan?
+    status_baru               StatusPermintaan
+    dilakukan_oleh_id_pegawai String
+    id_aktor_konteks          Uuid?
+    catatan                   String?
+    dibuat_pada               TimestamptzString @default(now())
+
+    permintaan                permintaan        @relation(fields: [id_permintaan], references: [id], onDelete: Restrict)
+    pelaku                    pengguna          @relation(fields: [dilakukan_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+    aktor_konteks             aktor?            @relation(fields: [id_aktor_konteks], references: [id], onDelete: Restrict)
+
+    @@index([id_permintaan, dibuat_pada], name: "ix_resthi_1")
+  }
+
+  model pengadaan {
+    id                     Uuid              @id @default(uuid())
+    nomor_pengadaan        String            @unique
+    jenis                  JenisPengadaan
+    alur_pengadaan         AlurPengadaan
+    id_aktor               Uuid
+    status                 StatusPengadaan   @default(draf)
+    catatan                String?
+    dibuat_oleh_id_pegawai String
+    dibuat_pada            TimestamptzString @default(now())
+    diubah_pada            TimestamptzString @default(now())
+
+    aktor                  aktor             @relation(fields: [id_aktor], references: [id], onDelete: Restrict)
+    pembuat                pengguna          @relation(fields: [dibuat_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@index([id_aktor, status, dibuat_pada], name: "ix_pr_1")
+  }
+
+  model item_pengadaan {
+    id                    Uuid                @id @default(uuid())
+    id_pengadaan          Uuid
+    id_katalog_pemasok    Uuid
+    id_variasi_aset_merek Uuid
+    jumlah                Int
+    harga_satuan          Numeric(14, 2)
+    sumber_dana           SumberDana
+    status                StatusItemPengadaan @default(draf)
+    perlu_persetujuan     Boolean             @default(true)
+    dibuat_pada           TimestamptzString   @default(now())
+    diubah_pada           TimestamptzString   @default(now())
+
+    pengadaan             pengadaan           @relation(fields: [id_pengadaan], references: [id], onDelete: Restrict)
+    katalog_pemasok       katalog_pemasok     @relation(fields: [id_katalog_pemasok, id_variasi_aset_merek], references: [id, id_variasi_aset_merek], onDelete: Restrict)
+
+    @@check(expression: "jumlah > 0", name: "procurement_item_quantity_positive")
+    @@check(expression: "harga_satuan >= 0", name: "procurement_item_price_nonnegative")
+    @@unique([id, id_pengadaan], map: "uq_prit_3")
+    @@unique([id, id_pengadaan, id_variasi_aset_merek], map: "uq_prit_4")
+    @@index([id_pengadaan, status], name: "ix_prit_1")
+    @@index([id_katalog_pemasok], name: "ix_prit_2")
+  }
+
+  model alokasi_item_pengadaan_permintaan {
+    id                             Uuid                        @id @default(uuid())
+    id_item_pengadaan              Uuid
+    id_sumber_pemenuhan_permintaan Uuid
+    jumlah                         Int
+    dibuat_pada                    TimestamptzString           @default(now())
+
+    item_pengadaan                 item_pengadaan              @relation(fields: [id_item_pengadaan], references: [id], onDelete: Restrict)
+    sumber_pemenuhan               sumber_pemenuhan_permintaan @relation(fields: [id_sumber_pemenuhan_permintaan], references: [id], onDelete: Restrict)
+
+    @@unique([id_item_pengadaan, id_sumber_pemenuhan_permintaan], map: "uq_pritreal_1")
+    @@check(expression: "jumlah > 0", name: "procurement_allocation_quantity_positive")
+    @@index([id_sumber_pemenuhan_permintaan], name: "ix_pritreal_1")
+  }
+
+  model riwayat_status_pengadaan {
+    id                        Uuid              @id @default(uuid())
+    id_pengadaan              Uuid
+    status_sebelumnya         StatusPengadaan?
+    status_baru               StatusPengadaan
+    dilakukan_oleh_id_pegawai String
+    catatan                   String?
+    dibuat_pada               TimestamptzString @default(now())
+
+    pengadaan                 pengadaan         @relation(fields: [id_pengadaan], references: [id], onDelete: Restrict)
+    pelaku                    pengguna          @relation(fields: [dilakukan_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@index([id_pengadaan, dibuat_pada], name: "ix_prsthi_1")
+  }
+
+  model riwayat_status_item_pengadaan {
+    id                        Uuid                 @id @default(uuid())
+    id_item_pengadaan         Uuid
+    status_sebelumnya         StatusItemPengadaan?
+    status_baru               StatusItemPengadaan
+    dilakukan_oleh_id_pegawai String
+    catatan                   String?
+    dibuat_pada               TimestamptzString    @default(now())
+
+    item_pengadaan            item_pengadaan       @relation(fields: [id_item_pengadaan], references: [id], onDelete: Restrict)
+    pelaku                    pengguna             @relation(fields: [dilakukan_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@index([id_item_pengadaan, dibuat_pada], name: "ix_prith_1")
+  }
+
+  model penerimaan_pengadaan {
+    id                       Uuid              @id @default(uuid())
+    id_pengadaan             Uuid
+    id_gudang                Uuid
+    diterima_oleh_id_pegawai String
+    diterima_pada            TimestamptzString @default(now())
+    catatan                  String?
+
+    pengadaan                pengadaan         @relation(fields: [id_pengadaan], references: [id], onDelete: Restrict)
+    gudang                   gudang            @relation(fields: [id_gudang], references: [id], onDelete: Restrict)
+    penerima                 pengguna          @relation(fields: [diterima_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@unique([id, id_pengadaan], map: "uq_prre_2")
+    @@index([id_pengadaan, diterima_pada], name: "ix_prre_1")
+  }
+
+  model item_penerimaan_pengadaan {
+    id                      Uuid                 @id @default(uuid())
+    id_penerimaan_pengadaan Uuid
+    id_item_pengadaan       Uuid
+    id_pengadaan            Uuid
+    id_variasi_aset_merek   Uuid
+    jumlah_diterima         Int
+    alasan_perbedaan        String?
+    dibuat_pada             TimestamptzString    @default(now())
+
+    penerimaan_pengadaan    penerimaan_pengadaan @relation(fields: [id_penerimaan_pengadaan, id_pengadaan], references: [id, id_pengadaan], onDelete: Restrict)
+    item_pengadaan          item_pengadaan       @relation(fields: [id_item_pengadaan, id_pengadaan, id_variasi_aset_merek], references: [id, id_pengadaan, id_variasi_aset_merek], onDelete: Restrict)
+
+    @@unique([id_penerimaan_pengadaan, id_item_pengadaan], map: "uq_prreit_1")
+    @@unique([id, id_variasi_aset_merek], map: "uq_prreit_2")
+    @@check(expression: "jumlah_diterima > 0", name: "receipt_item_quantity_positive")
+    @@index([id_item_pengadaan], name: "ix_prreit_1")
+  }
+
+  model tagihan {
+    id                     Uuid              @id @default(uuid())
+    id_pengadaan           Uuid
+    nomor_tagihan          String
+    tanggal_tagihan        DateString?
+    nominal                Numeric(14, 2)
+    status                 StatusTagihan     @default(diajukan)
+    dibuat_pada            TimestamptzString @default(now())
+    dibuat_oleh_id_pegawai String
+
+    pengadaan              pengadaan         @relation(fields: [id_pengadaan], references: [id], onDelete: Restrict)
+    pembuat                pengguna          @relation(fields: [dibuat_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@unique([id_pengadaan, nomor_tagihan], map: "uq_in_1")
+    @@check(expression: "nominal > 0", name: "invoice_amount_positive")
+    @@index([status, tanggal_tagihan], name: "ix_in_1")
+  }
+
+  model pembayaran {
+    id                     Uuid              @id @default(uuid())
+    id_tagihan             Uuid
+    nominal                Numeric(14, 2)
+    dibayar_pada           TimestamptzString @default(now())
+    referensi_pembayaran   String?
+    dibuat_oleh_id_pegawai String
+    dibuat_pada            TimestamptzString @default(now())
+
+    tagihan                tagihan           @relation(fields: [id_tagihan], references: [id], onDelete: Restrict)
+    pembuat                pengguna          @relation(fields: [dibuat_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@check(expression: "nominal > 0", name: "payment_amount_positive")
+    @@index([id_tagihan, dibayar_pada], name: "ix_pa_1")
+  }
+
+  model pembalikan_pembayaran {
+    id                      Uuid              @id @default(uuid())
+    id_pembayaran           Uuid
+    nominal                 Numeric(14, 2)
+    alasan                  String
+    dibalik_oleh_id_pegawai String
+    dibalik_pada            TimestamptzString @default(now())
+
+    pembayaran              pembayaran        @relation(fields: [id_pembayaran], references: [id], onDelete: Restrict)
+    pelaku                  pengguna          @relation(fields: [dibalik_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@check(expression: "nominal > 0", name: "payment_reversal_amount_positive")
+    @@index([id_pembayaran, dibalik_pada], name: "ix_pare_1")
+  }
+
+  model dokumen_pengadaan {
+    id                       Uuid                  @id @default(uuid())
+    id_pengadaan             Uuid
+    id_berkas                Int
+    jenis                    JenisDokumenPengadaan
+    diunggah_oleh_id_pegawai String
+    dibuat_pada              TimestamptzString     @default(now())
+
+    pengadaan                pengadaan             @relation(fields: [id_pengadaan], references: [id], onDelete: Restrict)
+    berkas                   public.berkas         @relation(fields: [id_berkas], references: [id], onDelete: Restrict)
+    pengunggah               pengguna              @relation(fields: [diunggah_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@unique([id_pengadaan, id_berkas, jenis], map: "uq_prdo_1")
+    @@index([id_berkas], name: "ix_prdo_1")
+  }
+
+  model aset_tetap {
+    id                           Uuid                       @id @default(uuid())
+    kode_aset                    String                     @unique
+    id_variasi_aset_merek        Uuid
+    id_item_penerimaan_pengadaan Uuid?
+    id_tempat_saat_ini           Uuid?
+    status                       StatusAset                 @default(tersedia)
+    kondisi                      KondisiAset                @default(baik)
+    dibuat_pada                  TimestamptzString          @default(now())
+    diubah_pada                  TimestamptzString          @default(now())
+
+    variasi_aset_merek           variasi_aset_merek         @relation(fields: [id_variasi_aset_merek], references: [id], onDelete: Restrict)
+    item_penerimaan              item_penerimaan_pengadaan? @relation(fields: [id_item_penerimaan_pengadaan, id_variasi_aset_merek], references: [id, id_variasi_aset_merek], onDelete: Restrict)
+    tempat_saat_ini              tempat?                    @relation(fields: [id_tempat_saat_ini], references: [id], onDelete: Restrict)
+
+    @@index([id_variasi_aset_merek, status], name: "ix_fias_1")
+    @@index([id_tempat_saat_ini, status], name: "ix_fias_2")
+  }
+
+  model mutasi_aset_tetap {
+    id                        Uuid              @id @default(uuid())
+    id_aset_tetap             Uuid
+    id_tempat_asal            Uuid?
+    id_tempat_tujuan          Uuid?
+    jenis_mutasi              JenisMutasiAset
+    dilakukan_oleh_id_pegawai String
+    catatan                   String?
+    dibuat_pada               TimestamptzString @default(now())
+
+    aset_tetap                aset_tetap        @relation(fields: [id_aset_tetap], references: [id], onDelete: Restrict)
+    tempat_asal               tempat?           @relation("mutasi_aset_dari", fields: [id_tempat_asal], references: [id], onDelete: Restrict)
+    tempat_tujuan             tempat?           @relation("mutasi_aset_tujuan", fields: [id_tempat_tujuan], references: [id], onDelete: Restrict)
+    pelaku                    pengguna          @relation(fields: [dilakukan_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@index([id_aset_tetap, dibuat_pada], name: "ix_fiasmo_1")
+    @@index([id_tempat_asal], name: "ix_fiasmo_2")
+    @@index([id_tempat_tujuan], name: "ix_fiasmo_3")
+  }
+
+  model reservasi_aset_tetap {
+    id                             Uuid                        @id @default(uuid())
+    id_sumber_pemenuhan_permintaan Uuid
+    id_aset_tetap                  Uuid
+    status                         StatusReservasi             @default(direservasi)
+    direservasi_oleh_id_pegawai    String
+    direservasi_pada               TimestamptzString           @default(now())
+    dilepas_pada                   TimestamptzString?
+
+    sumber_pemenuhan               sumber_pemenuhan_permintaan @relation(fields: [id_sumber_pemenuhan_permintaan], references: [id], onDelete: Restrict)
+    aset_tetap                     aset_tetap                  @relation(fields: [id_aset_tetap], references: [id], onDelete: Restrict)
+    pencatat_reservasi             pengguna                    @relation(fields: [direservasi_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@check(expression: "(status = 'direservasi' AND dilepas_pada IS NULL) OR (status IN ('dibatalkan', 'dilepas') AND dilepas_pada IS NOT NULL)", name: "fixed_reservation_status_matches_release_time")
+    @@index([id_aset_tetap], where: "(status = 'direservasi')", unique: true, name: "fixed_asset_reservation_active_asset")
+    @@index([id_sumber_pemenuhan_permintaan, status], name: "ix_fiasre_1")
+  }
+
+  model stok_barang_habis_pakai {
+    id                    Uuid               @id @default(uuid())
+    id_variasi_aset_merek Uuid
+    id_gudang             Uuid
+    jumlah_saldo          Int                @default(0)
+    diubah_pada           TimestamptzString  @default(now())
+
+    variasi_aset_merek    variasi_aset_merek @relation(fields: [id_variasi_aset_merek], references: [id], onDelete: Restrict)
+    gudang                gudang             @relation(fields: [id_gudang], references: [id], onDelete: Restrict)
+
+    @@unique([id_variasi_aset_merek, id_gudang], map: "uq_cost_1")
+    @@check(expression: "jumlah_saldo >= 0", name: "consumable_stock_nonnegative")
+    @@index([id_gudang], name: "ix_cost_1")
+  }
+
+  model mutasi_stok_barang {
+    id                           Uuid                       @id @default(uuid())
+    id_stok_barang_habis_pakai   Uuid
+    id_item_penerimaan_pengadaan Uuid?                      @unique
+    jenis_mutasi                 JenisMutasiStok
+    perubahan_jumlah             Int
+    dilakukan_oleh_id_pegawai    String
+    catatan                      String?
+    dibuat_pada                  TimestamptzString          @default(now())
+
+    stok                         stok_barang_habis_pakai    @relation(fields: [id_stok_barang_habis_pakai], references: [id], onDelete: Restrict)
+    item_penerimaan              item_penerimaan_pengadaan? @relation(fields: [id_item_penerimaan_pengadaan], references: [id], onDelete: Restrict)
+    pelaku                       pengguna                   @relation(fields: [dilakukan_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@check(expression: "perubahan_jumlah <> 0", name: "stock_movement_nonzero")
+    @@check(expression: "(jenis_mutasi = 'penerimaan' AND id_item_penerimaan_pengadaan IS NOT NULL) OR (jenis_mutasi <> 'penerimaan' AND id_item_penerimaan_pengadaan IS NULL)", name: "stock_receipt_movement_requires_receipt_detail")
+    @@index([id_stok_barang_habis_pakai, dibuat_pada], name: "ix_costmo_1")
+  }
+
+  model reservasi_stok_barang {
+    id                             Uuid                        @id @default(uuid())
+    id_sumber_pemenuhan_permintaan Uuid
+    id_stok_barang_habis_pakai     Uuid
+    jumlah                         Int
+    status                         StatusReservasi             @default(direservasi)
+    direservasi_oleh_id_pegawai    String
+    direservasi_pada               TimestamptzString           @default(now())
+    dilepas_pada                   TimestamptzString?
+
+    sumber_pemenuhan               sumber_pemenuhan_permintaan @relation(fields: [id_sumber_pemenuhan_permintaan], references: [id], onDelete: Restrict)
+    stok                           stok_barang_habis_pakai     @relation(fields: [id_stok_barang_habis_pakai], references: [id], onDelete: Restrict)
+    pencatat_reservasi             pengguna                    @relation(fields: [direservasi_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@check(expression: "jumlah > 0", name: "consumable_reservation_quantity_positive")
+    @@check(expression: "(status = 'direservasi' AND dilepas_pada IS NULL) OR (status IN ('dibatalkan', 'dilepas') AND dilepas_pada IS NOT NULL)", name: "stock_reservation_status_matches_release_time")
+    @@index([id_sumber_pemenuhan_permintaan, status], name: "ix_core_1")
+    @@index([id_stok_barang_habis_pakai, status], name: "ix_core_2")
+  }
+
+  model pengiriman_permintaan {
+    id                     Uuid               @id @default(uuid())
+    nomor_pengiriman       String             @unique
+    id_permintaan          Uuid
+    status                 StatusPengiriman   @default(disiapkan)
+    id_tempat_tujuan       Uuid
+    dibuat_oleh_id_pegawai String
+    dikirim_pada           TimestamptzString?
+    dibuat_pada            TimestamptzString  @default(now())
+
+    permintaan             permintaan         @relation(fields: [id_permintaan], references: [id], onDelete: Restrict)
+    tempat_tujuan          tempat             @relation(fields: [id_tempat_tujuan], references: [id], onDelete: Restrict)
+    pembuat                pengguna           @relation(fields: [dibuat_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@check(expression: "(status = 'disiapkan' AND dikirim_pada IS NULL) OR (status = 'dikirim' AND dikirim_pada IS NOT NULL) OR status = 'dibatalkan'", name: "request_shipment_timestamp_matches_status")
+    @@unique([id, id_permintaan], map: "uq_resh_3")
+    @@index([id_permintaan, status], name: "ix_resh_1")
+    @@index([id_tempat_tujuan], name: "ix_resh_2")
+  }
+
+  model item_pengiriman_permintaan {
+    id                             Uuid                        @id @default(uuid())
+    id_pengiriman_permintaan       Uuid
+    id_sumber_pemenuhan_permintaan Uuid
+    jumlah                         Int
+    dibuat_pada                    TimestamptzString           @default(now())
+
+    pengiriman                     pengiriman_permintaan       @relation(fields: [id_pengiriman_permintaan], references: [id], onDelete: Restrict)
+    sumber_pemenuhan               sumber_pemenuhan_permintaan @relation(fields: [id_sumber_pemenuhan_permintaan], references: [id], onDelete: Restrict)
+
+    @@check(expression: "jumlah > 0", name: "request_shipment_item_quantity_positive")
+    @@unique([id, id_pengiriman_permintaan], map: "uq_reshit_3")
+    @@index([id_pengiriman_permintaan], name: "ix_reshit_1")
+    @@index([id_sumber_pemenuhan_permintaan], name: "ix_reshit_2")
+  }
+
+  model item_pengiriman_aset_tetap {
+    id                            Uuid                       @id @default(uuid())
+    id_item_pengiriman_permintaan Uuid
+    id_aset_tetap                 Uuid
+
+    item_pengiriman               item_pengiriman_permintaan @relation(fields: [id_item_pengiriman_permintaan], references: [id], onDelete: Restrict)
+    aset_tetap                    aset_tetap                 @relation(fields: [id_aset_tetap], references: [id], onDelete: Restrict)
+
+    @@unique([id_item_pengiriman_permintaan, id_aset_tetap], map: "uq_reshfiit_1")
+    @@index([id_aset_tetap], name: "ix_reshfiit_1")
+  }
+
+  model item_pengiriman_barang_habis_pakai {
+    id                            Uuid                       @id @default(uuid())
+    id_item_pengiriman_permintaan Uuid
+    id_stok_barang_habis_pakai    Uuid
+    jumlah                        Int
+
+    item_pengiriman               item_pengiriman_permintaan @relation(fields: [id_item_pengiriman_permintaan], references: [id], onDelete: Restrict)
+    stok                          stok_barang_habis_pakai    @relation(fields: [id_stok_barang_habis_pakai], references: [id], onDelete: Restrict)
+
+    @@check(expression: "jumlah > 0", name: "shipment_consumable_quantity_positive")
+    @@index([id_item_pengiriman_permintaan], name: "ix_reshcoit_1")
+    @@index([id_stok_barang_habis_pakai], name: "ix_reshcoit_2")
+  }
+
+  model penerimaan_pengiriman {
+    id                       Uuid                  @id @default(uuid())
+    id_pengiriman_permintaan Uuid
+    diterima_oleh_id_pegawai String
+    catatan                  String?
+    diterima_pada            TimestamptzString     @default(now())
+
+    pengiriman               pengiriman_permintaan @relation(fields: [id_pengiriman_permintaan], references: [id], onDelete: Restrict)
+    penerima                 pengguna              @relation(fields: [diterima_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@index([id_pengiriman_permintaan, diterima_pada], name: "ix_reshre_1")
+  }
+
+  model item_penerimaan_pengiriman {
+    id                            Uuid                       @id @default(uuid())
+    id_penerimaan_pengiriman      Uuid
+    id_item_pengiriman_permintaan Uuid
+    id_pengiriman_permintaan      Uuid
+    jumlah_diterima               Int                        @default(0)
+    jumlah_ditolak                Int                        @default(0)
+    alasan_penolakan              String?
+    dibuat_pada                   TimestamptzString          @default(now())
+
+    penerimaan                    penerimaan_pengiriman      @relation(fields: [id_penerimaan_pengiriman, id_pengiriman_permintaan], references: [id, id_pengiriman_permintaan], onDelete: Restrict)
+    item_pengiriman               item_pengiriman_permintaan @relation(fields: [id_item_pengiriman_permintaan, id_pengiriman_permintaan], references: [id, id_pengiriman_permintaan], onDelete: Restrict)
+
+    @@unique([id_penerimaan_pengiriman, id_item_pengiriman_permintaan], map: "uq_reshreit_1")
+    @@check(expression: "jumlah_diterima >= 0 AND jumlah_ditolak >= 0 AND (jumlah_diterima + jumlah_ditolak) > 0", name: "shipment_receipt_item_quantities")
+    @@check(expression: "jumlah_ditolak = 0 OR alasan_penolakan IS NOT NULL", name: "shipment_rejection_requires_reason")
+    @@index([id_item_pengiriman_permintaan], name: "ix_reshreit_1")
+  }
+
+  model retur_permintaan {
+    id                            Uuid                       @id @default(uuid())
+    id_item_penerimaan_pengiriman Uuid
+    jumlah                        Int
+    alasan                        String
+    status                        StatusRetur                @default(diajukan)
+    tindak_lanjut                 TindakLanjutRetur?
+    ditinjau_oleh_id_pegawai      String?
+    ditinjau_pada                 TimestamptzString?
+    catatan_tindak_lanjut         String?
+    id_aset_tetap_pengganti       Uuid?
+    id_berkas_bukti               Int?
+    dibuat_oleh_id_pegawai        String
+    dibuat_pada                   TimestamptzString          @default(now())
+
+    item_penerimaan               item_penerimaan_pengiriman @relation(fields: [id_item_penerimaan_pengiriman], references: [id], onDelete: Restrict)
+    peninjau                      pengguna?                  @relation("retur_ditinjau_oleh", fields: [ditinjau_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+    aset_tetap_pengganti          aset_tetap?                @relation(fields: [id_aset_tetap_pengganti], references: [id], onDelete: Restrict)
+    berkas_bukti                  public.berkas?             @relation(fields: [id_berkas_bukti], references: [id], onDelete: Restrict)
+    pembuat                       pengguna                   @relation("retur_dibuat_oleh", fields: [dibuat_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@check(expression: "(status = 'diajukan' AND ditinjau_oleh_id_pegawai IS NULL AND ditinjau_pada IS NULL) OR (status <> 'diajukan' AND ditinjau_oleh_id_pegawai IS NOT NULL AND ditinjau_pada IS NOT NULL)", name: "return_review_metadata_matches_status")
+    @@check(expression: "(status = 'diselesaikan' AND tindak_lanjut IS NOT NULL) OR (status <> 'diselesaikan' AND tindak_lanjut IS NULL)", name: "return_followup_matches_status")
+    @@check(expression: "jumlah > 0", name: "request_return_quantity_positive")
+    @@index([id_item_penerimaan_pengiriman, status], name: "ix_rere_1")
+  }
+
+  model mutasi_lokasi {
+    id                     Uuid               @id @default(uuid())
+    nomor_mutasi           String             @unique
+    id_aktor               Uuid
+    id_tempat_asal         Uuid
+    id_tempat_tujuan       Uuid
+    status                 StatusMutasi       @default(disiapkan)
+    dibuat_oleh_id_pegawai String
+    dibuat_pada            TimestamptzString  @default(now())
+    diselesaikan_pada      TimestamptzString?
+
+    aktor                  aktor              @relation(fields: [id_aktor], references: [id], onDelete: Restrict)
+    tempat_asal            tempat             @relation("mutasi_tempat_asal", fields: [id_tempat_asal], references: [id], onDelete: Restrict)
+    tempat_tujuan          tempat             @relation("mutasi_tempat_tujuan", fields: [id_tempat_tujuan], references: [id], onDelete: Restrict)
+    pembuat                pengguna           @relation(fields: [dibuat_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@check(expression: "(status = 'selesai' AND diselesaikan_pada IS NOT NULL) OR (status <> 'selesai' AND diselesaikan_pada IS NULL)", name: "location_mutation_timestamp_matches_status")
+    @@index([id_aktor, status, dibuat_pada], name: "ix_lomu_1")
+  }
+
+  model item_mutasi_lokasi_aset_tetap {
+    id               Uuid          @id @default(uuid())
+    id_mutasi_lokasi Uuid
+    id_aset_tetap    Uuid
+
+    mutasi           mutasi_lokasi @relation(fields: [id_mutasi_lokasi], references: [id], onDelete: Restrict)
+    aset_tetap       aset_tetap    @relation(fields: [id_aset_tetap], references: [id], onDelete: Restrict)
+
+    @@unique([id_mutasi_lokasi, id_aset_tetap], map: "uq_lomufiit_1")
+    @@index([id_aset_tetap], name: "ix_lomufiit_1")
+  }
+
+  model item_mutasi_lokasi_barang_habis_pakai {
+    id                         Uuid                    @id @default(uuid())
+    id_mutasi_lokasi           Uuid
+    id_stok_barang_habis_pakai Uuid
+    jumlah                     Int
+
+    mutasi                     mutasi_lokasi           @relation(fields: [id_mutasi_lokasi], references: [id], onDelete: Restrict)
+    stok                       stok_barang_habis_pakai @relation(fields: [id_stok_barang_habis_pakai], references: [id], onDelete: Restrict)
+
+    @@check(expression: "jumlah > 0", name: "mutation_consumable_quantity_positive")
+    @@index([id_mutasi_lokasi], name: "ix_lomucoit_1")
+    @@index([id_stok_barang_habis_pakai], name: "ix_lomucoit_2")
+  }
+
+  model transfer_antar_unit {
+    id                     Uuid               @id @default(uuid())
+    nomor_transfer         String             @unique
+    id_aktor_pengirim      Uuid
+    id_aktor_penerima      Uuid
+    id_gudang_asal         Uuid
+    id_gudang_tujuan       Uuid
+    status                 StatusTransfer     @default(disiapkan)
+    dibuat_oleh_id_pegawai String
+    dibuat_pada            TimestamptzString  @default(now())
+    dikirim_pada           TimestamptzString?
+
+    aktor_pengirim         aktor              @relation("transfer_pengirim", fields: [id_aktor_pengirim], references: [id], onDelete: Restrict)
+    aktor_penerima         aktor              @relation("transfer_penerima", fields: [id_aktor_penerima], references: [id], onDelete: Restrict)
+    gudang_asal            gudang             @relation("transfer_gudang_asal", fields: [id_gudang_asal], references: [id], onDelete: Restrict)
+    gudang_tujuan          gudang             @relation("transfer_gudang_tujuan", fields: [id_gudang_tujuan], references: [id], onDelete: Restrict)
+    pembuat                pengguna           @relation(fields: [dibuat_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@check(expression: "(status = 'disiapkan' AND dikirim_pada IS NULL) OR (status = 'dikirim' AND dikirim_pada IS NOT NULL) OR status = 'dibatalkan'", name: "transfer_shipped_timestamp_matches_status")
+    @@index([id_aktor_pengirim, status, dibuat_pada], name: "ix_inuntr_1")
+    @@index([id_aktor_penerima, status, dibuat_pada], name: "ix_inuntr_2")
+  }
+
+  model item_transfer_antar_unit_aset_tetap {
+    id                     Uuid                @id @default(uuid())
+    id_transfer_antar_unit Uuid
+    id_aset_tetap          Uuid
+
+    transfer               transfer_antar_unit @relation(fields: [id_transfer_antar_unit], references: [id], onDelete: Restrict)
+    aset_tetap             aset_tetap          @relation(fields: [id_aset_tetap], references: [id], onDelete: Restrict)
+
+    @@unique([id_transfer_antar_unit, id_aset_tetap], map: "uq_inuntrfiit_1")
+    @@unique([id, id_transfer_antar_unit], map: "uq_inuntrfiit_2")
+    @@index([id_aset_tetap], name: "ix_inuntrfiit_1")
+  }
+
+  model item_transfer_antar_unit_barang_habis_pakai {
+    id                         Uuid                    @id @default(uuid())
+    id_transfer_antar_unit     Uuid
+    id_stok_barang_habis_pakai Uuid
+    jumlah_dikirim             Int
+
+    transfer                   transfer_antar_unit     @relation(fields: [id_transfer_antar_unit], references: [id], onDelete: Restrict)
+    stok                       stok_barang_habis_pakai @relation(fields: [id_stok_barang_habis_pakai], references: [id], onDelete: Restrict)
+
+    @@check(expression: "jumlah_dikirim > 0", name: "transfer_consumable_quantity_positive")
+    @@unique([id, id_transfer_antar_unit], map: "uq_inuntrcoit_3")
+    @@index([id_transfer_antar_unit], name: "ix_inuntrcoit_1")
+    @@index([id_stok_barang_habis_pakai], name: "ix_inuntrcoit_2")
+  }
+
+  model penerimaan_transfer {
+    id                       Uuid                @id @default(uuid())
+    id_transfer_antar_unit   Uuid
+    diterima_oleh_id_pegawai String
+    diterima_pada            TimestamptzString   @default(now())
+    catatan                  String?
+
+    transfer                 transfer_antar_unit @relation(fields: [id_transfer_antar_unit], references: [id], onDelete: Restrict)
+    penerima                 pengguna            @relation(fields: [diterima_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@unique([id, id_transfer_antar_unit], map: "uq_inuntrre_1")
+    @@index([id_transfer_antar_unit, diterima_pada], name: "ix_inuntrre_1")
+  }
+
+  model item_penerimaan_transfer_aset_tetap {
+    id                                     Uuid                                @id @default(uuid())
+    id_penerimaan_transfer                 Uuid
+    id_item_transfer_antar_unit_aset_tetap Uuid
+    id_transfer_antar_unit                 Uuid
+    diterima                               Boolean
+    alasan_penolakan                       String?
+
+    penerimaan                             penerimaan_transfer                 @relation(fields: [id_penerimaan_transfer, id_transfer_antar_unit], references: [id, id_transfer_antar_unit], onDelete: Restrict)
+    item_transfer                          item_transfer_antar_unit_aset_tetap @relation(fields: [id_item_transfer_antar_unit_aset_tetap, id_transfer_antar_unit], references: [id, id_transfer_antar_unit], onDelete: Restrict)
+
+    @@check(expression: "diterima OR alasan_penolakan IS NOT NULL", name: "transfer_asset_rejection_requires_reason")
+    @@unique([id_penerimaan_transfer, id_item_transfer_antar_unit_aset_tetap], map: "uq_inuntrreit_1")
+    @@unique([id_item_transfer_antar_unit_aset_tetap], map: "uq_inuntrreit_2")
+    @@index([id_penerimaan_transfer], name: "ix_inuntrreit_1")
+  }
+
+  model item_penerimaan_transfer_barang_habis_pakai {
+    id                                             Uuid                                        @id @default(uuid())
+    id_penerimaan_transfer                         Uuid
+    id_item_transfer_antar_unit_barang_habis_pakai Uuid
+    id_transfer_antar_unit                         Uuid
+    jumlah_diterima                                Int
+    jumlah_ditolak                                 Int                                         @default(0)
+    alasan_penolakan                               String?
+
+    penerimaan                                     penerimaan_transfer                         @relation(fields: [id_penerimaan_transfer, id_transfer_antar_unit], references: [id, id_transfer_antar_unit], onDelete: Restrict)
+    item_transfer                                  item_transfer_antar_unit_barang_habis_pakai @relation(fields: [id_item_transfer_antar_unit_barang_habis_pakai, id_transfer_antar_unit], references: [id, id_transfer_antar_unit], onDelete: Restrict)
+
+    @@check(expression: "jumlah_diterima >= 0 AND jumlah_ditolak >= 0 AND (jumlah_diterima + jumlah_ditolak) > 0", name: "transfer_stock_receipt_quantities")
+    @@check(expression: "jumlah_ditolak = 0 OR alasan_penolakan IS NOT NULL", name: "transfer_stock_rejection_requires_reason")
+    @@unique([id_penerimaan_transfer, id_item_transfer_antar_unit_barang_habis_pakai], map: "uq_inuntrcoitre_1")
+    @@index([id_item_transfer_antar_unit_barang_habis_pakai], name: "ix_inuntrcoitre_1")
+  }
+
+  model penghapusan_aset {
+    id                     Uuid              @id @default(uuid())
+    nomor_penghapusan      String            @unique
+    id_aktor               Uuid
+    jenis                  JenisPenghapusan
+    alasan                 String
+    dibuat_oleh_id_pegawai String
+    dibuat_pada            TimestamptzString @default(now())
+
+    aktor                  aktor             @relation(fields: [id_aktor], references: [id], onDelete: Restrict)
+    pembuat                pengguna          @relation(fields: [dibuat_oleh_id_pegawai], references: [id_pegawai], onDelete: Restrict)
+
+    @@index([id_aktor, dibuat_pada], name: "ix_di_1")
+  }
+
+  model item_penghapusan_aset_tetap {
+    id               Uuid             @id @default(uuid())
+    id_penghapusan   Uuid
+    id_aset_tetap    Uuid             @unique
+
+    penghapusan_aset penghapusan_aset @relation(fields: [id_penghapusan], references: [id], onDelete: Restrict)
+    aset_tetap       aset_tetap       @relation(fields: [id_aset_tetap], references: [id], onDelete: Restrict)
+
+    @@index([id_penghapusan], name: "ix_difiit_1")
+  }
+
+  model item_penghapusan_barang_habis_pakai {
+    id                         Uuid                    @id @default(uuid())
+    id_penghapusan             Uuid
+    id_stok_barang_habis_pakai Uuid
+    jumlah                     Int
+
+    penghapusan_aset           penghapusan_aset        @relation(fields: [id_penghapusan], references: [id], onDelete: Restrict)
+    stok                       stok_barang_habis_pakai @relation(fields: [id_stok_barang_habis_pakai], references: [id], onDelete: Restrict)
+
+    @@check(expression: "jumlah > 0", name: "disposal_consumable_quantity_positive")
+    @@index([id_penghapusan], name: "ix_dicoit_1")
+    @@index([id_stok_barang_habis_pakai], name: "ix_dicoit_2")
+  }
 }

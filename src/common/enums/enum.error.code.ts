@@ -1,8 +1,6 @@
 export enum ErrorCode {
   validation_error = "VALIDATION_ERROR",
   user_not_found = "USER_NOT_FOUND",
-  user_email_exists = "USER_EMAIL_EXISTS",
-  post_not_found = "POST_NOT_FOUND",
   upload_not_found = "UPLOAD_NOT_FOUND",
   conflict = "CONFLICT",
   unauthorized = "UNAUTHORIZED",

@@ -11,6 +11,11 @@ const environment_schema = z.object({
     (value) => (typeof value === "string" && value.trim() === "" ? undefined : value),
     z.coerce.number().int().positive().max(2_592_000).default(3600),
   ),
+  HRMS_BASE_URL: z.url().optional(),
+  HRMS_ID_INSTITUSI: z.preprocess(
+    (value) => (typeof value === "string" && value.trim() === "" ? undefined : value),
+    z.coerce.number().int().positive().default(1),
+  ),
   CORS_ORIGIN: z.string().default("*"),
 });
 

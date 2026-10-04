@@ -1,9 +1,11 @@
-import type { UserRole } from "@/common/enums/enum.user.role";
-
 export interface AuthenticatedUser {
-  sub: number;
-  email: string;
-  role: UserRole;
+  username: string;
+  nama: string;
+  id_actor: string;
+  nama_actor: string;
+  jenis_actor: string;
+  nama_pekerjaan: string;
+  jabatan: string | null;
 }
 
 export interface RequestContext {

@@ -1,73 +1,44 @@
 import { Injectable } from "@nestjs/common";
 import { or } from "@prisma/orm-postgres/orm-client";
+import type { Models } from "@/prisma/contract.d.ts";
 import { PrismaService } from "@/prisma/service.prisma";
 import type { UserQueryDto } from "./d.query/dto.user.query";
-import type { UserResponseDto } from "./d.response/dto.user.response";
+
+type UserRecord = Pick<Models.sarpras_pengguna, "id_pegawai" | "nama" | "dibuat_pada">;
 
 @Injectable()
 export class UsersRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async find_many(query: UserQueryDto): Promise<{ users: UserResponseDto[]; total: number }> {
-    let collection = this.prisma.db.orm.public.user;
+  async find_many(query: UserQueryDto): Promise<{ users: UserRecord[]; total: number }> {
+    let collection = this.prisma.db.orm.sarpras.pengguna;
 
     if (query.search) {
       const pattern = `%${query.search}%`;
-      collection = collection.where((user) =>
-        or(user.email.ilike(pattern), user.name.ilike(pattern), user.username.ilike(pattern)),
+      collection = collection.where((pengguna) =>
+        or(pengguna.id_pegawai.ilike(pattern), pengguna.nama.ilike(pattern)),
       );
     }
 
-    if (query.role) {
-      collection = collection.where({ role: query.role });
-    }
-
-    const offset = (query.page - 1) * query.limit;
+    const sort_field = {
+      created_at: "dibuat_pada",
+      username: "id_pegawai",
+      nama: "nama",
+    } as const satisfies Record<UserQueryDto["sort_by"], string>;
     const users = await collection
-      .select("id", "email", "username", "name", "role", "created_at")
-      .orderBy((user) => user[query.sort_by][query.sort_order]())
+      .select("id_pegawai", "nama", "dibuat_pada")
+      .orderBy((pengguna) => pengguna[sort_field[query.sort_by]][query.sort_order]())
       .limit(query.limit)
-      .offset(offset)
+      .offset((query.page - 1) * query.limit)
       .all();
     const aggregate = await collection.aggregate((values) => ({ total: values.count() }));
 
     return { users, total: aggregate.total };
   }
 
-  find_by_id(id: number) {
-    return this.prisma.db.orm.public.user
-      .select("id", "email", "username", "name", "role", "created_at")
-      .first({ id });
-  }
-
-  find_auth_record_by_email(email: string) {
-    return this.prisma.db.orm.public.user
-      .select("id", "email", "password_hash", "role")
-      .where({ email })
-      .first();
-  }
-
-  find_by_email(email: string) {
-    return this.prisma.db.orm.public.user.select("id").where({ email }).first();
-  }
-
-  create(data: { email: string; username?: string; name?: string; password_hash: string }) {
-    return this.prisma.db.orm.public.user
-      .select("id", "email", "username", "name", "role", "created_at")
-      .create(data);
-  }
-
-  update(
-    id: number,
-    data: { name?: string | null; password_hash?: string },
-  ) {
-    return this.prisma.db.orm.public.user
-      .where({ id })
-      .select("id", "email", "username", "name", "role", "created_at")
-      .update(data);
-  }
-
-  delete(id: number) {
-    return this.prisma.db.orm.public.user.where({ id }).delete();
+  find_by_username(username: string) {
+    return this.prisma.db.orm.sarpras.pengguna
+      .select("id_pegawai", "nama", "dibuat_pada")
+      .first({ id_pegawai: username });
   }
 }

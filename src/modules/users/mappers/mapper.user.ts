@@ -1,18 +1,12 @@
 import type { Models } from "@/prisma/contract.d.ts";
 import type { UserResponseDto } from "@/modules/users/d.response/dto.user.response";
 
-type PublicUserFields = Pick<
-  Models.public_user,
-  "id" | "email" | "username" | "name" | "role" | "created_at"
->;
+type UserFields = Pick<Models.sarpras_pengguna, "id_pegawai" | "nama" | "dibuat_pada">;
 
-export function map_user(user: PublicUserFields): UserResponseDto {
+export function map_user(user: UserFields): UserResponseDto {
   return {
-    id: user.id,
-    email: user.email,
-    username: user.username,
-    name: user.name,
-    role: user.role,
-    created_at: user.created_at,
+    username: user.id_pegawai,
+    nama: user.nama,
+    created_at: user.dibuat_pada,
   };
 }

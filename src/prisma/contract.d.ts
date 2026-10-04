@@ -34,9 +34,9 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'21fe8559a5af9bdbff3cb216ae1d83b303733fc1b733659adecc1cac8753e75b'>;
+  StorageHashBase<'ea5274728442ae49b6ddc39c171d536e49162cad23bc43c6fdf724536893b72e'>;
 export type ExecutionHash =
-  ExecutionHashBase<'796fa270d853489edb1c3e0d332d596412292127a259b856b495a498c752882a'>;
+  ExecutionHashBase<'abd3d3aef042d1e91c6543f606aa987a9c42788e55571ffc34d5cefcbd9a2948'>;
 export type ProfileHash =
   ProfileHashBase<'3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2'>;
 
@@ -250,169 +250,2887 @@ type DefaultLiteralValue<CodecId extends string, Encoded> = CodecId extends keyo
 
 export type FieldOutputTypes = {
   readonly public: {
-    readonly post: {
-      readonly author_id: CodecTypes['pg/int4@1']['output'];
-      readonly content: CodecTypes['pg/text@1']['output'] | null;
-      readonly created_at: CodecTypes['pg/timestamptz-string@1']['output'];
+    readonly berkas: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diunggah_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
       readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly title: CodecTypes['pg/text@1']['output'];
-      readonly updated_at: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly nama_asli: CodecTypes['pg/text@1']['output'];
+      readonly nama_penyimpanan: CodecTypes['pg/text@1']['output'];
+      readonly tipe_mime: CodecTypes['pg/text@1']['output'];
+      readonly ukuran: CodecTypes['pg/int4@1']['output'];
     };
-    readonly uploaded_file: {
-      readonly created_at: CodecTypes['pg/timestamptz-string@1']['output'];
-      readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly mime_type: CodecTypes['pg/text@1']['output'];
-      readonly original_name: CodecTypes['pg/text@1']['output'];
-      readonly size: CodecTypes['pg/int4@1']['output'];
-      readonly storage_name: CodecTypes['pg/text@1']['output'];
-      readonly uploaded_by_id: CodecTypes['pg/int4@1']['output'];
+  };
+  readonly sarpras: {
+    readonly aktor: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis:
+        | 'YAYASAN'
+        | 'UNIVERSITAS'
+        | 'FAKULTAS'
+        | 'PROGRAM_STUDI'
+        | 'LEMBAGA'
+        | 'KEUANGAN'
+        | 'KHUSUS';
+      readonly kode: CodecTypes['pg/text@1']['output'];
+      readonly nama: CodecTypes['pg/text@1']['output'];
     };
-    readonly user: {
-      readonly created_at: CodecTypes['pg/timestamptz-string@1']['output'];
-      readonly email: CodecTypes['pg/text@1']['output'];
-      readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly name: CodecTypes['pg/text@1']['output'] | null;
-      readonly password_hash: CodecTypes['pg/text@1']['output'] | null;
-      readonly role: 'USER' | 'ADMIN';
-      readonly updated_at: CodecTypes['pg/timestamptz-string@1']['output'];
-      readonly username: CodecTypes['pg/text@1']['output'] | null;
+    readonly alokasi_item_pengadaan_permintaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly aset_tetap: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_tempat_saat_ini: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+      readonly kode_aset: CodecTypes['pg/text@1']['output'];
+      readonly kondisi: 'baik' | 'rusak_ringan' | 'rusak_berat';
+      readonly status: 'tersedia' | 'digunakan' | 'hilang';
+    };
+    readonly dokumen_pengadaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diunggah_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_berkas: CodecTypes['pg/int4@1']['output'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis:
+        | 'tagihan'
+        | 'bukti_pembayaran'
+        | 'bukti_penerimaan'
+        | 'bukti_perbedaan'
+        | 'surat_persetujuan'
+        | 'lainnya';
+    };
+    readonly gudang: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tempat: CodecTypes['pg/uuid@1']['output'];
+      readonly kode: CodecTypes['pg/text@1']['output'];
+    };
+    readonly item_mutasi_lokasi_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_mutasi_lokasi: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly item_mutasi_lokasi_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_mutasi_lokasi: CodecTypes['pg/uuid@1']['output'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_penerimaan_pengadaan: {
+      readonly alasan_perbedaan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah_diterima: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_penerimaan_pengiriman: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_penerimaan_pengiriman: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah_diterima: CodecTypes['pg/int4@1']['output'];
+      readonly jumlah_ditolak: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_penerimaan_transfer_aset_tetap: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['output'] | null;
+      readonly diterima: CodecTypes['pg/bool@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_transfer_antar_unit_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_penerimaan_transfer: CodecTypes['pg/uuid@1']['output'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly item_penerimaan_transfer_barang_habis_pakai: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['output'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_transfer_antar_unit_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly id_penerimaan_transfer: CodecTypes['pg/uuid@1']['output'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah_diterima: CodecTypes['pg/int4@1']['output'];
+      readonly jumlah_ditolak: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_pengadaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly harga_satuan: Numeric<14, 2>;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_katalog_pemasok: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+      readonly perlu_persetujuan: CodecTypes['pg/bool@1']['output'];
+      readonly status: 'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan';
+      readonly sumber_dana: 'anggaran_organisasi' | 'hibah' | 'donasi' | 'lainnya';
+    };
+    readonly item_penghapusan_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_penghapusan: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly item_penghapusan_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_penghapusan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_pengiriman_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly item_pengiriman_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_pengiriman_permintaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_permintaan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_variasi_aset: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_transfer_antar_unit_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly item_transfer_antar_unit_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah_dikirim: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly katalog_pemasok: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly harga_referensi: Numeric<14, 2> | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pemasok: CodecTypes['pg/uuid@1']['output'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly kategori_aset: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis: 'aset_tetap' | 'barang_habis_pakai';
+      readonly kode: CodecTypes['pg/text@1']['output'];
+      readonly nama: CodecTypes['pg/text@1']['output'];
+    };
+    readonly merek: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly nama: CodecTypes['pg/text@1']['output'];
+    };
+    readonly mutasi_aset_tetap: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tempat_asal: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly jenis_mutasi:
+        | 'penerimaan'
+        | 'pengiriman_permintaan'
+        | 'pengembalian_ke_gudang'
+        | 'transfer_masuk'
+        | 'transfer_keluar'
+        | 'mutasi'
+        | 'penyesuaian'
+        | 'penghapusan';
+    };
+    readonly mutasi_lokasi: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diselesaikan_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tempat_asal: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['output'];
+      readonly nomor_mutasi: CodecTypes['pg/text@1']['output'];
+      readonly status: 'disiapkan' | 'selesai' | 'dibatalkan';
+    };
+    readonly mutasi_stok_barang: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis_mutasi:
+        | 'penerimaan'
+        | 'pengiriman'
+        | 'pengembalian_ke_gudang'
+        | 'transfer_masuk'
+        | 'transfer_keluar'
+        | 'mutasi'
+        | 'penyesuaian'
+        | 'penghapusan';
+      readonly perubahan_jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly pemasok: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly alamat: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly kode: CodecTypes['pg/text@1']['output'] | null;
+      readonly nama: CodecTypes['pg/text@1']['output'];
+      readonly nomor_telepon: CodecTypes['pg/text@1']['output'] | null;
+      readonly surel: CodecTypes['pg/text@1']['output'] | null;
+    };
+    readonly pembalikan_pembayaran: {
+      readonly alasan: CodecTypes['pg/text@1']['output'];
+      readonly dibalik_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibalik_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pembayaran: CodecTypes['pg/uuid@1']['output'];
+      readonly nominal: Numeric<14, 2>;
+    };
+    readonly pembayaran: {
+      readonly dibayar_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tagihan: CodecTypes['pg/uuid@1']['output'];
+      readonly nominal: Numeric<14, 2>;
+      readonly referensi_pembayaran: CodecTypes['pg/text@1']['output'] | null;
+    };
+    readonly penerimaan_pengadaan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly diterima_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_gudang: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly penerimaan_pengiriman: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly diterima_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly penerimaan_transfer: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly diterima_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly pengadaan: {
+      readonly alur_pengadaan: 'rab' | 'insidentil' | 'langsung';
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis: 'mandiri' | 'berbasis_permintaan';
+      readonly nomor_pengadaan: CodecTypes['pg/text@1']['output'];
+      readonly status:
+        | 'draf'
+        | 'menunggu_persetujuan'
+        | 'ditolak'
+        | 'disetujui'
+        | 'dalam_pembelian'
+        | 'dalam_pengiriman'
+        | 'dibatalkan';
+    };
+    readonly pengguna: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly nama: CodecTypes['pg/text@1']['output'];
+    };
+    readonly penghapusan_aset: {
+      readonly alasan: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis: 'dijual' | 'disumbangkan' | 'dimusnahkan' | 'hilang' | 'lainnya';
+      readonly nomor_penghapusan: CodecTypes['pg/text@1']['output'];
+    };
+    readonly pengiriman_permintaan: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dikirim_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['output'];
+      readonly nomor_pengiriman: CodecTypes['pg/text@1']['output'];
+      readonly status: 'disiapkan' | 'dikirim' | 'dibatalkan';
+    };
+    readonly permintaan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly diajukan_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor_peminta: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['output'];
+      readonly nomor_permintaan: CodecTypes['pg/text@1']['output'];
+      readonly status:
+        'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan';
+    };
+    readonly reservasi_aset_tetap: {
+      readonly dilepas_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly direservasi_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly direservasi_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly status: 'direservasi' | 'dibatalkan' | 'dilepas';
+    };
+    readonly reservasi_stok_barang: {
+      readonly dilepas_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly direservasi_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly direservasi_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+      readonly status: 'direservasi' | 'dibatalkan' | 'dilepas';
+    };
+    readonly retur_permintaan: {
+      readonly alasan: CodecTypes['pg/text@1']['output'];
+      readonly catatan_tindak_lanjut: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly ditinjau_oleh_id_pegawai: CodecTypes['pg/text@1']['output'] | null;
+      readonly ditinjau_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap_pengganti: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_berkas_bukti: CodecTypes['pg/int4@1']['output'] | null;
+      readonly id_item_penerimaan_pengiriman: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+      readonly status: 'diajukan' | 'disetujui' | 'ditolak' | 'diselesaikan';
+      readonly tindak_lanjut: 'kirim_ulang' | 'kembali_ke_sumber' | 'penghapusan' | null;
+    };
+    readonly riwayat_status_item_pengadaan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly status_baru:
+        'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan';
+      readonly status_sebelumnya:
+        'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan' | null;
+    };
+    readonly riwayat_status_pengadaan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly status_baru:
+        | 'draf'
+        | 'menunggu_persetujuan'
+        | 'ditolak'
+        | 'disetujui'
+        | 'dalam_pembelian'
+        | 'dalam_pengiriman'
+        | 'dibatalkan';
+      readonly status_sebelumnya:
+        | 'draf'
+        | 'menunggu_persetujuan'
+        | 'ditolak'
+        | 'disetujui'
+        | 'dalam_pembelian'
+        | 'dalam_pengiriman'
+        | 'dibatalkan'
+        | null;
+    };
+    readonly riwayat_status_permintaan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor_konteks: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly status_baru:
+        'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan';
+      readonly status_sebelumnya:
+        'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan' | null;
+    };
+    readonly riwayat_status_sumber_pemenuhan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor_konteks: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly status_baru:
+        | 'diusulkan'
+        | 'diterima_dc'
+        | 'ditolak_dc'
+        | 'menunggu_yayasan'
+        | 'ditolak_yayasan'
+        | 'dibatalkan';
+      readonly status_sebelumnya:
+        | 'diusulkan'
+        | 'diterima_dc'
+        | 'ditolak_dc'
+        | 'menunggu_yayasan'
+        | 'ditolak_yayasan'
+        | 'dibatalkan'
+        | null;
+    };
+    readonly stok_barang_habis_pakai: {
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_gudang: CodecTypes['pg/uuid@1']['output'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah_saldo: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly sumber_pemenuhan_permintaan: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_gudang: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_item_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_katalog_pemasok: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis: 'gudang' | 'pengadaan';
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+      readonly status:
+        | 'diusulkan'
+        | 'diterima_dc'
+        | 'ditolak_dc'
+        | 'menunggu_yayasan'
+        | 'ditolak_yayasan'
+        | 'dibatalkan';
+    };
+    readonly tagihan: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly nominal: Numeric<14, 2>;
+      readonly nomor_tagihan: CodecTypes['pg/text@1']['output'];
+      readonly status: 'diajukan' | 'dibatalkan';
+      readonly tanggal_tagihan: CodecTypes['pg/date-string@1']['output'] | null;
+    };
+    readonly tempat: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly deskripsi: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor_pemilik: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_tempat_induk: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly jenis:
+        'kampus' | 'gedung' | 'lantai' | 'ruangan' | 'zona' | 'area_lantai' | 'lainnya';
+      readonly kode: CodecTypes['pg/text@1']['output'] | null;
+      readonly nama: CodecTypes['pg/text@1']['output'];
+    };
+    readonly transfer_antar_unit: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dikirim_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor_penerima: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor_pengirim: CodecTypes['pg/uuid@1']['output'];
+      readonly id_gudang_asal: CodecTypes['pg/uuid@1']['output'];
+      readonly id_gudang_tujuan: CodecTypes['pg/uuid@1']['output'];
+      readonly nomor_transfer: CodecTypes['pg/text@1']['output'];
+      readonly status: 'disiapkan' | 'dikirim' | 'dibatalkan';
+    };
+    readonly variasi_aset: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_kategori_aset: CodecTypes['pg/uuid@1']['output'];
+      readonly kode: CodecTypes['pg/text@1']['output'] | null;
+      readonly nama: CodecTypes['pg/text@1']['output'];
+      readonly satuan: CodecTypes['pg/text@1']['output'];
+    };
+    readonly variasi_aset_merek: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_merek: CodecTypes['pg/uuid@1']['output'];
+      readonly id_variasi_aset: CodecTypes['pg/uuid@1']['output'];
     };
   };
 };
 export type FieldInputTypes = {
   readonly public: {
-    readonly post: {
-      readonly author_id: CodecTypes['pg/int4@1']['input'];
-      readonly content: CodecTypes['pg/text@1']['input'] | null;
-      readonly created_at: CodecTypes['pg/timestamptz-string@1']['input'];
+    readonly berkas: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diunggah_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
       readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly title: CodecTypes['pg/text@1']['input'];
-      readonly updated_at: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly nama_asli: CodecTypes['pg/text@1']['input'];
+      readonly nama_penyimpanan: CodecTypes['pg/text@1']['input'];
+      readonly tipe_mime: CodecTypes['pg/text@1']['input'];
+      readonly ukuran: CodecTypes['pg/int4@1']['input'];
     };
-    readonly uploaded_file: {
-      readonly created_at: CodecTypes['pg/timestamptz-string@1']['input'];
-      readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly mime_type: CodecTypes['pg/text@1']['input'];
-      readonly original_name: CodecTypes['pg/text@1']['input'];
-      readonly size: CodecTypes['pg/int4@1']['input'];
-      readonly storage_name: CodecTypes['pg/text@1']['input'];
-      readonly uploaded_by_id: CodecTypes['pg/int4@1']['input'];
+  };
+  readonly sarpras: {
+    readonly aktor: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis:
+        | 'YAYASAN'
+        | 'UNIVERSITAS'
+        | 'FAKULTAS'
+        | 'PROGRAM_STUDI'
+        | 'LEMBAGA'
+        | 'KEUANGAN'
+        | 'KHUSUS';
+      readonly kode: CodecTypes['pg/text@1']['input'];
+      readonly nama: CodecTypes['pg/text@1']['input'];
     };
-    readonly user: {
-      readonly created_at: CodecTypes['pg/timestamptz-string@1']['input'];
-      readonly email: CodecTypes['pg/text@1']['input'];
-      readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly name: CodecTypes['pg/text@1']['input'] | null;
-      readonly password_hash: CodecTypes['pg/text@1']['input'] | null;
-      readonly role: 'USER' | 'ADMIN';
-      readonly updated_at: CodecTypes['pg/timestamptz-string@1']['input'];
-      readonly username: CodecTypes['pg/text@1']['input'] | null;
+    readonly alokasi_item_pengadaan_permintaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly aset_tetap: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_tempat_saat_ini: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['input'];
+      readonly kode_aset: CodecTypes['pg/text@1']['input'];
+      readonly kondisi: 'baik' | 'rusak_ringan' | 'rusak_berat';
+      readonly status: 'tersedia' | 'digunakan' | 'hilang';
+    };
+    readonly dokumen_pengadaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diunggah_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_berkas: CodecTypes['pg/int4@1']['input'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis:
+        | 'tagihan'
+        | 'bukti_pembayaran'
+        | 'bukti_penerimaan'
+        | 'bukti_perbedaan'
+        | 'surat_persetujuan'
+        | 'lainnya';
+    };
+    readonly gudang: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tempat: CodecTypes['pg/uuid@1']['input'];
+      readonly kode: CodecTypes['pg/text@1']['input'];
+    };
+    readonly item_mutasi_lokasi_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_mutasi_lokasi: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly item_mutasi_lokasi_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_mutasi_lokasi: CodecTypes['pg/uuid@1']['input'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_penerimaan_pengadaan: {
+      readonly alasan_perbedaan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah_diterima: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_penerimaan_pengiriman: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_penerimaan_pengiriman: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah_diterima: CodecTypes['pg/int4@1']['input'];
+      readonly jumlah_ditolak: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_penerimaan_transfer_aset_tetap: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['input'] | null;
+      readonly diterima: CodecTypes['pg/bool@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_transfer_antar_unit_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_penerimaan_transfer: CodecTypes['pg/uuid@1']['input'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly item_penerimaan_transfer_barang_habis_pakai: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_transfer_antar_unit_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly id_penerimaan_transfer: CodecTypes['pg/uuid@1']['input'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah_diterima: CodecTypes['pg/int4@1']['input'];
+      readonly jumlah_ditolak: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_pengadaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly harga_satuan: CodecTypes['pg/numeric@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_katalog_pemasok: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+      readonly perlu_persetujuan: CodecTypes['pg/bool@1']['input'];
+      readonly status: 'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan';
+      readonly sumber_dana: 'anggaran_organisasi' | 'hibah' | 'donasi' | 'lainnya';
+    };
+    readonly item_penghapusan_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_penghapusan: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly item_penghapusan_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_penghapusan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_pengiriman_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly item_pengiriman_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_pengiriman_permintaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_permintaan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_variasi_aset: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_transfer_antar_unit_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly item_transfer_antar_unit_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah_dikirim: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly katalog_pemasok: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly harga_referensi: CodecTypes['pg/numeric@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pemasok: CodecTypes['pg/uuid@1']['input'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly kategori_aset: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis: 'aset_tetap' | 'barang_habis_pakai';
+      readonly kode: CodecTypes['pg/text@1']['input'];
+      readonly nama: CodecTypes['pg/text@1']['input'];
+    };
+    readonly merek: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly nama: CodecTypes['pg/text@1']['input'];
+    };
+    readonly mutasi_aset_tetap: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tempat_asal: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly jenis_mutasi:
+        | 'penerimaan'
+        | 'pengiriman_permintaan'
+        | 'pengembalian_ke_gudang'
+        | 'transfer_masuk'
+        | 'transfer_keluar'
+        | 'mutasi'
+        | 'penyesuaian'
+        | 'penghapusan';
+    };
+    readonly mutasi_lokasi: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diselesaikan_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tempat_asal: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['input'];
+      readonly nomor_mutasi: CodecTypes['pg/text@1']['input'];
+      readonly status: 'disiapkan' | 'selesai' | 'dibatalkan';
+    };
+    readonly mutasi_stok_barang: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis_mutasi:
+        | 'penerimaan'
+        | 'pengiriman'
+        | 'pengembalian_ke_gudang'
+        | 'transfer_masuk'
+        | 'transfer_keluar'
+        | 'mutasi'
+        | 'penyesuaian'
+        | 'penghapusan';
+      readonly perubahan_jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly pemasok: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly alamat: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly kode: CodecTypes['pg/text@1']['input'] | null;
+      readonly nama: CodecTypes['pg/text@1']['input'];
+      readonly nomor_telepon: CodecTypes['pg/text@1']['input'] | null;
+      readonly surel: CodecTypes['pg/text@1']['input'] | null;
+    };
+    readonly pembalikan_pembayaran: {
+      readonly alasan: CodecTypes['pg/text@1']['input'];
+      readonly dibalik_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibalik_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pembayaran: CodecTypes['pg/uuid@1']['input'];
+      readonly nominal: CodecTypes['pg/numeric@1']['input'];
+    };
+    readonly pembayaran: {
+      readonly dibayar_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tagihan: CodecTypes['pg/uuid@1']['input'];
+      readonly nominal: CodecTypes['pg/numeric@1']['input'];
+      readonly referensi_pembayaran: CodecTypes['pg/text@1']['input'] | null;
+    };
+    readonly penerimaan_pengadaan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly diterima_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_gudang: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly penerimaan_pengiriman: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly diterima_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly penerimaan_transfer: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly diterima_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly pengadaan: {
+      readonly alur_pengadaan: 'rab' | 'insidentil' | 'langsung';
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis: 'mandiri' | 'berbasis_permintaan';
+      readonly nomor_pengadaan: CodecTypes['pg/text@1']['input'];
+      readonly status:
+        | 'draf'
+        | 'menunggu_persetujuan'
+        | 'ditolak'
+        | 'disetujui'
+        | 'dalam_pembelian'
+        | 'dalam_pengiriman'
+        | 'dibatalkan';
+    };
+    readonly pengguna: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly nama: CodecTypes['pg/text@1']['input'];
+    };
+    readonly penghapusan_aset: {
+      readonly alasan: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis: 'dijual' | 'disumbangkan' | 'dimusnahkan' | 'hilang' | 'lainnya';
+      readonly nomor_penghapusan: CodecTypes['pg/text@1']['input'];
+    };
+    readonly pengiriman_permintaan: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dikirim_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['input'];
+      readonly nomor_pengiriman: CodecTypes['pg/text@1']['input'];
+      readonly status: 'disiapkan' | 'dikirim' | 'dibatalkan';
+    };
+    readonly permintaan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly diajukan_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor_peminta: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['input'];
+      readonly nomor_permintaan: CodecTypes['pg/text@1']['input'];
+      readonly status:
+        'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan';
+    };
+    readonly reservasi_aset_tetap: {
+      readonly dilepas_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly direservasi_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly direservasi_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly status: 'direservasi' | 'dibatalkan' | 'dilepas';
+    };
+    readonly reservasi_stok_barang: {
+      readonly dilepas_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly direservasi_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly direservasi_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+      readonly status: 'direservasi' | 'dibatalkan' | 'dilepas';
+    };
+    readonly retur_permintaan: {
+      readonly alasan: CodecTypes['pg/text@1']['input'];
+      readonly catatan_tindak_lanjut: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly ditinjau_oleh_id_pegawai: CodecTypes['pg/text@1']['input'] | null;
+      readonly ditinjau_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap_pengganti: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_berkas_bukti: CodecTypes['pg/int4@1']['input'] | null;
+      readonly id_item_penerimaan_pengiriman: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+      readonly status: 'diajukan' | 'disetujui' | 'ditolak' | 'diselesaikan';
+      readonly tindak_lanjut: 'kirim_ulang' | 'kembali_ke_sumber' | 'penghapusan' | null;
+    };
+    readonly riwayat_status_item_pengadaan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly status_baru:
+        'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan';
+      readonly status_sebelumnya:
+        'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan' | null;
+    };
+    readonly riwayat_status_pengadaan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly status_baru:
+        | 'draf'
+        | 'menunggu_persetujuan'
+        | 'ditolak'
+        | 'disetujui'
+        | 'dalam_pembelian'
+        | 'dalam_pengiriman'
+        | 'dibatalkan';
+      readonly status_sebelumnya:
+        | 'draf'
+        | 'menunggu_persetujuan'
+        | 'ditolak'
+        | 'disetujui'
+        | 'dalam_pembelian'
+        | 'dalam_pengiriman'
+        | 'dibatalkan'
+        | null;
+    };
+    readonly riwayat_status_permintaan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor_konteks: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly status_baru:
+        'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan';
+      readonly status_sebelumnya:
+        'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan' | null;
+    };
+    readonly riwayat_status_sumber_pemenuhan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor_konteks: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly status_baru:
+        | 'diusulkan'
+        | 'diterima_dc'
+        | 'ditolak_dc'
+        | 'menunggu_yayasan'
+        | 'ditolak_yayasan'
+        | 'dibatalkan';
+      readonly status_sebelumnya:
+        | 'diusulkan'
+        | 'diterima_dc'
+        | 'ditolak_dc'
+        | 'menunggu_yayasan'
+        | 'ditolak_yayasan'
+        | 'dibatalkan'
+        | null;
+    };
+    readonly stok_barang_habis_pakai: {
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_gudang: CodecTypes['pg/uuid@1']['input'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah_saldo: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly sumber_pemenuhan_permintaan: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_gudang: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_item_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_katalog_pemasok: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis: 'gudang' | 'pengadaan';
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+      readonly status:
+        | 'diusulkan'
+        | 'diterima_dc'
+        | 'ditolak_dc'
+        | 'menunggu_yayasan'
+        | 'ditolak_yayasan'
+        | 'dibatalkan';
+    };
+    readonly tagihan: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly nominal: CodecTypes['pg/numeric@1']['input'];
+      readonly nomor_tagihan: CodecTypes['pg/text@1']['input'];
+      readonly status: 'diajukan' | 'dibatalkan';
+      readonly tanggal_tagihan: CodecTypes['pg/date-string@1']['input'] | null;
+    };
+    readonly tempat: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly deskripsi: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor_pemilik: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_tempat_induk: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly jenis:
+        'kampus' | 'gedung' | 'lantai' | 'ruangan' | 'zona' | 'area_lantai' | 'lainnya';
+      readonly kode: CodecTypes['pg/text@1']['input'] | null;
+      readonly nama: CodecTypes['pg/text@1']['input'];
+    };
+    readonly transfer_antar_unit: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dikirim_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor_penerima: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor_pengirim: CodecTypes['pg/uuid@1']['input'];
+      readonly id_gudang_asal: CodecTypes['pg/uuid@1']['input'];
+      readonly id_gudang_tujuan: CodecTypes['pg/uuid@1']['input'];
+      readonly nomor_transfer: CodecTypes['pg/text@1']['input'];
+      readonly status: 'disiapkan' | 'dikirim' | 'dibatalkan';
+    };
+    readonly variasi_aset: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_kategori_aset: CodecTypes['pg/uuid@1']['input'];
+      readonly kode: CodecTypes['pg/text@1']['input'] | null;
+      readonly nama: CodecTypes['pg/text@1']['input'];
+      readonly satuan: CodecTypes['pg/text@1']['input'];
+    };
+    readonly variasi_aset_merek: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_merek: CodecTypes['pg/uuid@1']['input'];
+      readonly id_variasi_aset: CodecTypes['pg/uuid@1']['input'];
     };
   };
 };
 export type StorageColumnTypes = {
   readonly public: {
-    readonly Post: {
-      readonly authorId: CodecTypes['pg/int4@1']['output'];
-      readonly content: CodecTypes['pg/text@1']['output'] | null;
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
+    readonly berkas: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diunggah_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
       readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly title: CodecTypes['pg/text@1']['output'];
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly nama_asli: CodecTypes['pg/text@1']['output'];
+      readonly nama_penyimpanan: CodecTypes['pg/text@1']['output'];
+      readonly tipe_mime: CodecTypes['pg/text@1']['output'];
+      readonly ukuran: CodecTypes['pg/int4@1']['output'];
     };
-    readonly UploadedFile: {
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
-      readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly mimeType: CodecTypes['pg/text@1']['output'];
-      readonly originalName: CodecTypes['pg/text@1']['output'];
-      readonly size: CodecTypes['pg/int4@1']['output'];
-      readonly storageName: CodecTypes['pg/text@1']['output'];
-      readonly uploadedById: CodecTypes['pg/int4@1']['output'];
+  };
+  readonly sarpras: {
+    readonly aktor: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis:
+        | 'YAYASAN'
+        | 'UNIVERSITAS'
+        | 'FAKULTAS'
+        | 'PROGRAM_STUDI'
+        | 'LEMBAGA'
+        | 'KEUANGAN'
+        | 'KHUSUS';
+      readonly kode: CodecTypes['pg/text@1']['output'];
+      readonly nama: CodecTypes['pg/text@1']['output'];
     };
-    readonly User: {
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
-      readonly email: CodecTypes['pg/text@1']['output'];
-      readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly name: CodecTypes['pg/text@1']['output'] | null;
-      readonly passwordHash: CodecTypes['pg/text@1']['output'] | null;
-      readonly role: 'USER' | 'ADMIN';
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
-      readonly username: CodecTypes['pg/text@1']['output'] | null;
+    readonly alokasi_item_pengadaan_permintaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly aset_tetap: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_tempat_saat_ini: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+      readonly kode_aset: CodecTypes['pg/text@1']['output'];
+      readonly kondisi: 'baik' | 'rusak_ringan' | 'rusak_berat';
+      readonly status: 'tersedia' | 'digunakan' | 'hilang';
+    };
+    readonly dokumen_pengadaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diunggah_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_berkas: CodecTypes['pg/int4@1']['output'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis:
+        | 'tagihan'
+        | 'bukti_pembayaran'
+        | 'bukti_penerimaan'
+        | 'bukti_perbedaan'
+        | 'surat_persetujuan'
+        | 'lainnya';
+    };
+    readonly gudang: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tempat: CodecTypes['pg/uuid@1']['output'];
+      readonly kode: CodecTypes['pg/text@1']['output'];
+    };
+    readonly item_mutasi_lokasi_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_mutasi_lokasi: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly item_mutasi_lokasi_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_mutasi_lokasi: CodecTypes['pg/uuid@1']['output'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_penerimaan_pengadaan: {
+      readonly alasan_perbedaan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah_diterima: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_penerimaan_pengiriman: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_penerimaan_pengiriman: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah_diterima: CodecTypes['pg/int4@1']['output'];
+      readonly jumlah_ditolak: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_penerimaan_transfer_aset_tetap: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['output'] | null;
+      readonly diterima: CodecTypes['pg/bool@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_transfer_antar_unit_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_penerimaan_transfer: CodecTypes['pg/uuid@1']['output'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly item_penerimaan_transfer_barang_habis_pakai: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['output'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_transfer_antar_unit_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly id_penerimaan_transfer: CodecTypes['pg/uuid@1']['output'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah_diterima: CodecTypes['pg/int4@1']['output'];
+      readonly jumlah_ditolak: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_pengadaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly harga_satuan: Numeric<14, 2>;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_katalog_pemasok: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+      readonly perlu_persetujuan: CodecTypes['pg/bool@1']['output'];
+      readonly status: 'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan';
+      readonly sumber_dana: 'anggaran_organisasi' | 'hibah' | 'donasi' | 'lainnya';
+    };
+    readonly item_penghapusan_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_penghapusan: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly item_penghapusan_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_penghapusan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_pengiriman_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly item_pengiriman_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_pengiriman_permintaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_permintaan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_variasi_aset: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly item_transfer_antar_unit_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly item_transfer_antar_unit_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah_dikirim: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly katalog_pemasok: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly harga_referensi: Numeric<14, 2> | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pemasok: CodecTypes['pg/uuid@1']['output'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly kategori_aset: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis: 'aset_tetap' | 'barang_habis_pakai';
+      readonly kode: CodecTypes['pg/text@1']['output'];
+      readonly nama: CodecTypes['pg/text@1']['output'];
+    };
+    readonly merek: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly nama: CodecTypes['pg/text@1']['output'];
+    };
+    readonly mutasi_aset_tetap: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tempat_asal: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly jenis_mutasi:
+        | 'penerimaan'
+        | 'pengiriman_permintaan'
+        | 'pengembalian_ke_gudang'
+        | 'transfer_masuk'
+        | 'transfer_keluar'
+        | 'mutasi'
+        | 'penyesuaian'
+        | 'penghapusan';
+    };
+    readonly mutasi_lokasi: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diselesaikan_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tempat_asal: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['output'];
+      readonly nomor_mutasi: CodecTypes['pg/text@1']['output'];
+      readonly status: 'disiapkan' | 'selesai' | 'dibatalkan';
+    };
+    readonly mutasi_stok_barang: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis_mutasi:
+        | 'penerimaan'
+        | 'pengiriman'
+        | 'pengembalian_ke_gudang'
+        | 'transfer_masuk'
+        | 'transfer_keluar'
+        | 'mutasi'
+        | 'penyesuaian'
+        | 'penghapusan';
+      readonly perubahan_jumlah: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly pemasok: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly alamat: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly kode: CodecTypes['pg/text@1']['output'] | null;
+      readonly nama: CodecTypes['pg/text@1']['output'];
+      readonly nomor_telepon: CodecTypes['pg/text@1']['output'] | null;
+      readonly surel: CodecTypes['pg/text@1']['output'] | null;
+    };
+    readonly pembalikan_pembayaran: {
+      readonly alasan: CodecTypes['pg/text@1']['output'];
+      readonly dibalik_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibalik_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pembayaran: CodecTypes['pg/uuid@1']['output'];
+      readonly nominal: Numeric<14, 2>;
+    };
+    readonly pembayaran: {
+      readonly dibayar_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tagihan: CodecTypes['pg/uuid@1']['output'];
+      readonly nominal: Numeric<14, 2>;
+      readonly referensi_pembayaran: CodecTypes['pg/text@1']['output'] | null;
+    };
+    readonly penerimaan_pengadaan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly diterima_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_gudang: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly penerimaan_pengiriman: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly diterima_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly penerimaan_transfer: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly diterima_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+    };
+    readonly pengadaan: {
+      readonly alur_pengadaan: 'rab' | 'insidentil' | 'langsung';
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis: 'mandiri' | 'berbasis_permintaan';
+      readonly nomor_pengadaan: CodecTypes['pg/text@1']['output'];
+      readonly status:
+        | 'draf'
+        | 'menunggu_persetujuan'
+        | 'ditolak'
+        | 'disetujui'
+        | 'dalam_pembelian'
+        | 'dalam_pengiriman'
+        | 'dibatalkan';
+    };
+    readonly pengguna: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly nama: CodecTypes['pg/text@1']['output'];
+    };
+    readonly penghapusan_aset: {
+      readonly alasan: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis: 'dijual' | 'disumbangkan' | 'dimusnahkan' | 'hilang' | 'lainnya';
+      readonly nomor_penghapusan: CodecTypes['pg/text@1']['output'];
+    };
+    readonly pengiriman_permintaan: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dikirim_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['output'];
+      readonly nomor_pengiriman: CodecTypes['pg/text@1']['output'];
+      readonly status: 'disiapkan' | 'dikirim' | 'dibatalkan';
+    };
+    readonly permintaan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly diajukan_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor_peminta: CodecTypes['pg/uuid@1']['output'];
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['output'];
+      readonly nomor_permintaan: CodecTypes['pg/text@1']['output'];
+      readonly status:
+        'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan';
+    };
+    readonly reservasi_aset_tetap: {
+      readonly dilepas_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly direservasi_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly direservasi_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly status: 'direservasi' | 'dibatalkan' | 'dilepas';
+    };
+    readonly reservasi_stok_barang: {
+      readonly dilepas_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly direservasi_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly direservasi_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+      readonly status: 'direservasi' | 'dibatalkan' | 'dilepas';
+    };
+    readonly retur_permintaan: {
+      readonly alasan: CodecTypes['pg/text@1']['output'];
+      readonly catatan_tindak_lanjut: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly ditinjau_oleh_id_pegawai: CodecTypes['pg/text@1']['output'] | null;
+      readonly ditinjau_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aset_tetap_pengganti: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_berkas_bukti: CodecTypes['pg/int4@1']['output'] | null;
+      readonly id_item_penerimaan_pengiriman: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+      readonly status: 'diajukan' | 'disetujui' | 'ditolak' | 'diselesaikan';
+      readonly tindak_lanjut: 'kirim_ulang' | 'kembali_ke_sumber' | 'penghapusan' | null;
+    };
+    readonly riwayat_status_item_pengadaan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_item_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly status_baru:
+        'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan';
+      readonly status_sebelumnya:
+        'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan' | null;
+    };
+    readonly riwayat_status_pengadaan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly status_baru:
+        | 'draf'
+        | 'menunggu_persetujuan'
+        | 'ditolak'
+        | 'disetujui'
+        | 'dalam_pembelian'
+        | 'dalam_pengiriman'
+        | 'dibatalkan';
+      readonly status_sebelumnya:
+        | 'draf'
+        | 'menunggu_persetujuan'
+        | 'ditolak'
+        | 'disetujui'
+        | 'dalam_pembelian'
+        | 'dalam_pengiriman'
+        | 'dibatalkan'
+        | null;
+    };
+    readonly riwayat_status_permintaan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor_konteks: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly status_baru:
+        'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan';
+      readonly status_sebelumnya:
+        'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan' | null;
+    };
+    readonly riwayat_status_sumber_pemenuhan: {
+      readonly catatan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor_konteks: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly status_baru:
+        | 'diusulkan'
+        | 'diterima_dc'
+        | 'ditolak_dc'
+        | 'menunggu_yayasan'
+        | 'ditolak_yayasan'
+        | 'dibatalkan';
+      readonly status_sebelumnya:
+        | 'diusulkan'
+        | 'diterima_dc'
+        | 'ditolak_dc'
+        | 'menunggu_yayasan'
+        | 'ditolak_yayasan'
+        | 'dibatalkan'
+        | null;
+    };
+    readonly stok_barang_habis_pakai: {
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_gudang: CodecTypes['pg/uuid@1']['output'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+      readonly jumlah_saldo: CodecTypes['pg/int4@1']['output'];
+    };
+    readonly sumber_pemenuhan_permintaan: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_gudang: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_item_permintaan: CodecTypes['pg/uuid@1']['output'];
+      readonly id_katalog_pemasok: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+      readonly jenis: 'gudang' | 'pengadaan';
+      readonly jumlah: CodecTypes['pg/int4@1']['output'];
+      readonly status:
+        | 'diusulkan'
+        | 'diterima_dc'
+        | 'ditolak_dc'
+        | 'menunggu_yayasan'
+        | 'ditolak_yayasan'
+        | 'dibatalkan';
+    };
+    readonly tagihan: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+      readonly nominal: Numeric<14, 2>;
+      readonly nomor_tagihan: CodecTypes['pg/text@1']['output'];
+      readonly status: 'diajukan' | 'dibatalkan';
+      readonly tanggal_tagihan: CodecTypes['pg/date-string@1']['output'] | null;
+    };
+    readonly tempat: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly deskripsi: CodecTypes['pg/text@1']['output'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor_pemilik: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly id_tempat_induk: CodecTypes['pg/uuid@1']['output'] | null;
+      readonly jenis:
+        'kampus' | 'gedung' | 'lantai' | 'ruangan' | 'zona' | 'area_lantai' | 'lainnya';
+      readonly kode: CodecTypes['pg/text@1']['output'] | null;
+      readonly nama: CodecTypes['pg/text@1']['output'];
+    };
+    readonly transfer_antar_unit: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly dikirim_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor_penerima: CodecTypes['pg/uuid@1']['output'];
+      readonly id_aktor_pengirim: CodecTypes['pg/uuid@1']['output'];
+      readonly id_gudang_asal: CodecTypes['pg/uuid@1']['output'];
+      readonly id_gudang_tujuan: CodecTypes['pg/uuid@1']['output'];
+      readonly nomor_transfer: CodecTypes['pg/text@1']['output'];
+      readonly status: 'disiapkan' | 'dikirim' | 'dibatalkan';
+    };
+    readonly variasi_aset: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_kategori_aset: CodecTypes['pg/uuid@1']['output'];
+      readonly kode: CodecTypes['pg/text@1']['output'] | null;
+      readonly nama: CodecTypes['pg/text@1']['output'];
+      readonly satuan: CodecTypes['pg/text@1']['output'];
+    };
+    readonly variasi_aset_merek: {
+      readonly aktif: CodecTypes['pg/bool@1']['output'];
+      readonly id: CodecTypes['pg/uuid@1']['output'];
+      readonly id_merek: CodecTypes['pg/uuid@1']['output'];
+      readonly id_variasi_aset: CodecTypes['pg/uuid@1']['output'];
     };
   };
 };
 export type StorageColumnInputTypes = {
   readonly public: {
-    readonly Post: {
-      readonly authorId: CodecTypes['pg/int4@1']['input'];
-      readonly content: CodecTypes['pg/text@1']['input'] | null;
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
+    readonly berkas: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diunggah_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
       readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly title: CodecTypes['pg/text@1']['input'];
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly nama_asli: CodecTypes['pg/text@1']['input'];
+      readonly nama_penyimpanan: CodecTypes['pg/text@1']['input'];
+      readonly tipe_mime: CodecTypes['pg/text@1']['input'];
+      readonly ukuran: CodecTypes['pg/int4@1']['input'];
     };
-    readonly UploadedFile: {
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
-      readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly mimeType: CodecTypes['pg/text@1']['input'];
-      readonly originalName: CodecTypes['pg/text@1']['input'];
-      readonly size: CodecTypes['pg/int4@1']['input'];
-      readonly storageName: CodecTypes['pg/text@1']['input'];
-      readonly uploadedById: CodecTypes['pg/int4@1']['input'];
+  };
+  readonly sarpras: {
+    readonly aktor: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis:
+        | 'YAYASAN'
+        | 'UNIVERSITAS'
+        | 'FAKULTAS'
+        | 'PROGRAM_STUDI'
+        | 'LEMBAGA'
+        | 'KEUANGAN'
+        | 'KHUSUS';
+      readonly kode: CodecTypes['pg/text@1']['input'];
+      readonly nama: CodecTypes['pg/text@1']['input'];
     };
-    readonly User: {
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
-      readonly email: CodecTypes['pg/text@1']['input'];
-      readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly name: CodecTypes['pg/text@1']['input'] | null;
-      readonly passwordHash: CodecTypes['pg/text@1']['input'] | null;
-      readonly role: 'USER' | 'ADMIN';
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
-      readonly username: CodecTypes['pg/text@1']['input'] | null;
+    readonly alokasi_item_pengadaan_permintaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly aset_tetap: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_tempat_saat_ini: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['input'];
+      readonly kode_aset: CodecTypes['pg/text@1']['input'];
+      readonly kondisi: 'baik' | 'rusak_ringan' | 'rusak_berat';
+      readonly status: 'tersedia' | 'digunakan' | 'hilang';
+    };
+    readonly dokumen_pengadaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diunggah_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_berkas: CodecTypes['pg/int4@1']['input'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis:
+        | 'tagihan'
+        | 'bukti_pembayaran'
+        | 'bukti_penerimaan'
+        | 'bukti_perbedaan'
+        | 'surat_persetujuan'
+        | 'lainnya';
+    };
+    readonly gudang: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tempat: CodecTypes['pg/uuid@1']['input'];
+      readonly kode: CodecTypes['pg/text@1']['input'];
+    };
+    readonly item_mutasi_lokasi_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_mutasi_lokasi: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly item_mutasi_lokasi_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_mutasi_lokasi: CodecTypes['pg/uuid@1']['input'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_penerimaan_pengadaan: {
+      readonly alasan_perbedaan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah_diterima: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_penerimaan_pengiriman: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_penerimaan_pengiriman: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah_diterima: CodecTypes['pg/int4@1']['input'];
+      readonly jumlah_ditolak: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_penerimaan_transfer_aset_tetap: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['input'] | null;
+      readonly diterima: CodecTypes['pg/bool@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_transfer_antar_unit_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_penerimaan_transfer: CodecTypes['pg/uuid@1']['input'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly item_penerimaan_transfer_barang_habis_pakai: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_transfer_antar_unit_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly id_penerimaan_transfer: CodecTypes['pg/uuid@1']['input'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah_diterima: CodecTypes['pg/int4@1']['input'];
+      readonly jumlah_ditolak: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_pengadaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly harga_satuan: CodecTypes['pg/numeric@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_katalog_pemasok: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+      readonly perlu_persetujuan: CodecTypes['pg/bool@1']['input'];
+      readonly status: 'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan';
+      readonly sumber_dana: 'anggaran_organisasi' | 'hibah' | 'donasi' | 'lainnya';
+    };
+    readonly item_penghapusan_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_penghapusan: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly item_penghapusan_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_penghapusan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_pengiriman_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly item_pengiriman_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_pengiriman_permintaan: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_permintaan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_variasi_aset: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly item_transfer_antar_unit_aset_tetap: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly item_transfer_antar_unit_barang_habis_pakai: {
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah_dikirim: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly katalog_pemasok: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly harga_referensi: CodecTypes['pg/numeric@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pemasok: CodecTypes['pg/uuid@1']['input'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly kategori_aset: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis: 'aset_tetap' | 'barang_habis_pakai';
+      readonly kode: CodecTypes['pg/text@1']['input'];
+      readonly nama: CodecTypes['pg/text@1']['input'];
+    };
+    readonly merek: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly nama: CodecTypes['pg/text@1']['input'];
+    };
+    readonly mutasi_aset_tetap: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tempat_asal: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly jenis_mutasi:
+        | 'penerimaan'
+        | 'pengiriman_permintaan'
+        | 'pengembalian_ke_gudang'
+        | 'transfer_masuk'
+        | 'transfer_keluar'
+        | 'mutasi'
+        | 'penyesuaian'
+        | 'penghapusan';
+    };
+    readonly mutasi_lokasi: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diselesaikan_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tempat_asal: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['input'];
+      readonly nomor_mutasi: CodecTypes['pg/text@1']['input'];
+      readonly status: 'disiapkan' | 'selesai' | 'dibatalkan';
+    };
+    readonly mutasi_stok_barang: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis_mutasi:
+        | 'penerimaan'
+        | 'pengiriman'
+        | 'pengembalian_ke_gudang'
+        | 'transfer_masuk'
+        | 'transfer_keluar'
+        | 'mutasi'
+        | 'penyesuaian'
+        | 'penghapusan';
+      readonly perubahan_jumlah: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly pemasok: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly alamat: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly kode: CodecTypes['pg/text@1']['input'] | null;
+      readonly nama: CodecTypes['pg/text@1']['input'];
+      readonly nomor_telepon: CodecTypes['pg/text@1']['input'] | null;
+      readonly surel: CodecTypes['pg/text@1']['input'] | null;
+    };
+    readonly pembalikan_pembayaran: {
+      readonly alasan: CodecTypes['pg/text@1']['input'];
+      readonly dibalik_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibalik_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pembayaran: CodecTypes['pg/uuid@1']['input'];
+      readonly nominal: CodecTypes['pg/numeric@1']['input'];
+    };
+    readonly pembayaran: {
+      readonly dibayar_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tagihan: CodecTypes['pg/uuid@1']['input'];
+      readonly nominal: CodecTypes['pg/numeric@1']['input'];
+      readonly referensi_pembayaran: CodecTypes['pg/text@1']['input'] | null;
+    };
+    readonly penerimaan_pengadaan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly diterima_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_gudang: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly penerimaan_pengiriman: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly diterima_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly penerimaan_transfer: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly diterima_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_transfer_antar_unit: CodecTypes['pg/uuid@1']['input'];
+    };
+    readonly pengadaan: {
+      readonly alur_pengadaan: 'rab' | 'insidentil' | 'langsung';
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis: 'mandiri' | 'berbasis_permintaan';
+      readonly nomor_pengadaan: CodecTypes['pg/text@1']['input'];
+      readonly status:
+        | 'draf'
+        | 'menunggu_persetujuan'
+        | 'ditolak'
+        | 'disetujui'
+        | 'dalam_pembelian'
+        | 'dalam_pengiriman'
+        | 'dibatalkan';
+    };
+    readonly pengguna: {
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly nama: CodecTypes['pg/text@1']['input'];
+    };
+    readonly penghapusan_aset: {
+      readonly alasan: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis: 'dijual' | 'disumbangkan' | 'dimusnahkan' | 'hilang' | 'lainnya';
+      readonly nomor_penghapusan: CodecTypes['pg/text@1']['input'];
+    };
+    readonly pengiriman_permintaan: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dikirim_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['input'];
+      readonly nomor_pengiriman: CodecTypes['pg/text@1']['input'];
+      readonly status: 'disiapkan' | 'dikirim' | 'dibatalkan';
+    };
+    readonly permintaan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly diajukan_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor_peminta: CodecTypes['pg/uuid@1']['input'];
+      readonly id_tempat_tujuan: CodecTypes['pg/uuid@1']['input'];
+      readonly nomor_permintaan: CodecTypes['pg/text@1']['input'];
+      readonly status:
+        'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan';
+    };
+    readonly reservasi_aset_tetap: {
+      readonly dilepas_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly direservasi_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly direservasi_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap: CodecTypes['pg/uuid@1']['input'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly status: 'direservasi' | 'dibatalkan' | 'dilepas';
+    };
+    readonly reservasi_stok_barang: {
+      readonly dilepas_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly direservasi_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly direservasi_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['input'];
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+      readonly status: 'direservasi' | 'dibatalkan' | 'dilepas';
+    };
+    readonly retur_permintaan: {
+      readonly alasan: CodecTypes['pg/text@1']['input'];
+      readonly catatan_tindak_lanjut: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly ditinjau_oleh_id_pegawai: CodecTypes['pg/text@1']['input'] | null;
+      readonly ditinjau_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aset_tetap_pengganti: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_berkas_bukti: CodecTypes['pg/int4@1']['input'] | null;
+      readonly id_item_penerimaan_pengiriman: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+      readonly status: 'diajukan' | 'disetujui' | 'ditolak' | 'diselesaikan';
+      readonly tindak_lanjut: 'kirim_ulang' | 'kembali_ke_sumber' | 'penghapusan' | null;
+    };
+    readonly riwayat_status_item_pengadaan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_item_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly status_baru:
+        'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan';
+      readonly status_sebelumnya:
+        'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan' | null;
+    };
+    readonly riwayat_status_pengadaan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly status_baru:
+        | 'draf'
+        | 'menunggu_persetujuan'
+        | 'ditolak'
+        | 'disetujui'
+        | 'dalam_pembelian'
+        | 'dalam_pengiriman'
+        | 'dibatalkan';
+      readonly status_sebelumnya:
+        | 'draf'
+        | 'menunggu_persetujuan'
+        | 'ditolak'
+        | 'disetujui'
+        | 'dalam_pembelian'
+        | 'dalam_pengiriman'
+        | 'dibatalkan'
+        | null;
+    };
+    readonly riwayat_status_permintaan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor_konteks: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly status_baru:
+        'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan';
+      readonly status_sebelumnya:
+        'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan' | null;
+    };
+    readonly riwayat_status_sumber_pemenuhan: {
+      readonly catatan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor_konteks: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly status_baru:
+        | 'diusulkan'
+        | 'diterima_dc'
+        | 'ditolak_dc'
+        | 'menunggu_yayasan'
+        | 'ditolak_yayasan'
+        | 'dibatalkan';
+      readonly status_sebelumnya:
+        | 'diusulkan'
+        | 'diterima_dc'
+        | 'ditolak_dc'
+        | 'menunggu_yayasan'
+        | 'ditolak_yayasan'
+        | 'dibatalkan'
+        | null;
+    };
+    readonly stok_barang_habis_pakai: {
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_gudang: CodecTypes['pg/uuid@1']['input'];
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['input'];
+      readonly jumlah_saldo: CodecTypes['pg/int4@1']['input'];
+    };
+    readonly sumber_pemenuhan_permintaan: {
+      readonly alasan_penolakan: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_gudang: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_item_permintaan: CodecTypes['pg/uuid@1']['input'];
+      readonly id_katalog_pemasok: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_variasi_aset_merek: CodecTypes['pg/uuid@1']['input'];
+      readonly jenis: 'gudang' | 'pengadaan';
+      readonly jumlah: CodecTypes['pg/int4@1']['input'];
+      readonly status:
+        | 'diusulkan'
+        | 'diterima_dc'
+        | 'ditolak_dc'
+        | 'menunggu_yayasan'
+        | 'ditolak_yayasan'
+        | 'dibatalkan';
+    };
+    readonly tagihan: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_pengadaan: CodecTypes['pg/uuid@1']['input'];
+      readonly nominal: CodecTypes['pg/numeric@1']['input'];
+      readonly nomor_tagihan: CodecTypes['pg/text@1']['input'];
+      readonly status: 'diajukan' | 'dibatalkan';
+      readonly tanggal_tagihan: CodecTypes['pg/date-string@1']['input'] | null;
+    };
+    readonly tempat: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly deskripsi: CodecTypes['pg/text@1']['input'] | null;
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly diubah_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor_pemilik: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly id_tempat_induk: CodecTypes['pg/uuid@1']['input'] | null;
+      readonly jenis:
+        'kampus' | 'gedung' | 'lantai' | 'ruangan' | 'zona' | 'area_lantai' | 'lainnya';
+      readonly kode: CodecTypes['pg/text@1']['input'] | null;
+      readonly nama: CodecTypes['pg/text@1']['input'];
+    };
+    readonly transfer_antar_unit: {
+      readonly dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly dikirim_pada: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor_penerima: CodecTypes['pg/uuid@1']['input'];
+      readonly id_aktor_pengirim: CodecTypes['pg/uuid@1']['input'];
+      readonly id_gudang_asal: CodecTypes['pg/uuid@1']['input'];
+      readonly id_gudang_tujuan: CodecTypes['pg/uuid@1']['input'];
+      readonly nomor_transfer: CodecTypes['pg/text@1']['input'];
+      readonly status: 'disiapkan' | 'dikirim' | 'dibatalkan';
+    };
+    readonly variasi_aset: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly dibuat_pada: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_kategori_aset: CodecTypes['pg/uuid@1']['input'];
+      readonly kode: CodecTypes['pg/text@1']['input'] | null;
+      readonly nama: CodecTypes['pg/text@1']['input'];
+      readonly satuan: CodecTypes['pg/text@1']['input'];
+    };
+    readonly variasi_aset_merek: {
+      readonly aktif: CodecTypes['pg/bool@1']['input'];
+      readonly id: CodecTypes['pg/uuid@1']['input'];
+      readonly id_merek: CodecTypes['pg/uuid@1']['input'];
+      readonly id_variasi_aset: CodecTypes['pg/uuid@1']['input'];
     };
   };
 };
 
 export namespace Models {
-  export type public_post = {
-    author_id: CodecTypes['pg/int4@1']['output'];
-    content: CodecTypes['pg/text@1']['output'] | null;
-    created_at: CodecTypes['pg/timestamptz-string@1']['output'];
+  export type public_berkas = {
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    diunggah_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
     id: CodecTypes['pg/int4@1']['output'];
-    title: CodecTypes['pg/text@1']['output'];
-    updated_at: CodecTypes['pg/timestamptz-string@1']['output'];
-    author: public_user;
-    readonly [RelationKeys]?: 'author';
+    nama_asli: CodecTypes['pg/text@1']['output'];
+    nama_penyimpanan: CodecTypes['pg/text@1']['output'];
+    tipe_mime: CodecTypes['pg/text@1']['output'];
+    ukuran: CodecTypes['pg/int4@1']['output'];
+    pengunggah: sarpras_pengguna;
+    readonly [RelationKeys]?: 'pengunggah';
   };
-  export type public_uploaded_file = {
-    created_at: CodecTypes['pg/timestamptz-string@1']['output'];
-    id: CodecTypes['pg/int4@1']['output'];
-    mime_type: CodecTypes['pg/text@1']['output'];
-    original_name: CodecTypes['pg/text@1']['output'];
-    size: CodecTypes['pg/int4@1']['output'];
-    storage_name: CodecTypes['pg/text@1']['output'];
-    uploaded_by_id: CodecTypes['pg/int4@1']['output'];
+  export type sarpras_aktor = {
+    aktif: CodecTypes['pg/bool@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    jenis:
+      'YAYASAN' | 'UNIVERSITAS' | 'FAKULTAS' | 'PROGRAM_STUDI' | 'LEMBAGA' | 'KEUANGAN' | 'KHUSUS';
+    kode: CodecTypes['pg/text@1']['output'];
+    nama: CodecTypes['pg/text@1']['output'];
     readonly [RelationKeys]?: never;
   };
-  export type public_user = {
-    created_at: CodecTypes['pg/timestamptz-string@1']['output'];
-    email: CodecTypes['pg/text@1']['output'];
-    id: CodecTypes['pg/int4@1']['output'];
-    name: CodecTypes['pg/text@1']['output'] | null;
-    password_hash: CodecTypes['pg/text@1']['output'] | null;
-    role: 'USER' | 'ADMIN';
-    updated_at: CodecTypes['pg/timestamptz-string@1']['output'];
-    username: CodecTypes['pg/text@1']['output'] | null;
-    posts: public_post[];
-    readonly [RelationKeys]?: 'posts';
+  export type sarpras_alokasi_item_pengadaan_permintaan = {
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_item_pengadaan: CodecTypes['pg/uuid@1']['output'];
+    id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+    jumlah: CodecTypes['pg/int4@1']['output'];
+    item_pengadaan: sarpras_item_pengadaan;
+    sumber_pemenuhan: sarpras_sumber_pemenuhan_permintaan;
+    readonly [RelationKeys]?: 'item_pengadaan' | 'sumber_pemenuhan';
+  };
+  export type sarpras_aset_tetap = {
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_item_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['output'] | null;
+    id_tempat_saat_ini: CodecTypes['pg/uuid@1']['output'] | null;
+    id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+    kode_aset: CodecTypes['pg/text@1']['output'];
+    kondisi: 'baik' | 'rusak_ringan' | 'rusak_berat';
+    status: 'tersedia' | 'digunakan' | 'hilang';
+    item_penerimaan: sarpras_item_penerimaan_pengadaan | null;
+    tempat_saat_ini: sarpras_tempat | null;
+    variasi_aset_merek: sarpras_variasi_aset_merek;
+    readonly [RelationKeys]?: 'item_penerimaan' | 'tempat_saat_ini' | 'variasi_aset_merek';
+  };
+  export type sarpras_dokumen_pengadaan = {
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    diunggah_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_berkas: CodecTypes['pg/int4@1']['output'];
+    id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+    jenis:
+      | 'tagihan'
+      | 'bukti_pembayaran'
+      | 'bukti_penerimaan'
+      | 'bukti_perbedaan'
+      | 'surat_persetujuan'
+      | 'lainnya';
+    berkas: public_berkas;
+    pengadaan: sarpras_pengadaan;
+    pengunggah: sarpras_pengguna;
+    readonly [RelationKeys]?: 'berkas' | 'pengadaan' | 'pengunggah';
+  };
+  export type sarpras_gudang = {
+    aktif: CodecTypes['pg/bool@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_tempat: CodecTypes['pg/uuid@1']['output'];
+    kode: CodecTypes['pg/text@1']['output'];
+    tempat: sarpras_tempat;
+    readonly [RelationKeys]?: 'tempat';
+  };
+  export type sarpras_item_mutasi_lokasi_aset_tetap = {
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+    id_mutasi_lokasi: CodecTypes['pg/uuid@1']['output'];
+    aset_tetap: sarpras_aset_tetap;
+    mutasi: sarpras_mutasi_lokasi;
+    readonly [RelationKeys]?: 'aset_tetap' | 'mutasi';
+  };
+  export type sarpras_item_mutasi_lokasi_barang_habis_pakai = {
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_mutasi_lokasi: CodecTypes['pg/uuid@1']['output'];
+    id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+    jumlah: CodecTypes['pg/int4@1']['output'];
+    mutasi: sarpras_mutasi_lokasi;
+    stok: sarpras_stok_barang_habis_pakai;
+    readonly [RelationKeys]?: 'mutasi' | 'stok';
+  };
+  export type sarpras_item_penerimaan_pengadaan = {
+    alasan_perbedaan: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_item_pengadaan: CodecTypes['pg/uuid@1']['output'];
+    id_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['output'];
+    id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+    id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+    jumlah_diterima: CodecTypes['pg/int4@1']['output'];
+    item_pengadaan: sarpras_item_pengadaan;
+    penerimaan_pengadaan: sarpras_penerimaan_pengadaan;
+    readonly [RelationKeys]?: 'item_pengadaan' | 'penerimaan_pengadaan';
+  };
+  export type sarpras_item_penerimaan_pengiriman = {
+    alasan_penolakan: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+    id_penerimaan_pengiriman: CodecTypes['pg/uuid@1']['output'];
+    id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+    jumlah_diterima: CodecTypes['pg/int4@1']['output'];
+    jumlah_ditolak: CodecTypes['pg/int4@1']['output'];
+    item_pengiriman: sarpras_item_pengiriman_permintaan;
+    penerimaan: sarpras_penerimaan_pengiriman;
+    readonly [RelationKeys]?: 'item_pengiriman' | 'penerimaan';
+  };
+  export type sarpras_item_penerimaan_transfer_aset_tetap = {
+    alasan_penolakan: CodecTypes['pg/text@1']['output'] | null;
+    diterima: CodecTypes['pg/bool@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_item_transfer_antar_unit_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+    id_penerimaan_transfer: CodecTypes['pg/uuid@1']['output'];
+    id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+    item_transfer: sarpras_item_transfer_antar_unit_aset_tetap;
+    penerimaan: sarpras_penerimaan_transfer;
+    readonly [RelationKeys]?: 'item_transfer' | 'penerimaan';
+  };
+  export type sarpras_item_penerimaan_transfer_barang_habis_pakai = {
+    alasan_penolakan: CodecTypes['pg/text@1']['output'] | null;
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_item_transfer_antar_unit_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+    id_penerimaan_transfer: CodecTypes['pg/uuid@1']['output'];
+    id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+    jumlah_diterima: CodecTypes['pg/int4@1']['output'];
+    jumlah_ditolak: CodecTypes['pg/int4@1']['output'];
+    item_transfer: sarpras_item_transfer_antar_unit_barang_habis_pakai;
+    penerimaan: sarpras_penerimaan_transfer;
+    readonly [RelationKeys]?: 'item_transfer' | 'penerimaan';
+  };
+  export type sarpras_item_pengadaan = {
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    harga_satuan: Numeric<14, 2>;
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_katalog_pemasok: CodecTypes['pg/uuid@1']['output'];
+    id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+    id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+    jumlah: CodecTypes['pg/int4@1']['output'];
+    perlu_persetujuan: CodecTypes['pg/bool@1']['output'];
+    status: 'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan';
+    sumber_dana: 'anggaran_organisasi' | 'hibah' | 'donasi' | 'lainnya';
+    katalog_pemasok: sarpras_katalog_pemasok;
+    pengadaan: sarpras_pengadaan;
+    readonly [RelationKeys]?: 'katalog_pemasok' | 'pengadaan';
+  };
+  export type sarpras_item_penghapusan_aset_tetap = {
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+    id_penghapusan: CodecTypes['pg/uuid@1']['output'];
+    aset_tetap: sarpras_aset_tetap;
+    penghapusan_aset: sarpras_penghapusan_aset;
+    readonly [RelationKeys]?: 'aset_tetap' | 'penghapusan_aset';
+  };
+  export type sarpras_item_penghapusan_barang_habis_pakai = {
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_penghapusan: CodecTypes['pg/uuid@1']['output'];
+    id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+    jumlah: CodecTypes['pg/int4@1']['output'];
+    penghapusan_aset: sarpras_penghapusan_aset;
+    stok: sarpras_stok_barang_habis_pakai;
+    readonly [RelationKeys]?: 'penghapusan_aset' | 'stok';
+  };
+  export type sarpras_item_pengiriman_aset_tetap = {
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+    id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+    aset_tetap: sarpras_aset_tetap;
+    item_pengiriman: sarpras_item_pengiriman_permintaan;
+    readonly [RelationKeys]?: 'aset_tetap' | 'item_pengiriman';
+  };
+  export type sarpras_item_pengiriman_barang_habis_pakai = {
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_item_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+    id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+    jumlah: CodecTypes['pg/int4@1']['output'];
+    item_pengiriman: sarpras_item_pengiriman_permintaan;
+    stok: sarpras_stok_barang_habis_pakai;
+    readonly [RelationKeys]?: 'item_pengiriman' | 'stok';
+  };
+  export type sarpras_item_pengiriman_permintaan = {
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+    id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+    jumlah: CodecTypes['pg/int4@1']['output'];
+    pengiriman: sarpras_pengiriman_permintaan;
+    sumber_pemenuhan: sarpras_sumber_pemenuhan_permintaan;
+    readonly [RelationKeys]?: 'pengiriman' | 'sumber_pemenuhan';
+  };
+  export type sarpras_item_permintaan = {
+    catatan: CodecTypes['pg/text@1']['output'] | null;
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_permintaan: CodecTypes['pg/uuid@1']['output'];
+    id_variasi_aset: CodecTypes['pg/uuid@1']['output'];
+    jumlah: CodecTypes['pg/int4@1']['output'];
+    permintaan: sarpras_permintaan;
+    variasi_aset: sarpras_variasi_aset;
+    readonly [RelationKeys]?: 'permintaan' | 'variasi_aset';
+  };
+  export type sarpras_item_transfer_antar_unit_aset_tetap = {
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+    id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+    aset_tetap: sarpras_aset_tetap;
+    transfer: sarpras_transfer_antar_unit;
+    readonly [RelationKeys]?: 'aset_tetap' | 'transfer';
+  };
+  export type sarpras_item_transfer_antar_unit_barang_habis_pakai = {
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+    id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+    jumlah_dikirim: CodecTypes['pg/int4@1']['output'];
+    stok: sarpras_stok_barang_habis_pakai;
+    transfer: sarpras_transfer_antar_unit;
+    readonly [RelationKeys]?: 'stok' | 'transfer';
+  };
+  export type sarpras_katalog_pemasok = {
+    aktif: CodecTypes['pg/bool@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    harga_referensi: Numeric<14, 2> | null;
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_pemasok: CodecTypes['pg/uuid@1']['output'];
+    id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+    pemasok: sarpras_pemasok;
+    variasi_aset_merek: sarpras_variasi_aset_merek;
+    readonly [RelationKeys]?: 'pemasok' | 'variasi_aset_merek';
+  };
+  export type sarpras_kategori_aset = {
+    aktif: CodecTypes['pg/bool@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    jenis: 'aset_tetap' | 'barang_habis_pakai';
+    kode: CodecTypes['pg/text@1']['output'];
+    nama: CodecTypes['pg/text@1']['output'];
+    readonly [RelationKeys]?: never;
+  };
+  export type sarpras_merek = {
+    aktif: CodecTypes['pg/bool@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    nama: CodecTypes['pg/text@1']['output'];
+    readonly [RelationKeys]?: never;
+  };
+  export type sarpras_mutasi_aset_tetap = {
+    catatan: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+    id_tempat_asal: CodecTypes['pg/uuid@1']['output'] | null;
+    id_tempat_tujuan: CodecTypes['pg/uuid@1']['output'] | null;
+    jenis_mutasi:
+      | 'penerimaan'
+      | 'pengiriman_permintaan'
+      | 'pengembalian_ke_gudang'
+      | 'transfer_masuk'
+      | 'transfer_keluar'
+      | 'mutasi'
+      | 'penyesuaian'
+      | 'penghapusan';
+    aset_tetap: sarpras_aset_tetap;
+    pelaku: sarpras_pengguna;
+    tempat_asal: sarpras_tempat | null;
+    tempat_tujuan: sarpras_tempat | null;
+    readonly [RelationKeys]?: 'aset_tetap' | 'pelaku' | 'tempat_asal' | 'tempat_tujuan';
+  };
+  export type sarpras_mutasi_lokasi = {
+    dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    diselesaikan_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aktor: CodecTypes['pg/uuid@1']['output'];
+    id_tempat_asal: CodecTypes['pg/uuid@1']['output'];
+    id_tempat_tujuan: CodecTypes['pg/uuid@1']['output'];
+    nomor_mutasi: CodecTypes['pg/text@1']['output'];
+    status: 'disiapkan' | 'selesai' | 'dibatalkan';
+    aktor: sarpras_aktor;
+    pembuat: sarpras_pengguna;
+    tempat_asal: sarpras_tempat;
+    tempat_tujuan: sarpras_tempat;
+    readonly [RelationKeys]?: 'aktor' | 'pembuat' | 'tempat_asal' | 'tempat_tujuan';
+  };
+  export type sarpras_mutasi_stok_barang = {
+    catatan: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_item_penerimaan_pengadaan: CodecTypes['pg/uuid@1']['output'] | null;
+    id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+    jenis_mutasi:
+      | 'penerimaan'
+      | 'pengiriman'
+      | 'pengembalian_ke_gudang'
+      | 'transfer_masuk'
+      | 'transfer_keluar'
+      | 'mutasi'
+      | 'penyesuaian'
+      | 'penghapusan';
+    perubahan_jumlah: CodecTypes['pg/int4@1']['output'];
+    item_penerimaan: sarpras_item_penerimaan_pengadaan | null;
+    pelaku: sarpras_pengguna;
+    stok: sarpras_stok_barang_habis_pakai;
+    readonly [RelationKeys]?: 'item_penerimaan' | 'pelaku' | 'stok';
+  };
+  export type sarpras_pemasok = {
+    aktif: CodecTypes['pg/bool@1']['output'];
+    alamat: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    kode: CodecTypes['pg/text@1']['output'] | null;
+    nama: CodecTypes['pg/text@1']['output'];
+    nomor_telepon: CodecTypes['pg/text@1']['output'] | null;
+    surel: CodecTypes['pg/text@1']['output'] | null;
+    readonly [RelationKeys]?: never;
+  };
+  export type sarpras_pembalikan_pembayaran = {
+    alasan: CodecTypes['pg/text@1']['output'];
+    dibalik_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    dibalik_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_pembayaran: CodecTypes['pg/uuid@1']['output'];
+    nominal: Numeric<14, 2>;
+    pelaku: sarpras_pengguna;
+    pembayaran: sarpras_pembayaran;
+    readonly [RelationKeys]?: 'pelaku' | 'pembayaran';
+  };
+  export type sarpras_pembayaran = {
+    dibayar_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_tagihan: CodecTypes['pg/uuid@1']['output'];
+    nominal: Numeric<14, 2>;
+    referensi_pembayaran: CodecTypes['pg/text@1']['output'] | null;
+    pembuat: sarpras_pengguna;
+    tagihan: sarpras_tagihan;
+    readonly [RelationKeys]?: 'pembuat' | 'tagihan';
+  };
+  export type sarpras_penerimaan_pengadaan = {
+    catatan: CodecTypes['pg/text@1']['output'] | null;
+    diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    diterima_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_gudang: CodecTypes['pg/uuid@1']['output'];
+    id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+    gudang: sarpras_gudang;
+    penerima: sarpras_pengguna;
+    pengadaan: sarpras_pengadaan;
+    readonly [RelationKeys]?: 'gudang' | 'penerima' | 'pengadaan';
+  };
+  export type sarpras_penerimaan_pengiriman = {
+    catatan: CodecTypes['pg/text@1']['output'] | null;
+    diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    diterima_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_pengiriman_permintaan: CodecTypes['pg/uuid@1']['output'];
+    penerima: sarpras_pengguna;
+    pengiriman: sarpras_pengiriman_permintaan;
+    readonly [RelationKeys]?: 'penerima' | 'pengiriman';
+  };
+  export type sarpras_penerimaan_transfer = {
+    catatan: CodecTypes['pg/text@1']['output'] | null;
+    diterima_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    diterima_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_transfer_antar_unit: CodecTypes['pg/uuid@1']['output'];
+    penerima: sarpras_pengguna;
+    transfer: sarpras_transfer_antar_unit;
+    readonly [RelationKeys]?: 'penerima' | 'transfer';
+  };
+  export type sarpras_pengadaan = {
+    alur_pengadaan: 'rab' | 'insidentil' | 'langsung';
+    catatan: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aktor: CodecTypes['pg/uuid@1']['output'];
+    jenis: 'mandiri' | 'berbasis_permintaan';
+    nomor_pengadaan: CodecTypes['pg/text@1']['output'];
+    status:
+      | 'draf'
+      | 'menunggu_persetujuan'
+      | 'ditolak'
+      | 'disetujui'
+      | 'dalam_pembelian'
+      | 'dalam_pengiriman'
+      | 'dibatalkan';
+    aktor: sarpras_aktor;
+    pembuat: sarpras_pengguna;
+    readonly [RelationKeys]?: 'aktor' | 'pembuat';
+  };
+  export type sarpras_pengguna = {
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id_pegawai: CodecTypes['pg/text@1']['output'];
+    nama: CodecTypes['pg/text@1']['output'];
+    readonly [RelationKeys]?: never;
+  };
+  export type sarpras_penghapusan_aset = {
+    alasan: CodecTypes['pg/text@1']['output'];
+    dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aktor: CodecTypes['pg/uuid@1']['output'];
+    jenis: 'dijual' | 'disumbangkan' | 'dimusnahkan' | 'hilang' | 'lainnya';
+    nomor_penghapusan: CodecTypes['pg/text@1']['output'];
+    aktor: sarpras_aktor;
+    pembuat: sarpras_pengguna;
+    readonly [RelationKeys]?: 'aktor' | 'pembuat';
+  };
+  export type sarpras_pengiriman_permintaan = {
+    dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    dikirim_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_permintaan: CodecTypes['pg/uuid@1']['output'];
+    id_tempat_tujuan: CodecTypes['pg/uuid@1']['output'];
+    nomor_pengiriman: CodecTypes['pg/text@1']['output'];
+    status: 'disiapkan' | 'dikirim' | 'dibatalkan';
+    pembuat: sarpras_pengguna;
+    permintaan: sarpras_permintaan;
+    tempat_tujuan: sarpras_tempat;
+    readonly [RelationKeys]?: 'pembuat' | 'permintaan' | 'tempat_tujuan';
+  };
+  export type sarpras_permintaan = {
+    catatan: CodecTypes['pg/text@1']['output'] | null;
+    diajukan_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+    dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aktor_peminta: CodecTypes['pg/uuid@1']['output'];
+    id_tempat_tujuan: CodecTypes['pg/uuid@1']['output'];
+    nomor_permintaan: CodecTypes['pg/text@1']['output'];
+    status: 'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan';
+    aktor_peminta: sarpras_aktor;
+    pembuat: sarpras_pengguna;
+    tempat_tujuan: sarpras_tempat;
+    readonly [RelationKeys]?: 'aktor_peminta' | 'pembuat' | 'tempat_tujuan';
+  };
+  export type sarpras_reservasi_aset_tetap = {
+    dilepas_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+    direservasi_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    direservasi_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aset_tetap: CodecTypes['pg/uuid@1']['output'];
+    id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+    status: 'direservasi' | 'dibatalkan' | 'dilepas';
+    aset_tetap: sarpras_aset_tetap;
+    pencatat_reservasi: sarpras_pengguna;
+    sumber_pemenuhan: sarpras_sumber_pemenuhan_permintaan;
+    readonly [RelationKeys]?: 'aset_tetap' | 'pencatat_reservasi' | 'sumber_pemenuhan';
+  };
+  export type sarpras_reservasi_stok_barang = {
+    dilepas_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+    direservasi_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    direservasi_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_stok_barang_habis_pakai: CodecTypes['pg/uuid@1']['output'];
+    id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+    jumlah: CodecTypes['pg/int4@1']['output'];
+    status: 'direservasi' | 'dibatalkan' | 'dilepas';
+    pencatat_reservasi: sarpras_pengguna;
+    stok: sarpras_stok_barang_habis_pakai;
+    sumber_pemenuhan: sarpras_sumber_pemenuhan_permintaan;
+    readonly [RelationKeys]?: 'pencatat_reservasi' | 'stok' | 'sumber_pemenuhan';
+  };
+  export type sarpras_retur_permintaan = {
+    alasan: CodecTypes['pg/text@1']['output'];
+    catatan_tindak_lanjut: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    ditinjau_oleh_id_pegawai: CodecTypes['pg/text@1']['output'] | null;
+    ditinjau_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aset_tetap_pengganti: CodecTypes['pg/uuid@1']['output'] | null;
+    id_berkas_bukti: CodecTypes['pg/int4@1']['output'] | null;
+    id_item_penerimaan_pengiriman: CodecTypes['pg/uuid@1']['output'];
+    jumlah: CodecTypes['pg/int4@1']['output'];
+    status: 'diajukan' | 'disetujui' | 'ditolak' | 'diselesaikan';
+    tindak_lanjut: 'kirim_ulang' | 'kembali_ke_sumber' | 'penghapusan' | null;
+    aset_tetap_pengganti: sarpras_aset_tetap | null;
+    berkas_bukti: public_berkas | null;
+    item_penerimaan: sarpras_item_penerimaan_pengiriman;
+    pembuat: sarpras_pengguna;
+    peninjau: sarpras_pengguna | null;
+    readonly [RelationKeys]?:
+      'aset_tetap_pengganti' | 'berkas_bukti' | 'item_penerimaan' | 'pembuat' | 'peninjau';
+  };
+  export type sarpras_riwayat_status_item_pengadaan = {
+    catatan: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_item_pengadaan: CodecTypes['pg/uuid@1']['output'];
+    status_baru: 'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan';
+    status_sebelumnya:
+      'draf' | 'menunggu_persetujuan' | 'ditolak' | 'disetujui' | 'dibatalkan' | null;
+    item_pengadaan: sarpras_item_pengadaan;
+    pelaku: sarpras_pengguna;
+    readonly [RelationKeys]?: 'item_pengadaan' | 'pelaku';
+  };
+  export type sarpras_riwayat_status_pengadaan = {
+    catatan: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+    status_baru:
+      | 'draf'
+      | 'menunggu_persetujuan'
+      | 'ditolak'
+      | 'disetujui'
+      | 'dalam_pembelian'
+      | 'dalam_pengiriman'
+      | 'dibatalkan';
+    status_sebelumnya:
+      | 'draf'
+      | 'menunggu_persetujuan'
+      | 'ditolak'
+      | 'disetujui'
+      | 'dalam_pembelian'
+      | 'dalam_pengiriman'
+      | 'dibatalkan'
+      | null;
+    pelaku: sarpras_pengguna;
+    pengadaan: sarpras_pengadaan;
+    readonly [RelationKeys]?: 'pelaku' | 'pengadaan';
+  };
+  export type sarpras_riwayat_status_permintaan = {
+    catatan: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aktor_konteks: CodecTypes['pg/uuid@1']['output'] | null;
+    id_permintaan: CodecTypes['pg/uuid@1']['output'];
+    status_baru: 'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan';
+    status_sebelumnya:
+      'draf' | 'diajukan' | 'dalam_peninjauan' | 'disetujui' | 'ditolak' | 'dibatalkan' | null;
+    aktor_konteks: sarpras_aktor | null;
+    pelaku: sarpras_pengguna;
+    permintaan: sarpras_permintaan;
+    readonly [RelationKeys]?: 'aktor_konteks' | 'pelaku' | 'permintaan';
+  };
+  export type sarpras_riwayat_status_sumber_pemenuhan = {
+    catatan: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    dilakukan_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aktor_konteks: CodecTypes['pg/uuid@1']['output'] | null;
+    id_sumber_pemenuhan_permintaan: CodecTypes['pg/uuid@1']['output'];
+    status_baru:
+      | 'diusulkan'
+      | 'diterima_dc'
+      | 'ditolak_dc'
+      | 'menunggu_yayasan'
+      | 'ditolak_yayasan'
+      | 'dibatalkan';
+    status_sebelumnya:
+      | 'diusulkan'
+      | 'diterima_dc'
+      | 'ditolak_dc'
+      | 'menunggu_yayasan'
+      | 'ditolak_yayasan'
+      | 'dibatalkan'
+      | null;
+    aktor_konteks: sarpras_aktor | null;
+    pelaku: sarpras_pengguna;
+    sumber_pemenuhan: sarpras_sumber_pemenuhan_permintaan;
+    readonly [RelationKeys]?: 'aktor_konteks' | 'pelaku' | 'sumber_pemenuhan';
+  };
+  export type sarpras_stok_barang_habis_pakai = {
+    diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_gudang: CodecTypes['pg/uuid@1']['output'];
+    id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+    jumlah_saldo: CodecTypes['pg/int4@1']['output'];
+    gudang: sarpras_gudang;
+    variasi_aset_merek: sarpras_variasi_aset_merek;
+    readonly [RelationKeys]?: 'gudang' | 'variasi_aset_merek';
+  };
+  export type sarpras_sumber_pemenuhan_permintaan = {
+    alasan_penolakan: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_gudang: CodecTypes['pg/uuid@1']['output'] | null;
+    id_item_permintaan: CodecTypes['pg/uuid@1']['output'];
+    id_katalog_pemasok: CodecTypes['pg/uuid@1']['output'] | null;
+    id_variasi_aset_merek: CodecTypes['pg/uuid@1']['output'];
+    jenis: 'gudang' | 'pengadaan';
+    jumlah: CodecTypes['pg/int4@1']['output'];
+    status:
+      | 'diusulkan'
+      | 'diterima_dc'
+      | 'ditolak_dc'
+      | 'menunggu_yayasan'
+      | 'ditolak_yayasan'
+      | 'dibatalkan';
+    gudang: sarpras_gudang | null;
+    item_permintaan: sarpras_item_permintaan;
+    katalog_pemasok: sarpras_katalog_pemasok | null;
+    pembuat: sarpras_pengguna;
+    variasi_aset_merek: sarpras_variasi_aset_merek;
+    readonly [RelationKeys]?:
+      'gudang' | 'item_permintaan' | 'katalog_pemasok' | 'pembuat' | 'variasi_aset_merek';
+  };
+  export type sarpras_tagihan = {
+    dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_pengadaan: CodecTypes['pg/uuid@1']['output'];
+    nominal: Numeric<14, 2>;
+    nomor_tagihan: CodecTypes['pg/text@1']['output'];
+    status: 'diajukan' | 'dibatalkan';
+    tanggal_tagihan: CodecTypes['pg/date-string@1']['output'] | null;
+    pembuat: sarpras_pengguna;
+    pengadaan: sarpras_pengadaan;
+    readonly [RelationKeys]?: 'pembuat' | 'pengadaan';
+  };
+  export type sarpras_tempat = {
+    aktif: CodecTypes['pg/bool@1']['output'];
+    deskripsi: CodecTypes['pg/text@1']['output'] | null;
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    diubah_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aktor_pemilik: CodecTypes['pg/uuid@1']['output'] | null;
+    id_tempat_induk: CodecTypes['pg/uuid@1']['output'] | null;
+    jenis: 'kampus' | 'gedung' | 'lantai' | 'ruangan' | 'zona' | 'area_lantai' | 'lainnya';
+    kode: CodecTypes['pg/text@1']['output'] | null;
+    nama: CodecTypes['pg/text@1']['output'];
+    aktor_pemilik: sarpras_aktor | null;
+    tempat_induk: sarpras_tempat | null;
+    readonly [RelationKeys]?: 'aktor_pemilik' | 'tempat_induk';
+  };
+  export type sarpras_transfer_antar_unit = {
+    dibuat_oleh_id_pegawai: CodecTypes['pg/text@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    dikirim_pada: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_aktor_penerima: CodecTypes['pg/uuid@1']['output'];
+    id_aktor_pengirim: CodecTypes['pg/uuid@1']['output'];
+    id_gudang_asal: CodecTypes['pg/uuid@1']['output'];
+    id_gudang_tujuan: CodecTypes['pg/uuid@1']['output'];
+    nomor_transfer: CodecTypes['pg/text@1']['output'];
+    status: 'disiapkan' | 'dikirim' | 'dibatalkan';
+    aktor_penerima: sarpras_aktor;
+    aktor_pengirim: sarpras_aktor;
+    gudang_asal: sarpras_gudang;
+    gudang_tujuan: sarpras_gudang;
+    pembuat: sarpras_pengguna;
+    readonly [RelationKeys]?:
+      'aktor_penerima' | 'aktor_pengirim' | 'gudang_asal' | 'gudang_tujuan' | 'pembuat';
+  };
+  export type sarpras_variasi_aset = {
+    aktif: CodecTypes['pg/bool@1']['output'];
+    dibuat_pada: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_kategori_aset: CodecTypes['pg/uuid@1']['output'];
+    kode: CodecTypes['pg/text@1']['output'] | null;
+    nama: CodecTypes['pg/text@1']['output'];
+    satuan: CodecTypes['pg/text@1']['output'];
+    kategori_aset: sarpras_kategori_aset;
+    readonly [RelationKeys]?: 'kategori_aset';
+  };
+  export type sarpras_variasi_aset_merek = {
+    aktif: CodecTypes['pg/bool@1']['output'];
+    id: CodecTypes['pg/uuid@1']['output'];
+    id_merek: CodecTypes['pg/uuid@1']['output'];
+    id_variasi_aset: CodecTypes['pg/uuid@1']['output'];
+    merek: sarpras_merek;
+    variasi_aset: sarpras_variasi_aset;
+    readonly [RelationKeys]?: 'merek' | 'variasi_aset';
   };
 }
 
 export declare const models: {
   public: {
-    post: Models.public_post;
-    uploaded_file: Models.public_uploaded_file;
-    user: Models.public_user;
+    berkas: Models.public_berkas;
+  };
+  sarpras: {
+    aktor: Models.sarpras_aktor;
+    alokasi_item_pengadaan_permintaan: Models.sarpras_alokasi_item_pengadaan_permintaan;
+    aset_tetap: Models.sarpras_aset_tetap;
+    dokumen_pengadaan: Models.sarpras_dokumen_pengadaan;
+    gudang: Models.sarpras_gudang;
+    item_mutasi_lokasi_aset_tetap: Models.sarpras_item_mutasi_lokasi_aset_tetap;
+    item_mutasi_lokasi_barang_habis_pakai: Models.sarpras_item_mutasi_lokasi_barang_habis_pakai;
+    item_penerimaan_pengadaan: Models.sarpras_item_penerimaan_pengadaan;
+    item_penerimaan_pengiriman: Models.sarpras_item_penerimaan_pengiriman;
+    item_penerimaan_transfer_aset_tetap: Models.sarpras_item_penerimaan_transfer_aset_tetap;
+    item_penerimaan_transfer_barang_habis_pakai: Models.sarpras_item_penerimaan_transfer_barang_habis_pakai;
+    item_pengadaan: Models.sarpras_item_pengadaan;
+    item_penghapusan_aset_tetap: Models.sarpras_item_penghapusan_aset_tetap;
+    item_penghapusan_barang_habis_pakai: Models.sarpras_item_penghapusan_barang_habis_pakai;
+    item_pengiriman_aset_tetap: Models.sarpras_item_pengiriman_aset_tetap;
+    item_pengiriman_barang_habis_pakai: Models.sarpras_item_pengiriman_barang_habis_pakai;
+    item_pengiriman_permintaan: Models.sarpras_item_pengiriman_permintaan;
+    item_permintaan: Models.sarpras_item_permintaan;
+    item_transfer_antar_unit_aset_tetap: Models.sarpras_item_transfer_antar_unit_aset_tetap;
+    item_transfer_antar_unit_barang_habis_pakai: Models.sarpras_item_transfer_antar_unit_barang_habis_pakai;
+    katalog_pemasok: Models.sarpras_katalog_pemasok;
+    kategori_aset: Models.sarpras_kategori_aset;
+    merek: Models.sarpras_merek;
+    mutasi_aset_tetap: Models.sarpras_mutasi_aset_tetap;
+    mutasi_lokasi: Models.sarpras_mutasi_lokasi;
+    mutasi_stok_barang: Models.sarpras_mutasi_stok_barang;
+    pemasok: Models.sarpras_pemasok;
+    pembalikan_pembayaran: Models.sarpras_pembalikan_pembayaran;
+    pembayaran: Models.sarpras_pembayaran;
+    penerimaan_pengadaan: Models.sarpras_penerimaan_pengadaan;
+    penerimaan_pengiriman: Models.sarpras_penerimaan_pengiriman;
+    penerimaan_transfer: Models.sarpras_penerimaan_transfer;
+    pengadaan: Models.sarpras_pengadaan;
+    pengguna: Models.sarpras_pengguna;
+    penghapusan_aset: Models.sarpras_penghapusan_aset;
+    pengiriman_permintaan: Models.sarpras_pengiriman_permintaan;
+    permintaan: Models.sarpras_permintaan;
+    reservasi_aset_tetap: Models.sarpras_reservasi_aset_tetap;
+    reservasi_stok_barang: Models.sarpras_reservasi_stok_barang;
+    retur_permintaan: Models.sarpras_retur_permintaan;
+    riwayat_status_item_pengadaan: Models.sarpras_riwayat_status_item_pengadaan;
+    riwayat_status_pengadaan: Models.sarpras_riwayat_status_pengadaan;
+    riwayat_status_permintaan: Models.sarpras_riwayat_status_permintaan;
+    riwayat_status_sumber_pemenuhan: Models.sarpras_riwayat_status_sumber_pemenuhan;
+    stok_barang_habis_pakai: Models.sarpras_stok_barang_habis_pakai;
+    sumber_pemenuhan_permintaan: Models.sarpras_sumber_pemenuhan_permintaan;
+    tagihan: Models.sarpras_tagihan;
+    tempat: Models.sarpras_tempat;
+    transfer_antar_unit: Models.sarpras_transfer_antar_unit;
+    variasi_aset: Models.sarpras_variasi_aset;
+    variasi_aset_merek: Models.sarpras_variasi_aset_merek;
   };
 };
 
@@ -434,23 +3152,18 @@ type ContractBase = Omit<
         readonly kind: 'postgres-schema';
         readonly entries: {
           readonly table: {
-            readonly Post: {
+            readonly berkas: {
               columns: {
-                readonly authorId: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                };
-                readonly content: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: true;
-                };
-                readonly createdAt: {
+                readonly dibuat_pada: {
                   readonly nativeType: 'timestamptz';
                   readonly codecId: 'pg/timestamptz-string@1';
                   readonly nullable: false;
                   readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly diunggah_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
                 };
                 readonly id: {
                   readonly nativeType: 'int4';
@@ -461,24 +3174,40 @@ type ContractBase = Omit<
                     readonly expression: 'autoincrement()';
                   };
                 };
-                readonly title: {
+                readonly nama_asli: {
                   readonly nativeType: 'text';
                   readonly codecId: 'pg/text@1';
                   readonly nullable: false;
                 };
-                readonly updatedAt: {
-                  readonly nativeType: 'timestamptz';
-                  readonly codecId: 'pg/timestamptz-string@1';
+                readonly nama_penyimpanan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly tipe_mime: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly ukuran: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
                   readonly nullable: false;
                 };
               };
               primaryKey: { readonly columns: readonly ['id'] };
-              uniques: readonly [];
+              uniques: readonly [{ readonly columns: readonly ['nama_penyimpanan'] }];
               indexes: readonly [
                 {
-                  readonly name: 'Post_authorId_idx_e47547ed';
-                  readonly prefix: 'Post_authorId_idx';
-                  readonly columns: readonly ['authorId'];
+                  readonly name: 'berkas_diunggah_oleh_id_pegawai_idx_ee9b448e';
+                  readonly prefix: 'berkas_diunggah_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['diunggah_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_upfi_1_3db31955';
+                  readonly prefix: 'ix_upfi_1';
+                  readonly columns: readonly ['diunggah_oleh_id_pegawai', 'dibuat_pada'];
                   readonly unique: false;
                 },
               ];
@@ -486,133 +3215,4974 @@ type ContractBase = Omit<
                 {
                   readonly source: {
                     readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'Post';
-                    readonly columns: readonly ['authorId'];
+                    readonly tableName: 'berkas';
+                    readonly columns: readonly ['diunggah_oleh_id_pegawai'];
                   };
                   readonly target: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'User';
-                    readonly columns: readonly ['id'];
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
                   };
                 },
               ];
             };
-            readonly UploadedFile: {
+          };
+          readonly valueSet: {
+            readonly AlurPengadaan: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['rab', 'insidentil', 'langsung'];
+            };
+            readonly JenisAktor: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'YAYASAN',
+                'UNIVERSITAS',
+                'FAKULTAS',
+                'PROGRAM_STUDI',
+                'LEMBAGA',
+                'KEUANGAN',
+                'KHUSUS',
+              ];
+            };
+            readonly JenisAset: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['aset_tetap', 'barang_habis_pakai'];
+            };
+            readonly JenisDokumenPengadaan: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'tagihan',
+                'bukti_pembayaran',
+                'bukti_penerimaan',
+                'bukti_perbedaan',
+                'surat_persetujuan',
+                'lainnya',
+              ];
+            };
+            readonly JenisMutasiAset: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'penerimaan',
+                'pengiriman_permintaan',
+                'pengembalian_ke_gudang',
+                'transfer_masuk',
+                'transfer_keluar',
+                'mutasi',
+                'penyesuaian',
+                'penghapusan',
+              ];
+            };
+            readonly JenisMutasiStok: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'penerimaan',
+                'pengiriman',
+                'pengembalian_ke_gudang',
+                'transfer_masuk',
+                'transfer_keluar',
+                'mutasi',
+                'penyesuaian',
+                'penghapusan',
+              ];
+            };
+            readonly JenisPengadaan: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['mandiri', 'berbasis_permintaan'];
+            };
+            readonly JenisPenghapusan: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'dijual',
+                'disumbangkan',
+                'dimusnahkan',
+                'hilang',
+                'lainnya',
+              ];
+            };
+            readonly JenisSumberPemenuhan: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['gudang', 'pengadaan'];
+            };
+            readonly JenisTempat: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'kampus',
+                'gedung',
+                'lantai',
+                'ruangan',
+                'zona',
+                'area_lantai',
+                'lainnya',
+              ];
+            };
+            readonly KondisiAset: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['baik', 'rusak_ringan', 'rusak_berat'];
+            };
+            readonly StatusAset: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['tersedia', 'digunakan', 'hilang'];
+            };
+            readonly StatusItemPengadaan: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'draf',
+                'menunggu_persetujuan',
+                'ditolak',
+                'disetujui',
+                'dibatalkan',
+              ];
+            };
+            readonly StatusMutasi: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['disiapkan', 'selesai', 'dibatalkan'];
+            };
+            readonly StatusPemenuhan: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'diusulkan',
+                'diterima_dc',
+                'ditolak_dc',
+                'menunggu_yayasan',
+                'ditolak_yayasan',
+                'dibatalkan',
+              ];
+            };
+            readonly StatusPengadaan: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'draf',
+                'menunggu_persetujuan',
+                'ditolak',
+                'disetujui',
+                'dalam_pembelian',
+                'dalam_pengiriman',
+                'dibatalkan',
+              ];
+            };
+            readonly StatusPengiriman: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['disiapkan', 'dikirim', 'dibatalkan'];
+            };
+            readonly StatusPermintaan: {
+              readonly kind: 'valueSet';
+              readonly values: readonly [
+                'draf',
+                'diajukan',
+                'dalam_peninjauan',
+                'disetujui',
+                'ditolak',
+                'dibatalkan',
+              ];
+            };
+            readonly StatusReservasi: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['direservasi', 'dibatalkan', 'dilepas'];
+            };
+            readonly StatusRetur: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['diajukan', 'disetujui', 'ditolak', 'diselesaikan'];
+            };
+            readonly StatusTagihan: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['diajukan', 'dibatalkan'];
+            };
+            readonly StatusTransfer: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['disiapkan', 'dikirim', 'dibatalkan'];
+            };
+            readonly SumberDana: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['anggaran_organisasi', 'hibah', 'donasi', 'lainnya'];
+            };
+            readonly TindakLanjutRetur: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['kirim_ulang', 'kembali_ke_sumber', 'penghapusan'];
+            };
+          };
+        };
+      };
+      readonly sarpras: {
+        readonly id: 'sarpras';
+        readonly kind: 'postgres-schema';
+        readonly entries: {
+          readonly table: {
+            readonly aktor: {
               columns: {
-                readonly createdAt: {
+                readonly aktif: {
+                  readonly nativeType: 'bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly diubah_pada: {
                   readonly nativeType: 'timestamptz';
                   readonly codecId: 'pg/timestamptz-string@1';
                   readonly nullable: false;
                   readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
                 };
                 readonly id: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
                   readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'function';
-                    readonly expression: 'autoincrement()';
-                  };
                 };
-                readonly mimeType: {
+                readonly jenis: {
                   readonly nativeType: 'text';
                   readonly codecId: 'pg/text@1';
                   readonly nullable: false;
                 };
-                readonly originalName: {
+                readonly kode: {
                   readonly nativeType: 'text';
                   readonly codecId: 'pg/text@1';
                   readonly nullable: false;
                 };
-                readonly size: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                };
-                readonly storageName: {
+                readonly nama: {
                   readonly nativeType: 'text';
                   readonly codecId: 'pg/text@1';
-                  readonly nullable: false;
-                };
-                readonly uploadedById: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
                   readonly nullable: false;
                 };
               };
               primaryKey: { readonly columns: readonly ['id'] };
-              uniques: readonly [{ readonly columns: readonly ['storageName'] }];
+              uniques: readonly [{ readonly columns: readonly ['kode'] }];
               indexes: readonly [
                 {
-                  readonly name: 'UploadedFile_uploadedById_createdAt_idx_7e8cc7c7';
-                  readonly columns: readonly ['uploadedById', 'createdAt'];
+                  readonly name: 'ix_ac_1_e1a9de4e';
+                  readonly prefix: 'ix_ac_1';
+                  readonly columns: readonly ['jenis', 'aktif'];
                   readonly unique: false;
                 },
               ];
               foreignKeys: readonly [];
             };
-            readonly User: {
+            readonly alokasi_item_pengadaan_permintaan: {
               columns: {
-                readonly createdAt: {
+                readonly dibuat_pada: {
                   readonly nativeType: 'timestamptz';
                   readonly codecId: 'pg/timestamptz-string@1';
                   readonly nullable: false;
                   readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
                 };
-                readonly email: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
                   readonly nullable: false;
                 };
-                readonly id: {
+                readonly id_item_pengadaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_sumber_pemenuhan_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah: {
                   readonly nativeType: 'int4';
                   readonly codecId: 'pg/int4@1';
                   readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'function';
-                    readonly expression: 'autoincrement()';
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly [
+                    'id_item_pengadaan',
+                    'id_sumber_pemenuhan_permintaan',
+                  ];
+                  readonly name: 'uq_pritreal_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'alokasi_item_pengadaan_permintaan_id_item_pengadaan_id_56048da8';
+                  readonly prefix: 'alokasi_item_pengadaan_permintaan_id_item_pengadaan_id';
+                  readonly columns: readonly ['id_item_pengadaan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_pritreal_1_b2425548';
+                  readonly prefix: 'ix_pritreal_1';
+                  readonly columns: readonly ['id_sumber_pemenuhan_permintaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'alokasi_item_pengadaan_permintaan';
+                    readonly columns: readonly ['id_item_pengadaan'];
                   };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengadaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'alokasi_item_pengadaan_permintaan';
+                    readonly columns: readonly ['id_sumber_pemenuhan_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'sumber_pemenuhan_permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly aset_tetap: {
+              columns: {
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
                 };
-                readonly name: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
+                readonly diubah_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_item_penerimaan_pengadaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
                   readonly nullable: true;
                 };
-                readonly passwordHash: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
+                readonly id_tempat_saat_ini: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
                   readonly nullable: true;
                 };
-                readonly role: {
+                readonly id_variasi_aset_merek: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly kode_aset: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly kondisi: {
                   readonly nativeType: 'text';
                   readonly codecId: 'pg/text@1';
                   readonly nullable: false;
                   readonly default: {
                     readonly kind: 'literal';
-                    readonly value: DefaultLiteralValue<'pg/text@1', 'USER'>;
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'baik'>;
                   };
                 };
-                readonly updatedAt: {
+                readonly status: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'tersedia'>;
+                  };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [{ readonly columns: readonly ['kode_aset'] }];
+              indexes: readonly [
+                {
+                  readonly name: 'aset_tetap_id_item_penerimaan_pengadaan_id_variasi_ase_4dd21dcb';
+                  readonly prefix: 'aset_tetap_id_item_penerimaan_pengadaan_id_variasi_ase';
+                  readonly columns: readonly [
+                    'id_item_penerimaan_pengadaan',
+                    'id_variasi_aset_merek',
+                  ];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'aset_tetap_id_tempat_saat_ini_idx_d130e353';
+                  readonly prefix: 'aset_tetap_id_tempat_saat_ini_idx';
+                  readonly columns: readonly ['id_tempat_saat_ini'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'aset_tetap_id_variasi_aset_merek_idx_1b32ba0e';
+                  readonly prefix: 'aset_tetap_id_variasi_aset_merek_idx';
+                  readonly columns: readonly ['id_variasi_aset_merek'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_fias_1_69fcf9be';
+                  readonly prefix: 'ix_fias_1';
+                  readonly columns: readonly ['id_variasi_aset_merek', 'status'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_fias_2_0263817b';
+                  readonly prefix: 'ix_fias_2';
+                  readonly columns: readonly ['id_tempat_saat_ini', 'status'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aset_tetap';
+                    readonly columns: readonly ['id_variasi_aset_merek'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'variasi_aset_merek';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aset_tetap';
+                    readonly columns: readonly [
+                      'id_item_penerimaan_pengadaan',
+                      'id_variasi_aset_merek',
+                    ];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penerimaan_pengadaan';
+                    readonly columns: readonly ['id', 'id_variasi_aset_merek'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aset_tetap';
+                    readonly columns: readonly ['id_tempat_saat_ini'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tempat';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly dokumen_pengadaan: {
+              columns: {
+                readonly dibuat_pada: {
                   readonly nativeType: 'timestamptz';
                   readonly codecId: 'pg/timestamptz-string@1';
                   readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
                 };
-                readonly username: {
+                readonly diunggah_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_berkas: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+                readonly id_pengadaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jenis: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id_pengadaan', 'id_berkas', 'jenis'];
+                  readonly name: 'uq_prdo_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'dokumen_pengadaan_diunggah_oleh_id_pegawai_idx_ee9b448e';
+                  readonly prefix: 'dokumen_pengadaan_diunggah_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['diunggah_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'dokumen_pengadaan_id_pengadaan_idx_8367dd47';
+                  readonly prefix: 'dokumen_pengadaan_id_pengadaan_idx';
+                  readonly columns: readonly ['id_pengadaan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_prdo_1_a9c9efd7';
+                  readonly prefix: 'ix_prdo_1';
+                  readonly columns: readonly ['id_berkas'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'dokumen_pengadaan';
+                    readonly columns: readonly ['id_pengadaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengadaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'dokumen_pengadaan';
+                    readonly columns: readonly ['id_berkas'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'berkas';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'dokumen_pengadaan';
+                    readonly columns: readonly ['diunggah_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly gudang: {
+              columns: {
+                readonly aktif: {
+                  readonly nativeType: 'bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_tempat: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly kode: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                { readonly columns: readonly ['id_tempat'] },
+                { readonly columns: readonly ['kode'] },
+              ];
+              indexes: readonly [];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'gudang';
+                    readonly columns: readonly ['id_tempat'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tempat';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly item_mutasi_lokasi_aset_tetap: {
+              columns: {
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aset_tetap: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_mutasi_lokasi: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id_mutasi_lokasi', 'id_aset_tetap'];
+                  readonly name: 'uq_lomufiit_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'item_mutasi_lokasi_aset_tetap_id_mutasi_lokasi_idx_eb469128';
+                  readonly prefix: 'item_mutasi_lokasi_aset_tetap_id_mutasi_lokasi_idx';
+                  readonly columns: readonly ['id_mutasi_lokasi'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_lomufiit_1_3807ca37';
+                  readonly prefix: 'ix_lomufiit_1';
+                  readonly columns: readonly ['id_aset_tetap'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_mutasi_lokasi_aset_tetap';
+                    readonly columns: readonly ['id_mutasi_lokasi'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_lokasi';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_mutasi_lokasi_aset_tetap';
+                    readonly columns: readonly ['id_aset_tetap'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aset_tetap';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly item_mutasi_lokasi_barang_habis_pakai: {
+              columns: {
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_mutasi_lokasi: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_stok_barang_habis_pakai: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_lomucoit_1_eb469128';
+                  readonly prefix: 'ix_lomucoit_1';
+                  readonly columns: readonly ['id_mutasi_lokasi'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_lomucoit_2_32389ff0';
+                  readonly prefix: 'ix_lomucoit_2';
+                  readonly columns: readonly ['id_stok_barang_habis_pakai'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_mutasi_lokasi_barang_habis_pakai';
+                    readonly columns: readonly ['id_mutasi_lokasi'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_lokasi';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_mutasi_lokasi_barang_habis_pakai';
+                    readonly columns: readonly ['id_stok_barang_habis_pakai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'stok_barang_habis_pakai';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly item_penerimaan_pengadaan: {
+              columns: {
+                readonly alasan_perbedaan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_item_pengadaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_penerimaan_pengadaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_pengadaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_variasi_aset_merek: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah_diterima: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id_penerimaan_pengadaan', 'id_item_pengadaan'];
+                  readonly name: 'uq_prreit_1';
+                },
+                {
+                  readonly columns: readonly ['id', 'id_variasi_aset_merek'];
+                  readonly name: 'uq_prreit_2';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'item_penerimaan_pengadaan_id_item_pengadaan_id_pengada_209501a4';
+                  readonly prefix: 'item_penerimaan_pengadaan_id_item_pengadaan_id_pengada';
+                  readonly columns: readonly [
+                    'id_item_pengadaan',
+                    'id_pengadaan',
+                    'id_variasi_aset_merek',
+                  ];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'item_penerimaan_pengadaan_id_penerimaan_pengadaan_id_p_57f58f36';
+                  readonly prefix: 'item_penerimaan_pengadaan_id_penerimaan_pengadaan_id_p';
+                  readonly columns: readonly ['id_penerimaan_pengadaan', 'id_pengadaan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_prreit_1_56048da8';
+                  readonly prefix: 'ix_prreit_1';
+                  readonly columns: readonly ['id_item_pengadaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penerimaan_pengadaan';
+                    readonly columns: readonly ['id_penerimaan_pengadaan', 'id_pengadaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penerimaan_pengadaan';
+                    readonly columns: readonly ['id', 'id_pengadaan'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penerimaan_pengadaan';
+                    readonly columns: readonly [
+                      'id_item_pengadaan',
+                      'id_pengadaan',
+                      'id_variasi_aset_merek',
+                    ];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengadaan';
+                    readonly columns: readonly ['id', 'id_pengadaan', 'id_variasi_aset_merek'];
+                  };
+                },
+              ];
+            };
+            readonly item_penerimaan_pengiriman: {
+              columns: {
+                readonly alasan_penolakan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_item_pengiriman_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_penerimaan_pengiriman: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_pengiriman_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah_diterima: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/int4@1', 0>;
+                  };
+                };
+                readonly jumlah_ditolak: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/int4@1', 0>;
+                  };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly [
+                    'id_penerimaan_pengiriman',
+                    'id_item_pengiriman_permintaan',
+                  ];
+                  readonly name: 'uq_reshreit_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'item_penerimaan_pengiriman_id_item_pengiriman_perminta_47dcf043';
+                  readonly prefix: 'item_penerimaan_pengiriman_id_item_pengiriman_perminta';
+                  readonly columns: readonly [
+                    'id_item_pengiriman_permintaan',
+                    'id_pengiriman_permintaan',
+                  ];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'item_penerimaan_pengiriman_id_penerimaan_pengiriman_id_5de45100';
+                  readonly prefix: 'item_penerimaan_pengiriman_id_penerimaan_pengiriman_id';
+                  readonly columns: readonly [
+                    'id_penerimaan_pengiriman',
+                    'id_pengiriman_permintaan',
+                  ];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_reshreit_1_6315f31d';
+                  readonly prefix: 'ix_reshreit_1';
+                  readonly columns: readonly ['id_item_pengiriman_permintaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penerimaan_pengiriman';
+                    readonly columns: readonly [
+                      'id_penerimaan_pengiriman',
+                      'id_pengiriman_permintaan',
+                    ];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penerimaan_pengiriman';
+                    readonly columns: readonly ['id', 'id_pengiriman_permintaan'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penerimaan_pengiriman';
+                    readonly columns: readonly [
+                      'id_item_pengiriman_permintaan',
+                      'id_pengiriman_permintaan',
+                    ];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengiriman_permintaan';
+                    readonly columns: readonly ['id', 'id_pengiriman_permintaan'];
+                  };
+                },
+              ];
+            };
+            readonly item_penerimaan_transfer_aset_tetap: {
+              columns: {
+                readonly alasan_penolakan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly diterima: {
+                  readonly nativeType: 'bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_item_transfer_antar_unit_aset_tetap: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_penerimaan_transfer: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_transfer_antar_unit: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly [
+                    'id_penerimaan_transfer',
+                    'id_item_transfer_antar_unit_aset_tetap',
+                  ];
+                  readonly name: 'uq_inuntrreit_1';
+                },
+                {
+                  readonly columns: readonly ['id_item_transfer_antar_unit_aset_tetap'];
+                  readonly name: 'uq_inuntrreit_2';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'item_penerimaan_transfer_aset_tetap_id_item_transfer_a_61b3424a';
+                  readonly prefix: 'item_penerimaan_transfer_aset_tetap_id_item_transfer_a';
+                  readonly columns: readonly [
+                    'id_item_transfer_antar_unit_aset_tetap',
+                    'id_transfer_antar_unit',
+                  ];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'item_penerimaan_transfer_aset_tetap_id_penerimaan_tran_d36f601b';
+                  readonly prefix: 'item_penerimaan_transfer_aset_tetap_id_penerimaan_tran';
+                  readonly columns: readonly ['id_penerimaan_transfer', 'id_transfer_antar_unit'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_inuntrreit_1_7adf8674';
+                  readonly prefix: 'ix_inuntrreit_1';
+                  readonly columns: readonly ['id_penerimaan_transfer'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penerimaan_transfer_aset_tetap';
+                    readonly columns: readonly ['id_penerimaan_transfer', 'id_transfer_antar_unit'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penerimaan_transfer';
+                    readonly columns: readonly ['id', 'id_transfer_antar_unit'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penerimaan_transfer_aset_tetap';
+                    readonly columns: readonly [
+                      'id_item_transfer_antar_unit_aset_tetap',
+                      'id_transfer_antar_unit',
+                    ];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_transfer_antar_unit_aset_tetap';
+                    readonly columns: readonly ['id', 'id_transfer_antar_unit'];
+                  };
+                },
+              ];
+            };
+            readonly item_penerimaan_transfer_barang_habis_pakai: {
+              columns: {
+                readonly alasan_penolakan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_item_transfer_antar_unit_barang_habis_pakai: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_penerimaan_transfer: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_transfer_antar_unit: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah_diterima: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah_ditolak: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/int4@1', 0>;
+                  };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly [
+                    'id_penerimaan_transfer',
+                    'id_item_transfer_antar_unit_barang_habis_pakai',
+                  ];
+                  readonly name: 'uq_inuntrcoitre_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'item_penerimaan_transfer_barang_habis_pakai_id_item_tr_9903d40b';
+                  readonly prefix: 'item_penerimaan_transfer_barang_habis_pakai_id_item_tr';
+                  readonly columns: readonly [
+                    'id_item_transfer_antar_unit_barang_habis_pakai',
+                    'id_transfer_antar_unit',
+                  ];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'item_penerimaan_transfer_barang_habis_pakai_id_penerim_d36f601b';
+                  readonly prefix: 'item_penerimaan_transfer_barang_habis_pakai_id_penerim';
+                  readonly columns: readonly ['id_penerimaan_transfer', 'id_transfer_antar_unit'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_inuntrcoitre_1_193635d1';
+                  readonly prefix: 'ix_inuntrcoitre_1';
+                  readonly columns: readonly ['id_item_transfer_antar_unit_barang_habis_pakai'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penerimaan_transfer_barang_habis_pakai';
+                    readonly columns: readonly ['id_penerimaan_transfer', 'id_transfer_antar_unit'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penerimaan_transfer';
+                    readonly columns: readonly ['id', 'id_transfer_antar_unit'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penerimaan_transfer_barang_habis_pakai';
+                    readonly columns: readonly [
+                      'id_item_transfer_antar_unit_barang_habis_pakai',
+                      'id_transfer_antar_unit',
+                    ];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_transfer_antar_unit_barang_habis_pakai';
+                    readonly columns: readonly ['id', 'id_transfer_antar_unit'];
+                  };
+                },
+              ];
+            };
+            readonly item_pengadaan: {
+              columns: {
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly diubah_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly harga_satuan: {
+                  readonly nativeType: 'numeric';
+                  readonly codecId: 'pg/numeric@1';
+                  readonly nullable: false;
+                  readonly typeParams: { readonly precision: 14; readonly scale: 2 };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_katalog_pemasok: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_pengadaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_variasi_aset_merek: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+                readonly perlu_persetujuan: {
+                  readonly nativeType: 'bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                };
+                readonly status: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'draf'>;
+                  };
+                };
+                readonly sumber_dana: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                { readonly columns: readonly ['id', 'id_pengadaan']; readonly name: 'uq_prit_3' },
+                {
+                  readonly columns: readonly ['id', 'id_pengadaan', 'id_variasi_aset_merek'];
+                  readonly name: 'uq_prit_4';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'item_pengadaan_id_katalog_pemasok_id_variasi_aset_mere_6bc22212';
+                  readonly prefix: 'item_pengadaan_id_katalog_pemasok_id_variasi_aset_mere';
+                  readonly columns: readonly ['id_katalog_pemasok', 'id_variasi_aset_merek'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'item_pengadaan_id_pengadaan_idx_8367dd47';
+                  readonly prefix: 'item_pengadaan_id_pengadaan_idx';
+                  readonly columns: readonly ['id_pengadaan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_prit_1_9201e53a';
+                  readonly prefix: 'ix_prit_1';
+                  readonly columns: readonly ['id_pengadaan', 'status'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_prit_2_9f68311a';
+                  readonly prefix: 'ix_prit_2';
+                  readonly columns: readonly ['id_katalog_pemasok'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengadaan';
+                    readonly columns: readonly ['id_pengadaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengadaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengadaan';
+                    readonly columns: readonly ['id_katalog_pemasok', 'id_variasi_aset_merek'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'katalog_pemasok';
+                    readonly columns: readonly ['id', 'id_variasi_aset_merek'];
+                  };
+                },
+              ];
+            };
+            readonly item_penghapusan_aset_tetap: {
+              columns: {
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aset_tetap: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_penghapusan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [{ readonly columns: readonly ['id_aset_tetap'] }];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_difiit_1_688ea0f1';
+                  readonly prefix: 'ix_difiit_1';
+                  readonly columns: readonly ['id_penghapusan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penghapusan_aset_tetap';
+                    readonly columns: readonly ['id_penghapusan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penghapusan_aset';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penghapusan_aset_tetap';
+                    readonly columns: readonly ['id_aset_tetap'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aset_tetap';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly item_penghapusan_barang_habis_pakai: {
+              columns: {
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_penghapusan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_stok_barang_habis_pakai: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_dicoit_1_688ea0f1';
+                  readonly prefix: 'ix_dicoit_1';
+                  readonly columns: readonly ['id_penghapusan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_dicoit_2_32389ff0';
+                  readonly prefix: 'ix_dicoit_2';
+                  readonly columns: readonly ['id_stok_barang_habis_pakai'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penghapusan_barang_habis_pakai';
+                    readonly columns: readonly ['id_penghapusan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penghapusan_aset';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penghapusan_barang_habis_pakai';
+                    readonly columns: readonly ['id_stok_barang_habis_pakai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'stok_barang_habis_pakai';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly item_pengiriman_aset_tetap: {
+              columns: {
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aset_tetap: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_item_pengiriman_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id_item_pengiriman_permintaan', 'id_aset_tetap'];
+                  readonly name: 'uq_reshfiit_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'item_pengiriman_aset_tetap_id_item_pengiriman_perminta_6315f31d';
+                  readonly prefix: 'item_pengiriman_aset_tetap_id_item_pengiriman_perminta';
+                  readonly columns: readonly ['id_item_pengiriman_permintaan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_reshfiit_1_3807ca37';
+                  readonly prefix: 'ix_reshfiit_1';
+                  readonly columns: readonly ['id_aset_tetap'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengiriman_aset_tetap';
+                    readonly columns: readonly ['id_item_pengiriman_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengiriman_permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengiriman_aset_tetap';
+                    readonly columns: readonly ['id_aset_tetap'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aset_tetap';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly item_pengiriman_barang_habis_pakai: {
+              columns: {
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_item_pengiriman_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_stok_barang_habis_pakai: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_reshcoit_1_6315f31d';
+                  readonly prefix: 'ix_reshcoit_1';
+                  readonly columns: readonly ['id_item_pengiriman_permintaan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_reshcoit_2_32389ff0';
+                  readonly prefix: 'ix_reshcoit_2';
+                  readonly columns: readonly ['id_stok_barang_habis_pakai'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengiriman_barang_habis_pakai';
+                    readonly columns: readonly ['id_item_pengiriman_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengiriman_permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengiriman_barang_habis_pakai';
+                    readonly columns: readonly ['id_stok_barang_habis_pakai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'stok_barang_habis_pakai';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly item_pengiriman_permintaan: {
+              columns: {
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_pengiriman_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_sumber_pemenuhan_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id', 'id_pengiriman_permintaan'];
+                  readonly name: 'uq_reshit_3';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_reshit_1_17867838';
+                  readonly prefix: 'ix_reshit_1';
+                  readonly columns: readonly ['id_pengiriman_permintaan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_reshit_2_b2425548';
+                  readonly prefix: 'ix_reshit_2';
+                  readonly columns: readonly ['id_sumber_pemenuhan_permintaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengiriman_permintaan';
+                    readonly columns: readonly ['id_pengiriman_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengiriman_permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengiriman_permintaan';
+                    readonly columns: readonly ['id_sumber_pemenuhan_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'sumber_pemenuhan_permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly item_permintaan: {
+              columns: {
+                readonly catatan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_variasi_aset: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id_permintaan', 'id_variasi_aset'];
+                  readonly name: 'uq_reit_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'item_permintaan_id_permintaan_idx_143bde94';
+                  readonly prefix: 'item_permintaan_id_permintaan_idx';
+                  readonly columns: readonly ['id_permintaan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_reit_1_edecfc33';
+                  readonly prefix: 'ix_reit_1';
+                  readonly columns: readonly ['id_variasi_aset'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_permintaan';
+                    readonly columns: readonly ['id_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_permintaan';
+                    readonly columns: readonly ['id_variasi_aset'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'variasi_aset';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly item_transfer_antar_unit_aset_tetap: {
+              columns: {
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aset_tetap: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_transfer_antar_unit: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id_transfer_antar_unit', 'id_aset_tetap'];
+                  readonly name: 'uq_inuntrfiit_1';
+                },
+                {
+                  readonly columns: readonly ['id', 'id_transfer_antar_unit'];
+                  readonly name: 'uq_inuntrfiit_2';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'item_transfer_antar_unit_aset_tetap_id_transfer_antar__7a1efa61';
+                  readonly prefix: 'item_transfer_antar_unit_aset_tetap_id_transfer_antar_';
+                  readonly columns: readonly ['id_transfer_antar_unit'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_inuntrfiit_1_3807ca37';
+                  readonly prefix: 'ix_inuntrfiit_1';
+                  readonly columns: readonly ['id_aset_tetap'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_transfer_antar_unit_aset_tetap';
+                    readonly columns: readonly ['id_transfer_antar_unit'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'transfer_antar_unit';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_transfer_antar_unit_aset_tetap';
+                    readonly columns: readonly ['id_aset_tetap'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aset_tetap';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly item_transfer_antar_unit_barang_habis_pakai: {
+              columns: {
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_stok_barang_habis_pakai: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_transfer_antar_unit: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah_dikirim: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id', 'id_transfer_antar_unit'];
+                  readonly name: 'uq_inuntrcoit_3';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_inuntrcoit_1_7a1efa61';
+                  readonly prefix: 'ix_inuntrcoit_1';
+                  readonly columns: readonly ['id_transfer_antar_unit'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_inuntrcoit_2_32389ff0';
+                  readonly prefix: 'ix_inuntrcoit_2';
+                  readonly columns: readonly ['id_stok_barang_habis_pakai'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_transfer_antar_unit_barang_habis_pakai';
+                    readonly columns: readonly ['id_transfer_antar_unit'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'transfer_antar_unit';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_transfer_antar_unit_barang_habis_pakai';
+                    readonly columns: readonly ['id_stok_barang_habis_pakai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'stok_barang_habis_pakai';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly katalog_pemasok: {
+              columns: {
+                readonly aktif: {
+                  readonly nativeType: 'bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly harga_referensi: {
+                  readonly nativeType: 'numeric';
+                  readonly codecId: 'pg/numeric@1';
+                  readonly nullable: true;
+                  readonly typeParams: { readonly precision: 14; readonly scale: 2 };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_pemasok: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_variasi_aset_merek: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id_pemasok', 'id_variasi_aset_merek'];
+                  readonly name: 'uq_suca_1';
+                },
+                {
+                  readonly columns: readonly ['id', 'id_variasi_aset_merek'];
+                  readonly name: 'uq_suca_2';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'katalog_pemasok_id_pemasok_idx_78fdc8ee';
+                  readonly prefix: 'katalog_pemasok_id_pemasok_idx';
+                  readonly columns: readonly ['id_pemasok'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'supplier_catalog_brand_1b32ba0e';
+                  readonly prefix: 'supplier_catalog_brand';
+                  readonly columns: readonly ['id_variasi_aset_merek'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'katalog_pemasok';
+                    readonly columns: readonly ['id_pemasok'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pemasok';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'katalog_pemasok';
+                    readonly columns: readonly ['id_variasi_aset_merek'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'variasi_aset_merek';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly kategori_aset: {
+              columns: {
+                readonly aktif: {
+                  readonly nativeType: 'bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jenis: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly kode: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly nama: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                { readonly columns: readonly ['kode'] },
+                { readonly columns: readonly ['nama', 'jenis']; readonly name: 'uq_asca_1' },
+              ];
+              indexes: readonly [];
+              foreignKeys: readonly [];
+            };
+            readonly merek: {
+              columns: {
+                readonly aktif: {
+                  readonly nativeType: 'bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly nama: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [{ readonly columns: readonly ['nama'] }];
+              indexes: readonly [];
+              foreignKeys: readonly [];
+            };
+            readonly mutasi_aset_tetap: {
+              columns: {
+                readonly catatan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly dilakukan_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aset_tetap: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_tempat_asal: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: true;
+                };
+                readonly id_tempat_tujuan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: true;
+                };
+                readonly jenis_mutasi: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_fiasmo_1_0a8d1f9f';
+                  readonly prefix: 'ix_fiasmo_1';
+                  readonly columns: readonly ['id_aset_tetap', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_fiasmo_2_266943bb';
+                  readonly prefix: 'ix_fiasmo_2';
+                  readonly columns: readonly ['id_tempat_asal'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_fiasmo_3_d58b68f3';
+                  readonly prefix: 'ix_fiasmo_3';
+                  readonly columns: readonly ['id_tempat_tujuan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'mutasi_aset_tetap_dilakukan_oleh_id_pegawai_idx_432e828f';
+                  readonly prefix: 'mutasi_aset_tetap_dilakukan_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dilakukan_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'mutasi_aset_tetap_id_aset_tetap_idx_3807ca37';
+                  readonly prefix: 'mutasi_aset_tetap_id_aset_tetap_idx';
+                  readonly columns: readonly ['id_aset_tetap'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_aset_tetap';
+                    readonly columns: readonly ['id_aset_tetap'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aset_tetap';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_aset_tetap';
+                    readonly columns: readonly ['id_tempat_asal'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tempat';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_aset_tetap';
+                    readonly columns: readonly ['id_tempat_tujuan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tempat';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_aset_tetap';
+                    readonly columns: readonly ['dilakukan_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly mutasi_lokasi: {
+              columns: {
+                readonly dibuat_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly diselesaikan_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: true;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aktor: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_tempat_asal: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_tempat_tujuan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly nomor_mutasi: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly status: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'disiapkan'>;
+                  };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [{ readonly columns: readonly ['nomor_mutasi'] }];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_lomu_1_149ef0ee';
+                  readonly prefix: 'ix_lomu_1';
+                  readonly columns: readonly ['id_aktor', 'status', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'mutasi_lokasi_dibuat_oleh_id_pegawai_idx_16dd86fe';
+                  readonly prefix: 'mutasi_lokasi_dibuat_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'mutasi_lokasi_id_aktor_idx_b271029a';
+                  readonly prefix: 'mutasi_lokasi_id_aktor_idx';
+                  readonly columns: readonly ['id_aktor'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'mutasi_lokasi_id_tempat_asal_idx_266943bb';
+                  readonly prefix: 'mutasi_lokasi_id_tempat_asal_idx';
+                  readonly columns: readonly ['id_tempat_asal'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'mutasi_lokasi_id_tempat_tujuan_idx_d58b68f3';
+                  readonly prefix: 'mutasi_lokasi_id_tempat_tujuan_idx';
+                  readonly columns: readonly ['id_tempat_tujuan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_lokasi';
+                    readonly columns: readonly ['id_aktor'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aktor';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_lokasi';
+                    readonly columns: readonly ['id_tempat_asal'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tempat';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_lokasi';
+                    readonly columns: readonly ['id_tempat_tujuan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tempat';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_lokasi';
+                    readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly mutasi_stok_barang: {
+              columns: {
+                readonly catatan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly dilakukan_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_item_penerimaan_pengadaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: true;
+                };
+                readonly id_stok_barang_habis_pakai: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jenis_mutasi: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly perubahan_jumlah: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [{ readonly columns: readonly ['id_item_penerimaan_pengadaan'] }];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_costmo_1_c529de2b';
+                  readonly prefix: 'ix_costmo_1';
+                  readonly columns: readonly ['id_stok_barang_habis_pakai', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'mutasi_stok_barang_dilakukan_oleh_id_pegawai_idx_432e828f';
+                  readonly prefix: 'mutasi_stok_barang_dilakukan_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dilakukan_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'mutasi_stok_barang_id_stok_barang_habis_pakai_idx_32389ff0';
+                  readonly prefix: 'mutasi_stok_barang_id_stok_barang_habis_pakai_idx';
+                  readonly columns: readonly ['id_stok_barang_habis_pakai'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_stok_barang';
+                    readonly columns: readonly ['id_stok_barang_habis_pakai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'stok_barang_habis_pakai';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_stok_barang';
+                    readonly columns: readonly ['id_item_penerimaan_pengadaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penerimaan_pengadaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'mutasi_stok_barang';
+                    readonly columns: readonly ['dilakukan_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly pemasok: {
+              columns: {
+                readonly aktif: {
+                  readonly nativeType: 'bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                };
+                readonly alamat: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly kode: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly nama: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly nomor_telepon: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly surel: {
                   readonly nativeType: 'text';
                   readonly codecId: 'pg/text@1';
                   readonly nullable: true;
                 };
               };
               primaryKey: { readonly columns: readonly ['id'] };
-              uniques: readonly [{ readonly columns: readonly ['email'] }];
+              uniques: readonly [{ readonly columns: readonly ['kode'] }];
               indexes: readonly [];
               foreignKeys: readonly [];
             };
-          };
-          readonly valueSet: {
-            readonly UserRole: {
-              readonly kind: 'valueSet';
-              readonly values: readonly ['USER', 'ADMIN'];
+            readonly pembalikan_pembayaran: {
+              columns: {
+                readonly alasan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibalik_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibalik_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_pembayaran: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly nominal: {
+                  readonly nativeType: 'numeric';
+                  readonly codecId: 'pg/numeric@1';
+                  readonly nullable: false;
+                  readonly typeParams: { readonly precision: 14; readonly scale: 2 };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_pare_1_20164007';
+                  readonly prefix: 'ix_pare_1';
+                  readonly columns: readonly ['id_pembayaran', 'dibalik_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'pembalikan_pembayaran_dibalik_oleh_id_pegawai_idx_88862a47';
+                  readonly prefix: 'pembalikan_pembayaran_dibalik_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dibalik_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'pembalikan_pembayaran_id_pembayaran_idx_d8ed1066';
+                  readonly prefix: 'pembalikan_pembayaran_id_pembayaran_idx';
+                  readonly columns: readonly ['id_pembayaran'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pembalikan_pembayaran';
+                    readonly columns: readonly ['id_pembayaran'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pembayaran';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pembalikan_pembayaran';
+                    readonly columns: readonly ['dibalik_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly pembayaran: {
+              columns: {
+                readonly dibayar_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly dibuat_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_tagihan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly nominal: {
+                  readonly nativeType: 'numeric';
+                  readonly codecId: 'pg/numeric@1';
+                  readonly nullable: false;
+                  readonly typeParams: { readonly precision: 14; readonly scale: 2 };
+                };
+                readonly referensi_pembayaran: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_pa_1_f18a2713';
+                  readonly prefix: 'ix_pa_1';
+                  readonly columns: readonly ['id_tagihan', 'dibayar_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'pembayaran_dibuat_oleh_id_pegawai_idx_16dd86fe';
+                  readonly prefix: 'pembayaran_dibuat_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'pembayaran_id_tagihan_idx_e65a5dd4';
+                  readonly prefix: 'pembayaran_id_tagihan_idx';
+                  readonly columns: readonly ['id_tagihan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pembayaran';
+                    readonly columns: readonly ['id_tagihan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tagihan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pembayaran';
+                    readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly penerimaan_pengadaan: {
+              columns: {
+                readonly catatan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly diterima_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly diterima_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_gudang: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_pengadaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                { readonly columns: readonly ['id', 'id_pengadaan']; readonly name: 'uq_prre_2' },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_prre_1_30ff9828';
+                  readonly prefix: 'ix_prre_1';
+                  readonly columns: readonly ['id_pengadaan', 'diterima_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'penerimaan_pengadaan_diterima_oleh_id_pegawai_idx_e19f6565';
+                  readonly prefix: 'penerimaan_pengadaan_diterima_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['diterima_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'penerimaan_pengadaan_id_gudang_idx_75d29a6b';
+                  readonly prefix: 'penerimaan_pengadaan_id_gudang_idx';
+                  readonly columns: readonly ['id_gudang'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'penerimaan_pengadaan_id_pengadaan_idx_8367dd47';
+                  readonly prefix: 'penerimaan_pengadaan_id_pengadaan_idx';
+                  readonly columns: readonly ['id_pengadaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penerimaan_pengadaan';
+                    readonly columns: readonly ['id_pengadaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengadaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penerimaan_pengadaan';
+                    readonly columns: readonly ['id_gudang'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'gudang';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penerimaan_pengadaan';
+                    readonly columns: readonly ['diterima_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly penerimaan_pengiriman: {
+              columns: {
+                readonly catatan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly diterima_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly diterima_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_pengiriman_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_reshre_1_b18a5a44';
+                  readonly prefix: 'ix_reshre_1';
+                  readonly columns: readonly ['id_pengiriman_permintaan', 'diterima_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'penerimaan_pengiriman_diterima_oleh_id_pegawai_idx_e19f6565';
+                  readonly prefix: 'penerimaan_pengiriman_diterima_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['diterima_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'penerimaan_pengiriman_id_pengiriman_permintaan_idx_17867838';
+                  readonly prefix: 'penerimaan_pengiriman_id_pengiriman_permintaan_idx';
+                  readonly columns: readonly ['id_pengiriman_permintaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penerimaan_pengiriman';
+                    readonly columns: readonly ['id_pengiriman_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengiriman_permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penerimaan_pengiriman';
+                    readonly columns: readonly ['diterima_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly penerimaan_transfer: {
+              columns: {
+                readonly catatan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly diterima_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly diterima_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_transfer_antar_unit: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id', 'id_transfer_antar_unit'];
+                  readonly name: 'uq_inuntrre_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_inuntrre_1_9dc40cd7';
+                  readonly prefix: 'ix_inuntrre_1';
+                  readonly columns: readonly ['id_transfer_antar_unit', 'diterima_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'penerimaan_transfer_diterima_oleh_id_pegawai_idx_e19f6565';
+                  readonly prefix: 'penerimaan_transfer_diterima_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['diterima_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'penerimaan_transfer_id_transfer_antar_unit_idx_7a1efa61';
+                  readonly prefix: 'penerimaan_transfer_id_transfer_antar_unit_idx';
+                  readonly columns: readonly ['id_transfer_antar_unit'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penerimaan_transfer';
+                    readonly columns: readonly ['id_transfer_antar_unit'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'transfer_antar_unit';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penerimaan_transfer';
+                    readonly columns: readonly ['diterima_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly pengadaan: {
+              columns: {
+                readonly alur_pengadaan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly catatan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly diubah_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aktor: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jenis: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly nomor_pengadaan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly status: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'draf'>;
+                  };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [{ readonly columns: readonly ['nomor_pengadaan'] }];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_pr_1_149ef0ee';
+                  readonly prefix: 'ix_pr_1';
+                  readonly columns: readonly ['id_aktor', 'status', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'pengadaan_dibuat_oleh_id_pegawai_idx_16dd86fe';
+                  readonly prefix: 'pengadaan_dibuat_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'pengadaan_id_aktor_idx_b271029a';
+                  readonly prefix: 'pengadaan_id_aktor_idx';
+                  readonly columns: readonly ['id_aktor'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengadaan';
+                    readonly columns: readonly ['id_aktor'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aktor';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengadaan';
+                    readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly pengguna: {
+              columns: {
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly diubah_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly nama: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id_pegawai'] };
+              uniques: readonly [];
+              indexes: readonly [];
+              foreignKeys: readonly [];
+            };
+            readonly penghapusan_aset: {
+              columns: {
+                readonly alasan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibuat_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aktor: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jenis: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly nomor_penghapusan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [{ readonly columns: readonly ['nomor_penghapusan'] }];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_di_1_f357af0a';
+                  readonly prefix: 'ix_di_1';
+                  readonly columns: readonly ['id_aktor', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'penghapusan_aset_dibuat_oleh_id_pegawai_idx_16dd86fe';
+                  readonly prefix: 'penghapusan_aset_dibuat_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'penghapusan_aset_id_aktor_idx_b271029a';
+                  readonly prefix: 'penghapusan_aset_id_aktor_idx';
+                  readonly columns: readonly ['id_aktor'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penghapusan_aset';
+                    readonly columns: readonly ['id_aktor'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aktor';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'penghapusan_aset';
+                    readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly pengiriman_permintaan: {
+              columns: {
+                readonly dibuat_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly dikirim_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: true;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_tempat_tujuan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly nomor_pengiriman: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly status: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'disiapkan'>;
+                  };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                { readonly columns: readonly ['nomor_pengiriman'] },
+                { readonly columns: readonly ['id', 'id_permintaan']; readonly name: 'uq_resh_3' },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_resh_1_3077f205';
+                  readonly prefix: 'ix_resh_1';
+                  readonly columns: readonly ['id_permintaan', 'status'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_resh_2_d58b68f3';
+                  readonly prefix: 'ix_resh_2';
+                  readonly columns: readonly ['id_tempat_tujuan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'pengiriman_permintaan_dibuat_oleh_id_pegawai_idx_16dd86fe';
+                  readonly prefix: 'pengiriman_permintaan_dibuat_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'pengiriman_permintaan_id_permintaan_idx_143bde94';
+                  readonly prefix: 'pengiriman_permintaan_id_permintaan_idx';
+                  readonly columns: readonly ['id_permintaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengiriman_permintaan';
+                    readonly columns: readonly ['id_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengiriman_permintaan';
+                    readonly columns: readonly ['id_tempat_tujuan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tempat';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengiriman_permintaan';
+                    readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly permintaan: {
+              columns: {
+                readonly catatan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly diajukan_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly diubah_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aktor_peminta: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_tempat_tujuan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly nomor_permintaan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly status: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'draf'>;
+                  };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [{ readonly columns: readonly ['nomor_permintaan'] }];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_re_1_28672924';
+                  readonly prefix: 'ix_re_1';
+                  readonly columns: readonly ['id_aktor_peminta', 'status', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_re_2_d58b68f3';
+                  readonly prefix: 'ix_re_2';
+                  readonly columns: readonly ['id_tempat_tujuan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'permintaan_dibuat_oleh_id_pegawai_idx_16dd86fe';
+                  readonly prefix: 'permintaan_dibuat_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'permintaan_id_aktor_peminta_idx_f6d34944';
+                  readonly prefix: 'permintaan_id_aktor_peminta_idx';
+                  readonly columns: readonly ['id_aktor_peminta'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'permintaan';
+                    readonly columns: readonly ['id_aktor_peminta'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aktor';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'permintaan';
+                    readonly columns: readonly ['id_tempat_tujuan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tempat';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'permintaan';
+                    readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly reservasi_aset_tetap: {
+              columns: {
+                readonly dilepas_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: true;
+                };
+                readonly direservasi_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly direservasi_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aset_tetap: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_sumber_pemenuhan_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly status: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'direservasi'>;
+                  };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'fixed_asset_reservation_active_asset_b2323523';
+                  readonly prefix: 'fixed_asset_reservation_active_asset';
+                  readonly columns: readonly ['id_aset_tetap'];
+                  readonly where: "(status = 'direservasi')";
+                  readonly unique: true;
+                },
+                {
+                  readonly name: 'ix_fiasre_1_508132a8';
+                  readonly prefix: 'ix_fiasre_1';
+                  readonly columns: readonly ['id_sumber_pemenuhan_permintaan', 'status'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'reservasi_aset_tetap_direservasi_oleh_id_pegawai_idx_6a8cdc77';
+                  readonly prefix: 'reservasi_aset_tetap_direservasi_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['direservasi_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'reservasi_aset_tetap_id_sumber_pemenuhan_permintaan_id_b2425548';
+                  readonly prefix: 'reservasi_aset_tetap_id_sumber_pemenuhan_permintaan_id';
+                  readonly columns: readonly ['id_sumber_pemenuhan_permintaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'reservasi_aset_tetap';
+                    readonly columns: readonly ['id_sumber_pemenuhan_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'sumber_pemenuhan_permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'reservasi_aset_tetap';
+                    readonly columns: readonly ['id_aset_tetap'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aset_tetap';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'reservasi_aset_tetap';
+                    readonly columns: readonly ['direservasi_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly reservasi_stok_barang: {
+              columns: {
+                readonly dilepas_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: true;
+                };
+                readonly direservasi_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly direservasi_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_stok_barang_habis_pakai: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_sumber_pemenuhan_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+                readonly status: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'direservasi'>;
+                  };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_core_1_508132a8';
+                  readonly prefix: 'ix_core_1';
+                  readonly columns: readonly ['id_sumber_pemenuhan_permintaan', 'status'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_core_2_8b601a1b';
+                  readonly prefix: 'ix_core_2';
+                  readonly columns: readonly ['id_stok_barang_habis_pakai', 'status'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'reservasi_stok_barang_direservasi_oleh_id_pegawai_idx_6a8cdc77';
+                  readonly prefix: 'reservasi_stok_barang_direservasi_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['direservasi_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'reservasi_stok_barang_id_stok_barang_habis_pakai_idx_32389ff0';
+                  readonly prefix: 'reservasi_stok_barang_id_stok_barang_habis_pakai_idx';
+                  readonly columns: readonly ['id_stok_barang_habis_pakai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'reservasi_stok_barang_id_sumber_pemenuhan_permintaan_i_b2425548';
+                  readonly prefix: 'reservasi_stok_barang_id_sumber_pemenuhan_permintaan_i';
+                  readonly columns: readonly ['id_sumber_pemenuhan_permintaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'reservasi_stok_barang';
+                    readonly columns: readonly ['id_sumber_pemenuhan_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'sumber_pemenuhan_permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'reservasi_stok_barang';
+                    readonly columns: readonly ['id_stok_barang_habis_pakai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'stok_barang_habis_pakai';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'reservasi_stok_barang';
+                    readonly columns: readonly ['direservasi_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly retur_permintaan: {
+              columns: {
+                readonly alasan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly catatan_tindak_lanjut: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly ditinjau_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly ditinjau_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: true;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aset_tetap_pengganti: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: true;
+                };
+                readonly id_berkas_bukti: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: true;
+                };
+                readonly id_item_penerimaan_pengiriman: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+                readonly status: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'diajukan'>;
+                  };
+                };
+                readonly tindak_lanjut: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_rere_1_4b872fdb';
+                  readonly prefix: 'ix_rere_1';
+                  readonly columns: readonly ['id_item_penerimaan_pengiriman', 'status'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'retur_permintaan_dibuat_oleh_id_pegawai_idx_16dd86fe';
+                  readonly prefix: 'retur_permintaan_dibuat_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'retur_permintaan_ditinjau_oleh_id_pegawai_idx_666bc93a';
+                  readonly prefix: 'retur_permintaan_ditinjau_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['ditinjau_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'retur_permintaan_id_aset_tetap_pengganti_idx_e8d2b3ea';
+                  readonly prefix: 'retur_permintaan_id_aset_tetap_pengganti_idx';
+                  readonly columns: readonly ['id_aset_tetap_pengganti'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'retur_permintaan_id_berkas_bukti_idx_9ff00381';
+                  readonly prefix: 'retur_permintaan_id_berkas_bukti_idx';
+                  readonly columns: readonly ['id_berkas_bukti'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'retur_permintaan_id_item_penerimaan_pengiriman_idx_f1e409f1';
+                  readonly prefix: 'retur_permintaan_id_item_penerimaan_pengiriman_idx';
+                  readonly columns: readonly ['id_item_penerimaan_pengiriman'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'retur_permintaan';
+                    readonly columns: readonly ['id_item_penerimaan_pengiriman'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_penerimaan_pengiriman';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'retur_permintaan';
+                    readonly columns: readonly ['ditinjau_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'retur_permintaan';
+                    readonly columns: readonly ['id_aset_tetap_pengganti'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aset_tetap';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'retur_permintaan';
+                    readonly columns: readonly ['id_berkas_bukti'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'public' & NamespaceId;
+                    readonly tableName: 'berkas';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'retur_permintaan';
+                    readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly riwayat_status_item_pengadaan: {
+              columns: {
+                readonly catatan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly dilakukan_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_item_pengadaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly status_baru: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly status_sebelumnya: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_prith_1_d1f4323f';
+                  readonly prefix: 'ix_prith_1';
+                  readonly columns: readonly ['id_item_pengadaan', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'riwayat_status_item_pengadaan_dilakukan_oleh_id_pegawa_432e828f';
+                  readonly prefix: 'riwayat_status_item_pengadaan_dilakukan_oleh_id_pegawa';
+                  readonly columns: readonly ['dilakukan_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'riwayat_status_item_pengadaan_id_item_pengadaan_idx_56048da8';
+                  readonly prefix: 'riwayat_status_item_pengadaan_id_item_pengadaan_idx';
+                  readonly columns: readonly ['id_item_pengadaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'riwayat_status_item_pengadaan';
+                    readonly columns: readonly ['id_item_pengadaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_pengadaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'riwayat_status_item_pengadaan';
+                    readonly columns: readonly ['dilakukan_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly riwayat_status_pengadaan: {
+              columns: {
+                readonly catatan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly dilakukan_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_pengadaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly status_baru: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly status_sebelumnya: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_prsthi_1_01ea814b';
+                  readonly prefix: 'ix_prsthi_1';
+                  readonly columns: readonly ['id_pengadaan', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'riwayat_status_pengadaan_dilakukan_oleh_id_pegawai_idx_432e828f';
+                  readonly prefix: 'riwayat_status_pengadaan_dilakukan_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dilakukan_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'riwayat_status_pengadaan_id_pengadaan_idx_8367dd47';
+                  readonly prefix: 'riwayat_status_pengadaan_id_pengadaan_idx';
+                  readonly columns: readonly ['id_pengadaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'riwayat_status_pengadaan';
+                    readonly columns: readonly ['id_pengadaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengadaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'riwayat_status_pengadaan';
+                    readonly columns: readonly ['dilakukan_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly riwayat_status_permintaan: {
+              columns: {
+                readonly catatan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly dilakukan_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aktor_konteks: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: true;
+                };
+                readonly id_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly status_baru: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly status_sebelumnya: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_resthi_1_9e4ca3e6';
+                  readonly prefix: 'ix_resthi_1';
+                  readonly columns: readonly ['id_permintaan', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'riwayat_status_permintaan_dilakukan_oleh_id_pegawai_id_432e828f';
+                  readonly prefix: 'riwayat_status_permintaan_dilakukan_oleh_id_pegawai_id';
+                  readonly columns: readonly ['dilakukan_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'riwayat_status_permintaan_id_aktor_konteks_idx_10cae858';
+                  readonly prefix: 'riwayat_status_permintaan_id_aktor_konteks_idx';
+                  readonly columns: readonly ['id_aktor_konteks'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'riwayat_status_permintaan_id_permintaan_idx_143bde94';
+                  readonly prefix: 'riwayat_status_permintaan_id_permintaan_idx';
+                  readonly columns: readonly ['id_permintaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'riwayat_status_permintaan';
+                    readonly columns: readonly ['id_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'riwayat_status_permintaan';
+                    readonly columns: readonly ['dilakukan_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'riwayat_status_permintaan';
+                    readonly columns: readonly ['id_aktor_konteks'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aktor';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly riwayat_status_sumber_pemenuhan: {
+              columns: {
+                readonly catatan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly dilakukan_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aktor_konteks: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: true;
+                };
+                readonly id_sumber_pemenuhan_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly status_baru: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly status_sebelumnya: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_refuhi_1_b2026f5b';
+                  readonly prefix: 'ix_refuhi_1';
+                  readonly columns: readonly ['id_sumber_pemenuhan_permintaan', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_refuhi_2_df151e84';
+                  readonly prefix: 'ix_refuhi_2';
+                  readonly columns: readonly ['id_aktor_konteks', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'riwayat_status_sumber_pemenuhan_dilakukan_oleh_id_pega_432e828f';
+                  readonly prefix: 'riwayat_status_sumber_pemenuhan_dilakukan_oleh_id_pega';
+                  readonly columns: readonly ['dilakukan_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'riwayat_status_sumber_pemenuhan_id_aktor_konteks_idx_10cae858';
+                  readonly prefix: 'riwayat_status_sumber_pemenuhan_id_aktor_konteks_idx';
+                  readonly columns: readonly ['id_aktor_konteks'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'riwayat_status_sumber_pemenuhan_id_sumber_pemenuhan_pe_b2425548';
+                  readonly prefix: 'riwayat_status_sumber_pemenuhan_id_sumber_pemenuhan_pe';
+                  readonly columns: readonly ['id_sumber_pemenuhan_permintaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'riwayat_status_sumber_pemenuhan';
+                    readonly columns: readonly ['id_sumber_pemenuhan_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'sumber_pemenuhan_permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'riwayat_status_sumber_pemenuhan';
+                    readonly columns: readonly ['dilakukan_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'riwayat_status_sumber_pemenuhan';
+                    readonly columns: readonly ['id_aktor_konteks'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aktor';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly stok_barang_habis_pakai: {
+              columns: {
+                readonly diubah_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_gudang: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_variasi_aset_merek: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah_saldo: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/int4@1', 0>;
+                  };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id_variasi_aset_merek', 'id_gudang'];
+                  readonly name: 'uq_cost_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_cost_1_75d29a6b';
+                  readonly prefix: 'ix_cost_1';
+                  readonly columns: readonly ['id_gudang'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'stok_barang_habis_pakai_id_variasi_aset_merek_idx_1b32ba0e';
+                  readonly prefix: 'stok_barang_habis_pakai_id_variasi_aset_merek_idx';
+                  readonly columns: readonly ['id_variasi_aset_merek'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'stok_barang_habis_pakai';
+                    readonly columns: readonly ['id_variasi_aset_merek'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'variasi_aset_merek';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'stok_barang_habis_pakai';
+                    readonly columns: readonly ['id_gudang'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'gudang';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly sumber_pemenuhan_permintaan: {
+              columns: {
+                readonly alasan_penolakan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly diubah_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_gudang: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: true;
+                };
+                readonly id_item_permintaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_katalog_pemasok: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: true;
+                };
+                readonly id_variasi_aset_merek: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly jenis: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly jumlah: {
+                  readonly nativeType: 'int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                };
+                readonly status: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'diusulkan'>;
+                  };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_refuso_1_5eb7ef5b';
+                  readonly prefix: 'ix_refuso_1';
+                  readonly columns: readonly ['id_item_permintaan', 'status'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'rfs_asset_brand_1b32ba0e';
+                  readonly prefix: 'rfs_asset_brand';
+                  readonly columns: readonly ['id_variasi_aset_merek'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'sumber_pemenuhan_permintaan_dibuat_oleh_id_pegawai_idx_16dd86fe';
+                  readonly prefix: 'sumber_pemenuhan_permintaan_dibuat_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'sumber_pemenuhan_permintaan_id_gudang_idx_75d29a6b';
+                  readonly prefix: 'sumber_pemenuhan_permintaan_id_gudang_idx';
+                  readonly columns: readonly ['id_gudang'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'sumber_pemenuhan_permintaan_id_item_permintaan_idx_92bc563f';
+                  readonly prefix: 'sumber_pemenuhan_permintaan_id_item_permintaan_idx';
+                  readonly columns: readonly ['id_item_permintaan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'sumber_pemenuhan_permintaan_id_katalog_pemasok_idx_9f68311a';
+                  readonly prefix: 'sumber_pemenuhan_permintaan_id_katalog_pemasok_idx';
+                  readonly columns: readonly ['id_katalog_pemasok'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'sumber_pemenuhan_permintaan';
+                    readonly columns: readonly ['id_item_permintaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'item_permintaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'sumber_pemenuhan_permintaan';
+                    readonly columns: readonly ['id_variasi_aset_merek'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'variasi_aset_merek';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'sumber_pemenuhan_permintaan';
+                    readonly columns: readonly ['id_gudang'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'gudang';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'sumber_pemenuhan_permintaan';
+                    readonly columns: readonly ['id_katalog_pemasok'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'katalog_pemasok';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'sumber_pemenuhan_permintaan';
+                    readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly tagihan: {
+              columns: {
+                readonly dibuat_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_pengadaan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly nominal: {
+                  readonly nativeType: 'numeric';
+                  readonly codecId: 'pg/numeric@1';
+                  readonly nullable: false;
+                  readonly typeParams: { readonly precision: 14; readonly scale: 2 };
+                };
+                readonly nomor_tagihan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly status: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'diajukan'>;
+                  };
+                };
+                readonly tanggal_tagihan: {
+                  readonly nativeType: 'date';
+                  readonly codecId: 'pg/date-string@1';
+                  readonly nullable: true;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id_pengadaan', 'nomor_tagihan'];
+                  readonly name: 'uq_in_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_in_1_90328249';
+                  readonly prefix: 'ix_in_1';
+                  readonly columns: readonly ['status', 'tanggal_tagihan'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'tagihan_dibuat_oleh_id_pegawai_idx_16dd86fe';
+                  readonly prefix: 'tagihan_dibuat_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'tagihan_id_pengadaan_idx_8367dd47';
+                  readonly prefix: 'tagihan_id_pengadaan_idx';
+                  readonly columns: readonly ['id_pengadaan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tagihan';
+                    readonly columns: readonly ['id_pengadaan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengadaan';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tagihan';
+                    readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly tempat: {
+              columns: {
+                readonly aktif: {
+                  readonly nativeType: 'bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                };
+                readonly deskripsi: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly diubah_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aktor_pemilik: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: true;
+                };
+                readonly id_tempat_induk: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: true;
+                };
+                readonly jenis: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly kode: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly nama: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id_tempat_induk', 'kode'];
+                  readonly name: 'uq_pl_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_pl_1_8da93d1b';
+                  readonly prefix: 'ix_pl_1';
+                  readonly columns: readonly ['id_aktor_pemilik', 'jenis', 'aktif'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'tempat_id_aktor_pemilik_idx_a4cdd239';
+                  readonly prefix: 'tempat_id_aktor_pemilik_idx';
+                  readonly columns: readonly ['id_aktor_pemilik'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'tempat_id_tempat_induk_idx_1f68b29f';
+                  readonly prefix: 'tempat_id_tempat_induk_idx';
+                  readonly columns: readonly ['id_tempat_induk'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tempat';
+                    readonly columns: readonly ['id_tempat_induk'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tempat';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'tempat';
+                    readonly columns: readonly ['id_aktor_pemilik'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aktor';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly transfer_antar_unit: {
+              columns: {
+                readonly dibuat_oleh_id_pegawai: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly dikirim_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: true;
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aktor_penerima: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_aktor_pengirim: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_gudang_asal: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_gudang_tujuan: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly nomor_transfer: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly status: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'disiapkan'>;
+                  };
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [{ readonly columns: readonly ['nomor_transfer'] }];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_inuntr_1_4d265cf2';
+                  readonly prefix: 'ix_inuntr_1';
+                  readonly columns: readonly ['id_aktor_pengirim', 'status', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'ix_inuntr_2_592b58a8';
+                  readonly prefix: 'ix_inuntr_2';
+                  readonly columns: readonly ['id_aktor_penerima', 'status', 'dibuat_pada'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'transfer_antar_unit_dibuat_oleh_id_pegawai_idx_16dd86fe';
+                  readonly prefix: 'transfer_antar_unit_dibuat_oleh_id_pegawai_idx';
+                  readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'transfer_antar_unit_id_aktor_penerima_idx_be29656a';
+                  readonly prefix: 'transfer_antar_unit_id_aktor_penerima_idx';
+                  readonly columns: readonly ['id_aktor_penerima'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'transfer_antar_unit_id_aktor_pengirim_idx_003c1968';
+                  readonly prefix: 'transfer_antar_unit_id_aktor_pengirim_idx';
+                  readonly columns: readonly ['id_aktor_pengirim'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'transfer_antar_unit_id_gudang_asal_idx_df53cb18';
+                  readonly prefix: 'transfer_antar_unit_id_gudang_asal_idx';
+                  readonly columns: readonly ['id_gudang_asal'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'transfer_antar_unit_id_gudang_tujuan_idx_e941f0ab';
+                  readonly prefix: 'transfer_antar_unit_id_gudang_tujuan_idx';
+                  readonly columns: readonly ['id_gudang_tujuan'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'transfer_antar_unit';
+                    readonly columns: readonly ['id_aktor_pengirim'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aktor';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'transfer_antar_unit';
+                    readonly columns: readonly ['id_aktor_penerima'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'aktor';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'transfer_antar_unit';
+                    readonly columns: readonly ['id_gudang_asal'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'gudang';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'transfer_antar_unit';
+                    readonly columns: readonly ['id_gudang_tujuan'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'gudang';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'transfer_antar_unit';
+                    readonly columns: readonly ['dibuat_oleh_id_pegawai'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'pengguna';
+                    readonly columns: readonly ['id_pegawai'];
+                  };
+                },
+              ];
+            };
+            readonly variasi_aset: {
+              columns: {
+                readonly aktif: {
+                  readonly nativeType: 'bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                };
+                readonly dibuat_pada: {
+                  readonly nativeType: 'timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_kategori_aset: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly kode: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: true;
+                };
+                readonly nama: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+                readonly satuan: {
+                  readonly nativeType: 'text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id_kategori_aset', 'nama'];
+                  readonly name: 'uq_asva_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_asva_1_c3c311a5';
+                  readonly prefix: 'ix_asva_1';
+                  readonly columns: readonly ['id_kategori_aset', 'aktif'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'variasi_aset_id_kategori_aset_idx_088f9438';
+                  readonly prefix: 'variasi_aset_id_kategori_aset_idx';
+                  readonly columns: readonly ['id_kategori_aset'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'variasi_aset';
+                    readonly columns: readonly ['id_kategori_aset'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'kategori_aset';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
+            };
+            readonly variasi_aset_merek: {
+              columns: {
+                readonly aktif: {
+                  readonly nativeType: 'bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                };
+                readonly id: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_merek: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+                readonly id_variasi_aset: {
+                  readonly nativeType: 'uuid';
+                  readonly codecId: 'pg/uuid@1';
+                  readonly nullable: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [
+                {
+                  readonly columns: readonly ['id_variasi_aset', 'id_merek'];
+                  readonly name: 'uq_asvabr_1';
+                },
+              ];
+              indexes: readonly [
+                {
+                  readonly name: 'ix_asvabr_1_ba269ccd';
+                  readonly prefix: 'ix_asvabr_1';
+                  readonly columns: readonly ['id_merek'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'variasi_aset_merek_id_variasi_aset_idx_edecfc33';
+                  readonly prefix: 'variasi_aset_merek_id_variasi_aset_idx';
+                  readonly columns: readonly ['id_variasi_aset'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'variasi_aset_merek';
+                    readonly columns: readonly ['id_variasi_aset'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'variasi_aset';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+                {
+                  readonly source: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'variasi_aset_merek';
+                    readonly columns: readonly ['id_merek'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'sarpras' & NamespaceId;
+                    readonly tableName: 'merek';
+                    readonly columns: readonly ['id'];
+                  };
+                },
+              ];
             };
           };
         };
@@ -625,197 +8195,4419 @@ type ContractBase = Omit<
   readonly target: 'postgres';
   readonly targetFamily: 'sql';
   readonly roots: {
-    readonly Post: { readonly namespace: 'public' & NamespaceId; readonly model: 'post' };
-    readonly UploadedFile: {
-      readonly namespace: 'public' & NamespaceId;
-      readonly model: 'uploaded_file';
+    readonly aktor: { readonly namespace: 'sarpras' & NamespaceId; readonly model: 'aktor' };
+    readonly alokasi_item_pengadaan_permintaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'alokasi_item_pengadaan_permintaan';
     };
-    readonly User: { readonly namespace: 'public' & NamespaceId; readonly model: 'user' };
+    readonly aset_tetap: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'aset_tetap';
+    };
+    readonly berkas: { readonly namespace: 'public' & NamespaceId; readonly model: 'berkas' };
+    readonly dokumen_pengadaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'dokumen_pengadaan';
+    };
+    readonly gudang: { readonly namespace: 'sarpras' & NamespaceId; readonly model: 'gudang' };
+    readonly item_mutasi_lokasi_aset_tetap: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_mutasi_lokasi_aset_tetap';
+    };
+    readonly item_mutasi_lokasi_barang_habis_pakai: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_mutasi_lokasi_barang_habis_pakai';
+    };
+    readonly item_penerimaan_pengadaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_penerimaan_pengadaan';
+    };
+    readonly item_penerimaan_pengiriman: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_penerimaan_pengiriman';
+    };
+    readonly item_penerimaan_transfer_aset_tetap: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_penerimaan_transfer_aset_tetap';
+    };
+    readonly item_penerimaan_transfer_barang_habis_pakai: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_penerimaan_transfer_barang_habis_pakai';
+    };
+    readonly item_pengadaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_pengadaan';
+    };
+    readonly item_penghapusan_aset_tetap: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_penghapusan_aset_tetap';
+    };
+    readonly item_penghapusan_barang_habis_pakai: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_penghapusan_barang_habis_pakai';
+    };
+    readonly item_pengiriman_aset_tetap: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_pengiriman_aset_tetap';
+    };
+    readonly item_pengiriman_barang_habis_pakai: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_pengiriman_barang_habis_pakai';
+    };
+    readonly item_pengiriman_permintaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_pengiriman_permintaan';
+    };
+    readonly item_permintaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_permintaan';
+    };
+    readonly item_transfer_antar_unit_aset_tetap: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_transfer_antar_unit_aset_tetap';
+    };
+    readonly item_transfer_antar_unit_barang_habis_pakai: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'item_transfer_antar_unit_barang_habis_pakai';
+    };
+    readonly katalog_pemasok: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'katalog_pemasok';
+    };
+    readonly kategori_aset: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'kategori_aset';
+    };
+    readonly merek: { readonly namespace: 'sarpras' & NamespaceId; readonly model: 'merek' };
+    readonly mutasi_aset_tetap: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'mutasi_aset_tetap';
+    };
+    readonly mutasi_lokasi: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'mutasi_lokasi';
+    };
+    readonly mutasi_stok_barang: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'mutasi_stok_barang';
+    };
+    readonly pemasok: { readonly namespace: 'sarpras' & NamespaceId; readonly model: 'pemasok' };
+    readonly pembalikan_pembayaran: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'pembalikan_pembayaran';
+    };
+    readonly pembayaran: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'pembayaran';
+    };
+    readonly penerimaan_pengadaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'penerimaan_pengadaan';
+    };
+    readonly penerimaan_pengiriman: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'penerimaan_pengiriman';
+    };
+    readonly penerimaan_transfer: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'penerimaan_transfer';
+    };
+    readonly pengadaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'pengadaan';
+    };
+    readonly pengguna: { readonly namespace: 'sarpras' & NamespaceId; readonly model: 'pengguna' };
+    readonly penghapusan_aset: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'penghapusan_aset';
+    };
+    readonly pengiriman_permintaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'pengiriman_permintaan';
+    };
+    readonly permintaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'permintaan';
+    };
+    readonly reservasi_aset_tetap: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'reservasi_aset_tetap';
+    };
+    readonly reservasi_stok_barang: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'reservasi_stok_barang';
+    };
+    readonly retur_permintaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'retur_permintaan';
+    };
+    readonly riwayat_status_item_pengadaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'riwayat_status_item_pengadaan';
+    };
+    readonly riwayat_status_pengadaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'riwayat_status_pengadaan';
+    };
+    readonly riwayat_status_permintaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'riwayat_status_permintaan';
+    };
+    readonly riwayat_status_sumber_pemenuhan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'riwayat_status_sumber_pemenuhan';
+    };
+    readonly stok_barang_habis_pakai: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'stok_barang_habis_pakai';
+    };
+    readonly sumber_pemenuhan_permintaan: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'sumber_pemenuhan_permintaan';
+    };
+    readonly tagihan: { readonly namespace: 'sarpras' & NamespaceId; readonly model: 'tagihan' };
+    readonly tempat: { readonly namespace: 'sarpras' & NamespaceId; readonly model: 'tempat' };
+    readonly transfer_antar_unit: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'transfer_antar_unit';
+    };
+    readonly variasi_aset: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'variasi_aset';
+    };
+    readonly variasi_aset_merek: {
+      readonly namespace: 'sarpras' & NamespaceId;
+      readonly model: 'variasi_aset_merek';
+    };
   };
   readonly domain: {
     readonly namespaces: {
       readonly public: {
         readonly models: {
-          readonly post: {
+          readonly berkas: {
             readonly fields: {
-              readonly author_id: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly content: {
-                readonly nullable: true;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly created_at: {
+              readonly dibuat_pada: {
                 readonly nullable: false;
                 readonly type: {
                   readonly kind: 'scalar';
                   readonly codecId: 'pg/timestamptz-string@1';
                 };
+              };
+              readonly diunggah_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
               readonly id: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
               };
-              readonly title: {
+              readonly nama_asli: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly updated_at: {
+              readonly nama_penyimpanan: {
                 readonly nullable: false;
-                readonly type: {
-                  readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                };
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly tipe_mime: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly ukuran: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
               };
             };
             readonly relations: {
-              readonly author: {
-                readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'user' };
+              readonly pengunggah: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
                 readonly cardinality: 'N:1';
                 readonly nullable: false;
                 readonly on: {
-                  readonly localFields: readonly ['author_id'];
-                  readonly targetFields: readonly ['id'];
+                  readonly localFields: readonly ['diunggah_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
                 };
               };
             };
             readonly storage: {
-              readonly table: 'Post';
+              readonly table: 'berkas';
               readonly namespaceId: 'public';
               readonly fields: {
-                readonly author_id: { readonly column: 'authorId' };
-                readonly content: { readonly column: 'content' };
-                readonly created_at: { readonly column: 'createdAt' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly diunggah_oleh_id_pegawai: { readonly column: 'diunggah_oleh_id_pegawai' };
                 readonly id: { readonly column: 'id' };
-                readonly title: { readonly column: 'title' };
-                readonly updated_at: { readonly column: 'updatedAt' };
-              };
-            };
-          };
-          readonly uploaded_file: {
-            readonly fields: {
-              readonly created_at: {
-                readonly nullable: false;
-                readonly type: {
-                  readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                };
-              };
-              readonly id: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly mime_type: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly original_name: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly size: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly storage_name: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly uploaded_by_id: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-            };
-            readonly relations: Record<string, never>;
-            readonly storage: {
-              readonly table: 'UploadedFile';
-              readonly namespaceId: 'public';
-              readonly fields: {
-                readonly created_at: { readonly column: 'createdAt' };
-                readonly id: { readonly column: 'id' };
-                readonly mime_type: { readonly column: 'mimeType' };
-                readonly original_name: { readonly column: 'originalName' };
-                readonly size: { readonly column: 'size' };
-                readonly storage_name: { readonly column: 'storageName' };
-                readonly uploaded_by_id: { readonly column: 'uploadedById' };
-              };
-            };
-          };
-          readonly user: {
-            readonly fields: {
-              readonly created_at: {
-                readonly nullable: false;
-                readonly type: {
-                  readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                };
-              };
-              readonly email: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly id: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly name: {
-                readonly nullable: true;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly password_hash: {
-                readonly nullable: true;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly role: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly updated_at: {
-                readonly nullable: false;
-                readonly type: {
-                  readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                };
-              };
-              readonly username: {
-                readonly nullable: true;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-            };
-            readonly relations: {
-              readonly posts: {
-                readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'post' };
-                readonly cardinality: '1:N';
-                readonly on: {
-                  readonly localFields: readonly ['id'];
-                  readonly targetFields: readonly ['author_id'];
-                };
-              };
-            };
-            readonly storage: {
-              readonly table: 'User';
-              readonly namespaceId: 'public';
-              readonly fields: {
-                readonly created_at: { readonly column: 'createdAt' };
-                readonly email: { readonly column: 'email' };
-                readonly id: { readonly column: 'id' };
-                readonly name: { readonly column: 'name' };
-                readonly password_hash: { readonly column: 'passwordHash' };
-                readonly role: { readonly column: 'role' };
-                readonly updated_at: { readonly column: 'updatedAt' };
-                readonly username: { readonly column: 'username' };
+                readonly nama_asli: { readonly column: 'nama_asli' };
+                readonly nama_penyimpanan: { readonly column: 'nama_penyimpanan' };
+                readonly tipe_mime: { readonly column: 'tipe_mime' };
+                readonly ukuran: { readonly column: 'ukuran' };
               };
             };
           };
         };
         readonly enum: {
-          readonly UserRole: {
+          readonly AlurPengadaan: {
             readonly codecId: 'pg/text@1';
             readonly members: readonly [
-              { readonly name: 'USER'; readonly value: 'USER' },
-              { readonly name: 'ADMIN'; readonly value: 'ADMIN' },
+              { readonly name: 'rab'; readonly value: 'rab' },
+              { readonly name: 'insidentil'; readonly value: 'insidentil' },
+              { readonly name: 'langsung'; readonly value: 'langsung' },
             ];
+          };
+          readonly JenisAktor: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'YAYASAN'; readonly value: 'YAYASAN' },
+              { readonly name: 'UNIVERSITAS'; readonly value: 'UNIVERSITAS' },
+              { readonly name: 'FAKULTAS'; readonly value: 'FAKULTAS' },
+              { readonly name: 'PROGRAM_STUDI'; readonly value: 'PROGRAM_STUDI' },
+              { readonly name: 'LEMBAGA'; readonly value: 'LEMBAGA' },
+              { readonly name: 'KEUANGAN'; readonly value: 'KEUANGAN' },
+              { readonly name: 'KHUSUS'; readonly value: 'KHUSUS' },
+            ];
+          };
+          readonly JenisAset: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'aset_tetap'; readonly value: 'aset_tetap' },
+              { readonly name: 'barang_habis_pakai'; readonly value: 'barang_habis_pakai' },
+            ];
+          };
+          readonly JenisDokumenPengadaan: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'tagihan'; readonly value: 'tagihan' },
+              { readonly name: 'bukti_pembayaran'; readonly value: 'bukti_pembayaran' },
+              { readonly name: 'bukti_penerimaan'; readonly value: 'bukti_penerimaan' },
+              { readonly name: 'bukti_perbedaan'; readonly value: 'bukti_perbedaan' },
+              { readonly name: 'surat_persetujuan'; readonly value: 'surat_persetujuan' },
+              { readonly name: 'lainnya'; readonly value: 'lainnya' },
+            ];
+          };
+          readonly JenisMutasiAset: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'penerimaan'; readonly value: 'penerimaan' },
+              { readonly name: 'pengiriman_permintaan'; readonly value: 'pengiriman_permintaan' },
+              { readonly name: 'pengembalian_ke_gudang'; readonly value: 'pengembalian_ke_gudang' },
+              { readonly name: 'transfer_masuk'; readonly value: 'transfer_masuk' },
+              { readonly name: 'transfer_keluar'; readonly value: 'transfer_keluar' },
+              { readonly name: 'mutasi'; readonly value: 'mutasi' },
+              { readonly name: 'penyesuaian'; readonly value: 'penyesuaian' },
+              { readonly name: 'penghapusan'; readonly value: 'penghapusan' },
+            ];
+          };
+          readonly JenisMutasiStok: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'penerimaan'; readonly value: 'penerimaan' },
+              { readonly name: 'pengiriman'; readonly value: 'pengiriman' },
+              { readonly name: 'pengembalian_ke_gudang'; readonly value: 'pengembalian_ke_gudang' },
+              { readonly name: 'transfer_masuk'; readonly value: 'transfer_masuk' },
+              { readonly name: 'transfer_keluar'; readonly value: 'transfer_keluar' },
+              { readonly name: 'mutasi'; readonly value: 'mutasi' },
+              { readonly name: 'penyesuaian'; readonly value: 'penyesuaian' },
+              { readonly name: 'penghapusan'; readonly value: 'penghapusan' },
+            ];
+          };
+          readonly JenisPengadaan: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'mandiri'; readonly value: 'mandiri' },
+              { readonly name: 'berbasis_permintaan'; readonly value: 'berbasis_permintaan' },
+            ];
+          };
+          readonly JenisPenghapusan: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'dijual'; readonly value: 'dijual' },
+              { readonly name: 'disumbangkan'; readonly value: 'disumbangkan' },
+              { readonly name: 'dimusnahkan'; readonly value: 'dimusnahkan' },
+              { readonly name: 'hilang'; readonly value: 'hilang' },
+              { readonly name: 'lainnya'; readonly value: 'lainnya' },
+            ];
+          };
+          readonly JenisSumberPemenuhan: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'gudang'; readonly value: 'gudang' },
+              { readonly name: 'pengadaan'; readonly value: 'pengadaan' },
+            ];
+          };
+          readonly JenisTempat: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'kampus'; readonly value: 'kampus' },
+              { readonly name: 'gedung'; readonly value: 'gedung' },
+              { readonly name: 'lantai'; readonly value: 'lantai' },
+              { readonly name: 'ruangan'; readonly value: 'ruangan' },
+              { readonly name: 'zona'; readonly value: 'zona' },
+              { readonly name: 'area_lantai'; readonly value: 'area_lantai' },
+              { readonly name: 'lainnya'; readonly value: 'lainnya' },
+            ];
+          };
+          readonly KondisiAset: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'baik'; readonly value: 'baik' },
+              { readonly name: 'rusak_ringan'; readonly value: 'rusak_ringan' },
+              { readonly name: 'rusak_berat'; readonly value: 'rusak_berat' },
+            ];
+          };
+          readonly StatusAset: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'tersedia'; readonly value: 'tersedia' },
+              { readonly name: 'digunakan'; readonly value: 'digunakan' },
+              { readonly name: 'hilang'; readonly value: 'hilang' },
+            ];
+          };
+          readonly StatusItemPengadaan: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'draf'; readonly value: 'draf' },
+              { readonly name: 'menunggu_persetujuan'; readonly value: 'menunggu_persetujuan' },
+              { readonly name: 'ditolak'; readonly value: 'ditolak' },
+              { readonly name: 'disetujui'; readonly value: 'disetujui' },
+              { readonly name: 'dibatalkan'; readonly value: 'dibatalkan' },
+            ];
+          };
+          readonly StatusMutasi: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'disiapkan'; readonly value: 'disiapkan' },
+              { readonly name: 'selesai'; readonly value: 'selesai' },
+              { readonly name: 'dibatalkan'; readonly value: 'dibatalkan' },
+            ];
+          };
+          readonly StatusPemenuhan: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'diusulkan'; readonly value: 'diusulkan' },
+              { readonly name: 'diterima_dc'; readonly value: 'diterima_dc' },
+              { readonly name: 'ditolak_dc'; readonly value: 'ditolak_dc' },
+              { readonly name: 'menunggu_yayasan'; readonly value: 'menunggu_yayasan' },
+              { readonly name: 'ditolak_yayasan'; readonly value: 'ditolak_yayasan' },
+              { readonly name: 'dibatalkan'; readonly value: 'dibatalkan' },
+            ];
+          };
+          readonly StatusPengadaan: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'draf'; readonly value: 'draf' },
+              { readonly name: 'menunggu_persetujuan'; readonly value: 'menunggu_persetujuan' },
+              { readonly name: 'ditolak'; readonly value: 'ditolak' },
+              { readonly name: 'disetujui'; readonly value: 'disetujui' },
+              { readonly name: 'dalam_pembelian'; readonly value: 'dalam_pembelian' },
+              { readonly name: 'dalam_pengiriman'; readonly value: 'dalam_pengiriman' },
+              { readonly name: 'dibatalkan'; readonly value: 'dibatalkan' },
+            ];
+          };
+          readonly StatusPengiriman: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'disiapkan'; readonly value: 'disiapkan' },
+              { readonly name: 'dikirim'; readonly value: 'dikirim' },
+              { readonly name: 'dibatalkan'; readonly value: 'dibatalkan' },
+            ];
+          };
+          readonly StatusPermintaan: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'draf'; readonly value: 'draf' },
+              { readonly name: 'diajukan'; readonly value: 'diajukan' },
+              { readonly name: 'dalam_peninjauan'; readonly value: 'dalam_peninjauan' },
+              { readonly name: 'disetujui'; readonly value: 'disetujui' },
+              { readonly name: 'ditolak'; readonly value: 'ditolak' },
+              { readonly name: 'dibatalkan'; readonly value: 'dibatalkan' },
+            ];
+          };
+          readonly StatusReservasi: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'direservasi'; readonly value: 'direservasi' },
+              { readonly name: 'dibatalkan'; readonly value: 'dibatalkan' },
+              { readonly name: 'dilepas'; readonly value: 'dilepas' },
+            ];
+          };
+          readonly StatusRetur: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'diajukan'; readonly value: 'diajukan' },
+              { readonly name: 'disetujui'; readonly value: 'disetujui' },
+              { readonly name: 'ditolak'; readonly value: 'ditolak' },
+              { readonly name: 'diselesaikan'; readonly value: 'diselesaikan' },
+            ];
+          };
+          readonly StatusTagihan: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'diajukan'; readonly value: 'diajukan' },
+              { readonly name: 'dibatalkan'; readonly value: 'dibatalkan' },
+            ];
+          };
+          readonly StatusTransfer: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'disiapkan'; readonly value: 'disiapkan' },
+              { readonly name: 'dikirim'; readonly value: 'dikirim' },
+              { readonly name: 'dibatalkan'; readonly value: 'dibatalkan' },
+            ];
+          };
+          readonly SumberDana: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'anggaran_organisasi'; readonly value: 'anggaran_organisasi' },
+              { readonly name: 'hibah'; readonly value: 'hibah' },
+              { readonly name: 'donasi'; readonly value: 'donasi' },
+              { readonly name: 'lainnya'; readonly value: 'lainnya' },
+            ];
+          };
+          readonly TindakLanjutRetur: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'kirim_ulang'; readonly value: 'kirim_ulang' },
+              { readonly name: 'kembali_ke_sumber'; readonly value: 'kembali_ke_sumber' },
+              { readonly name: 'penghapusan'; readonly value: 'penghapusan' },
+            ];
+          };
+        };
+      };
+      readonly sarpras: {
+        readonly models: {
+          readonly aktor: {
+            readonly fields: {
+              readonly aktif: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly diubah_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jenis: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly kode: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly nama: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: 'aktor';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly aktif: { readonly column: 'aktif' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly diubah_pada: { readonly column: 'diubah_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly jenis: { readonly column: 'jenis' };
+                readonly kode: { readonly column: 'kode' };
+                readonly nama: { readonly column: 'nama' };
+              };
+            };
+          };
+          readonly alokasi_item_pengadaan_permintaan: {
+            readonly fields: {
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_item_pengadaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_sumber_pemenuhan_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly item_pengadaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'item_pengadaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_item_pengadaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly sumber_pemenuhan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'sumber_pemenuhan_permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_sumber_pemenuhan_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'alokasi_item_pengadaan_permintaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_item_pengadaan: { readonly column: 'id_item_pengadaan' };
+                readonly id_sumber_pemenuhan_permintaan: {
+                  readonly column: 'id_sumber_pemenuhan_permintaan';
+                };
+                readonly jumlah: { readonly column: 'jumlah' };
+              };
+            };
+          };
+          readonly aset_tetap: {
+            readonly fields: {
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly diubah_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_item_penerimaan_pengadaan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_tempat_saat_ini: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_variasi_aset_merek: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly kode_aset: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly kondisi: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly item_penerimaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'item_penerimaan_pengadaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly [
+                    'id_item_penerimaan_pengadaan',
+                    'id_variasi_aset_merek',
+                  ];
+                  readonly targetFields: readonly ['id', 'id_variasi_aset_merek'];
+                };
+              };
+              readonly tempat_saat_ini: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'tempat';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['id_tempat_saat_ini'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly variasi_aset_merek: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'variasi_aset_merek';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_variasi_aset_merek'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'aset_tetap';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly diubah_pada: { readonly column: 'diubah_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_item_penerimaan_pengadaan: {
+                  readonly column: 'id_item_penerimaan_pengadaan';
+                };
+                readonly id_tempat_saat_ini: { readonly column: 'id_tempat_saat_ini' };
+                readonly id_variasi_aset_merek: { readonly column: 'id_variasi_aset_merek' };
+                readonly kode_aset: { readonly column: 'kode_aset' };
+                readonly kondisi: { readonly column: 'kondisi' };
+                readonly status: { readonly column: 'status' };
+              };
+            };
+          };
+          readonly dokumen_pengadaan: {
+            readonly fields: {
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly diunggah_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_berkas: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly id_pengadaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jenis: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly berkas: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'berkas';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_berkas'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pengadaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengadaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_pengadaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pengunggah: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['diunggah_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'dokumen_pengadaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly diunggah_oleh_id_pegawai: { readonly column: 'diunggah_oleh_id_pegawai' };
+                readonly id: { readonly column: 'id' };
+                readonly id_berkas: { readonly column: 'id_berkas' };
+                readonly id_pengadaan: { readonly column: 'id_pengadaan' };
+                readonly jenis: { readonly column: 'jenis' };
+              };
+            };
+          };
+          readonly gudang: {
+            readonly fields: {
+              readonly aktif: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_tempat: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly kode: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly tempat: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'tempat';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_tempat'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'gudang';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly aktif: { readonly column: 'aktif' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_tempat: { readonly column: 'id_tempat' };
+                readonly kode: { readonly column: 'kode' };
+              };
+            };
+          };
+          readonly item_mutasi_lokasi_aset_tetap: {
+            readonly fields: {
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aset_tetap: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_mutasi_lokasi: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+            };
+            readonly relations: {
+              readonly aset_tetap: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aset_tetap';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_aset_tetap'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly mutasi: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'mutasi_lokasi';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_mutasi_lokasi'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_mutasi_lokasi_aset_tetap';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly id: { readonly column: 'id' };
+                readonly id_aset_tetap: { readonly column: 'id_aset_tetap' };
+                readonly id_mutasi_lokasi: { readonly column: 'id_mutasi_lokasi' };
+              };
+            };
+          };
+          readonly item_mutasi_lokasi_barang_habis_pakai: {
+            readonly fields: {
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_mutasi_lokasi: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_stok_barang_habis_pakai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly mutasi: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'mutasi_lokasi';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_mutasi_lokasi'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly stok: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'stok_barang_habis_pakai';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_stok_barang_habis_pakai'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_mutasi_lokasi_barang_habis_pakai';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly id: { readonly column: 'id' };
+                readonly id_mutasi_lokasi: { readonly column: 'id_mutasi_lokasi' };
+                readonly id_stok_barang_habis_pakai: {
+                  readonly column: 'id_stok_barang_habis_pakai';
+                };
+                readonly jumlah: { readonly column: 'jumlah' };
+              };
+            };
+          };
+          readonly item_penerimaan_pengadaan: {
+            readonly fields: {
+              readonly alasan_perbedaan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_item_pengadaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_penerimaan_pengadaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_pengadaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_variasi_aset_merek: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah_diterima: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly item_pengadaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'item_pengadaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly [
+                    'id_item_pengadaan',
+                    'id_pengadaan',
+                    'id_variasi_aset_merek',
+                  ];
+                  readonly targetFields: readonly ['id', 'id_pengadaan', 'id_variasi_aset_merek'];
+                };
+              };
+              readonly penerimaan_pengadaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'penerimaan_pengadaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_penerimaan_pengadaan', 'id_pengadaan'];
+                  readonly targetFields: readonly ['id', 'id_pengadaan'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_penerimaan_pengadaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly alasan_perbedaan: { readonly column: 'alasan_perbedaan' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_item_pengadaan: { readonly column: 'id_item_pengadaan' };
+                readonly id_penerimaan_pengadaan: { readonly column: 'id_penerimaan_pengadaan' };
+                readonly id_pengadaan: { readonly column: 'id_pengadaan' };
+                readonly id_variasi_aset_merek: { readonly column: 'id_variasi_aset_merek' };
+                readonly jumlah_diterima: { readonly column: 'jumlah_diterima' };
+              };
+            };
+          };
+          readonly item_penerimaan_pengiriman: {
+            readonly fields: {
+              readonly alasan_penolakan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_item_pengiriman_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_penerimaan_pengiriman: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_pengiriman_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah_diterima: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly jumlah_ditolak: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly item_pengiriman: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'item_pengiriman_permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly [
+                    'id_item_pengiriman_permintaan',
+                    'id_pengiriman_permintaan',
+                  ];
+                  readonly targetFields: readonly ['id', 'id_pengiriman_permintaan'];
+                };
+              };
+              readonly penerimaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'penerimaan_pengiriman';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly [
+                    'id_penerimaan_pengiriman',
+                    'id_pengiriman_permintaan',
+                  ];
+                  readonly targetFields: readonly ['id', 'id_pengiriman_permintaan'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_penerimaan_pengiriman';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly alasan_penolakan: { readonly column: 'alasan_penolakan' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_item_pengiriman_permintaan: {
+                  readonly column: 'id_item_pengiriman_permintaan';
+                };
+                readonly id_penerimaan_pengiriman: { readonly column: 'id_penerimaan_pengiriman' };
+                readonly id_pengiriman_permintaan: { readonly column: 'id_pengiriman_permintaan' };
+                readonly jumlah_diterima: { readonly column: 'jumlah_diterima' };
+                readonly jumlah_ditolak: { readonly column: 'jumlah_ditolak' };
+              };
+            };
+          };
+          readonly item_penerimaan_transfer_aset_tetap: {
+            readonly fields: {
+              readonly alasan_penolakan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly diterima: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_item_transfer_antar_unit_aset_tetap: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_penerimaan_transfer: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_transfer_antar_unit: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+            };
+            readonly relations: {
+              readonly item_transfer: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'item_transfer_antar_unit_aset_tetap';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly [
+                    'id_item_transfer_antar_unit_aset_tetap',
+                    'id_transfer_antar_unit',
+                  ];
+                  readonly targetFields: readonly ['id', 'id_transfer_antar_unit'];
+                };
+              };
+              readonly penerimaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'penerimaan_transfer';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly [
+                    'id_penerimaan_transfer',
+                    'id_transfer_antar_unit',
+                  ];
+                  readonly targetFields: readonly ['id', 'id_transfer_antar_unit'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_penerimaan_transfer_aset_tetap';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly alasan_penolakan: { readonly column: 'alasan_penolakan' };
+                readonly diterima: { readonly column: 'diterima' };
+                readonly id: { readonly column: 'id' };
+                readonly id_item_transfer_antar_unit_aset_tetap: {
+                  readonly column: 'id_item_transfer_antar_unit_aset_tetap';
+                };
+                readonly id_penerimaan_transfer: { readonly column: 'id_penerimaan_transfer' };
+                readonly id_transfer_antar_unit: { readonly column: 'id_transfer_antar_unit' };
+              };
+            };
+          };
+          readonly item_penerimaan_transfer_barang_habis_pakai: {
+            readonly fields: {
+              readonly alasan_penolakan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_item_transfer_antar_unit_barang_habis_pakai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_penerimaan_transfer: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_transfer_antar_unit: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah_diterima: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly jumlah_ditolak: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly item_transfer: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'item_transfer_antar_unit_barang_habis_pakai';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly [
+                    'id_item_transfer_antar_unit_barang_habis_pakai',
+                    'id_transfer_antar_unit',
+                  ];
+                  readonly targetFields: readonly ['id', 'id_transfer_antar_unit'];
+                };
+              };
+              readonly penerimaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'penerimaan_transfer';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly [
+                    'id_penerimaan_transfer',
+                    'id_transfer_antar_unit',
+                  ];
+                  readonly targetFields: readonly ['id', 'id_transfer_antar_unit'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_penerimaan_transfer_barang_habis_pakai';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly alasan_penolakan: { readonly column: 'alasan_penolakan' };
+                readonly id: { readonly column: 'id' };
+                readonly id_item_transfer_antar_unit_barang_habis_pakai: {
+                  readonly column: 'id_item_transfer_antar_unit_barang_habis_pakai';
+                };
+                readonly id_penerimaan_transfer: { readonly column: 'id_penerimaan_transfer' };
+                readonly id_transfer_antar_unit: { readonly column: 'id_transfer_antar_unit' };
+                readonly jumlah_diterima: { readonly column: 'jumlah_diterima' };
+                readonly jumlah_ditolak: { readonly column: 'jumlah_ditolak' };
+              };
+            };
+          };
+          readonly item_pengadaan: {
+            readonly fields: {
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly diubah_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly harga_satuan: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/numeric@1';
+                  readonly typeParams: { readonly precision: 14; readonly scale: 2 };
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_katalog_pemasok: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_pengadaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_variasi_aset_merek: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly perlu_persetujuan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly sumber_dana: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly katalog_pemasok: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'katalog_pemasok';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_katalog_pemasok', 'id_variasi_aset_merek'];
+                  readonly targetFields: readonly ['id', 'id_variasi_aset_merek'];
+                };
+              };
+              readonly pengadaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengadaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_pengadaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_pengadaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly diubah_pada: { readonly column: 'diubah_pada' };
+                readonly harga_satuan: { readonly column: 'harga_satuan' };
+                readonly id: { readonly column: 'id' };
+                readonly id_katalog_pemasok: { readonly column: 'id_katalog_pemasok' };
+                readonly id_pengadaan: { readonly column: 'id_pengadaan' };
+                readonly id_variasi_aset_merek: { readonly column: 'id_variasi_aset_merek' };
+                readonly jumlah: { readonly column: 'jumlah' };
+                readonly perlu_persetujuan: { readonly column: 'perlu_persetujuan' };
+                readonly status: { readonly column: 'status' };
+                readonly sumber_dana: { readonly column: 'sumber_dana' };
+              };
+            };
+          };
+          readonly item_penghapusan_aset_tetap: {
+            readonly fields: {
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aset_tetap: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_penghapusan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+            };
+            readonly relations: {
+              readonly aset_tetap: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aset_tetap';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_aset_tetap'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly penghapusan_aset: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'penghapusan_aset';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_penghapusan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_penghapusan_aset_tetap';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly id: { readonly column: 'id' };
+                readonly id_aset_tetap: { readonly column: 'id_aset_tetap' };
+                readonly id_penghapusan: { readonly column: 'id_penghapusan' };
+              };
+            };
+          };
+          readonly item_penghapusan_barang_habis_pakai: {
+            readonly fields: {
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_penghapusan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_stok_barang_habis_pakai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly penghapusan_aset: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'penghapusan_aset';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_penghapusan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly stok: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'stok_barang_habis_pakai';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_stok_barang_habis_pakai'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_penghapusan_barang_habis_pakai';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly id: { readonly column: 'id' };
+                readonly id_penghapusan: { readonly column: 'id_penghapusan' };
+                readonly id_stok_barang_habis_pakai: {
+                  readonly column: 'id_stok_barang_habis_pakai';
+                };
+                readonly jumlah: { readonly column: 'jumlah' };
+              };
+            };
+          };
+          readonly item_pengiriman_aset_tetap: {
+            readonly fields: {
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aset_tetap: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_item_pengiriman_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+            };
+            readonly relations: {
+              readonly aset_tetap: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aset_tetap';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_aset_tetap'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly item_pengiriman: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'item_pengiriman_permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_item_pengiriman_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_pengiriman_aset_tetap';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly id: { readonly column: 'id' };
+                readonly id_aset_tetap: { readonly column: 'id_aset_tetap' };
+                readonly id_item_pengiriman_permintaan: {
+                  readonly column: 'id_item_pengiriman_permintaan';
+                };
+              };
+            };
+          };
+          readonly item_pengiriman_barang_habis_pakai: {
+            readonly fields: {
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_item_pengiriman_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_stok_barang_habis_pakai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly item_pengiriman: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'item_pengiriman_permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_item_pengiriman_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly stok: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'stok_barang_habis_pakai';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_stok_barang_habis_pakai'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_pengiriman_barang_habis_pakai';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly id: { readonly column: 'id' };
+                readonly id_item_pengiriman_permintaan: {
+                  readonly column: 'id_item_pengiriman_permintaan';
+                };
+                readonly id_stok_barang_habis_pakai: {
+                  readonly column: 'id_stok_barang_habis_pakai';
+                };
+                readonly jumlah: { readonly column: 'jumlah' };
+              };
+            };
+          };
+          readonly item_pengiriman_permintaan: {
+            readonly fields: {
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_pengiriman_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_sumber_pemenuhan_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly pengiriman: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengiriman_permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_pengiriman_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly sumber_pemenuhan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'sumber_pemenuhan_permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_sumber_pemenuhan_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_pengiriman_permintaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_pengiriman_permintaan: { readonly column: 'id_pengiriman_permintaan' };
+                readonly id_sumber_pemenuhan_permintaan: {
+                  readonly column: 'id_sumber_pemenuhan_permintaan';
+                };
+                readonly jumlah: { readonly column: 'jumlah' };
+              };
+            };
+          };
+          readonly item_permintaan: {
+            readonly fields: {
+              readonly catatan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_variasi_aset: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly permintaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly variasi_aset: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'variasi_aset';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_variasi_aset'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_permintaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly catatan: { readonly column: 'catatan' };
+                readonly id: { readonly column: 'id' };
+                readonly id_permintaan: { readonly column: 'id_permintaan' };
+                readonly id_variasi_aset: { readonly column: 'id_variasi_aset' };
+                readonly jumlah: { readonly column: 'jumlah' };
+              };
+            };
+          };
+          readonly item_transfer_antar_unit_aset_tetap: {
+            readonly fields: {
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aset_tetap: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_transfer_antar_unit: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+            };
+            readonly relations: {
+              readonly aset_tetap: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aset_tetap';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_aset_tetap'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly transfer: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'transfer_antar_unit';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_transfer_antar_unit'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_transfer_antar_unit_aset_tetap';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly id: { readonly column: 'id' };
+                readonly id_aset_tetap: { readonly column: 'id_aset_tetap' };
+                readonly id_transfer_antar_unit: { readonly column: 'id_transfer_antar_unit' };
+              };
+            };
+          };
+          readonly item_transfer_antar_unit_barang_habis_pakai: {
+            readonly fields: {
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_stok_barang_habis_pakai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_transfer_antar_unit: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah_dikirim: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly stok: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'stok_barang_habis_pakai';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_stok_barang_habis_pakai'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly transfer: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'transfer_antar_unit';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_transfer_antar_unit'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'item_transfer_antar_unit_barang_habis_pakai';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly id: { readonly column: 'id' };
+                readonly id_stok_barang_habis_pakai: {
+                  readonly column: 'id_stok_barang_habis_pakai';
+                };
+                readonly id_transfer_antar_unit: { readonly column: 'id_transfer_antar_unit' };
+                readonly jumlah_dikirim: { readonly column: 'jumlah_dikirim' };
+              };
+            };
+          };
+          readonly katalog_pemasok: {
+            readonly fields: {
+              readonly aktif: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly harga_referensi: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/numeric@1';
+                  readonly typeParams: { readonly precision: 14; readonly scale: 2 };
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_pemasok: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_variasi_aset_merek: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+            };
+            readonly relations: {
+              readonly pemasok: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pemasok';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_pemasok'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly variasi_aset_merek: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'variasi_aset_merek';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_variasi_aset_merek'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'katalog_pemasok';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly aktif: { readonly column: 'aktif' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly harga_referensi: { readonly column: 'harga_referensi' };
+                readonly id: { readonly column: 'id' };
+                readonly id_pemasok: { readonly column: 'id_pemasok' };
+                readonly id_variasi_aset_merek: { readonly column: 'id_variasi_aset_merek' };
+              };
+            };
+          };
+          readonly kategori_aset: {
+            readonly fields: {
+              readonly aktif: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jenis: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly kode: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly nama: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: 'kategori_aset';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly aktif: { readonly column: 'aktif' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly jenis: { readonly column: 'jenis' };
+                readonly kode: { readonly column: 'kode' };
+                readonly nama: { readonly column: 'nama' };
+              };
+            };
+          };
+          readonly merek: {
+            readonly fields: {
+              readonly aktif: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly nama: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: 'merek';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly aktif: { readonly column: 'aktif' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly nama: { readonly column: 'nama' };
+              };
+            };
+          };
+          readonly mutasi_aset_tetap: {
+            readonly fields: {
+              readonly catatan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly dilakukan_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aset_tetap: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_tempat_asal: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_tempat_tujuan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jenis_mutasi: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly aset_tetap: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aset_tetap';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_aset_tetap'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pelaku: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dilakukan_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly tempat_asal: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'tempat';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['id_tempat_asal'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly tempat_tujuan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'tempat';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['id_tempat_tujuan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'mutasi_aset_tetap';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly catatan: { readonly column: 'catatan' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly dilakukan_oleh_id_pegawai: {
+                  readonly column: 'dilakukan_oleh_id_pegawai';
+                };
+                readonly id: { readonly column: 'id' };
+                readonly id_aset_tetap: { readonly column: 'id_aset_tetap' };
+                readonly id_tempat_asal: { readonly column: 'id_tempat_asal' };
+                readonly id_tempat_tujuan: { readonly column: 'id_tempat_tujuan' };
+                readonly jenis_mutasi: { readonly column: 'jenis_mutasi' };
+              };
+            };
+          };
+          readonly mutasi_lokasi: {
+            readonly fields: {
+              readonly dibuat_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly diselesaikan_pada: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aktor: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_tempat_asal: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_tempat_tujuan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly nomor_mutasi: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly aktor: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aktor';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_aktor'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pembuat: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly tempat_asal: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'tempat';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_tempat_asal'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly tempat_tujuan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'tempat';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_tempat_tujuan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'mutasi_lokasi';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dibuat_oleh_id_pegawai: { readonly column: 'dibuat_oleh_id_pegawai' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly diselesaikan_pada: { readonly column: 'diselesaikan_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_aktor: { readonly column: 'id_aktor' };
+                readonly id_tempat_asal: { readonly column: 'id_tempat_asal' };
+                readonly id_tempat_tujuan: { readonly column: 'id_tempat_tujuan' };
+                readonly nomor_mutasi: { readonly column: 'nomor_mutasi' };
+                readonly status: { readonly column: 'status' };
+              };
+            };
+          };
+          readonly mutasi_stok_barang: {
+            readonly fields: {
+              readonly catatan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly dilakukan_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_item_penerimaan_pengadaan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_stok_barang_habis_pakai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jenis_mutasi: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly perubahan_jumlah: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly item_penerimaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'item_penerimaan_pengadaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['id_item_penerimaan_pengadaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pelaku: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dilakukan_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly stok: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'stok_barang_habis_pakai';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_stok_barang_habis_pakai'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'mutasi_stok_barang';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly catatan: { readonly column: 'catatan' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly dilakukan_oleh_id_pegawai: {
+                  readonly column: 'dilakukan_oleh_id_pegawai';
+                };
+                readonly id: { readonly column: 'id' };
+                readonly id_item_penerimaan_pengadaan: {
+                  readonly column: 'id_item_penerimaan_pengadaan';
+                };
+                readonly id_stok_barang_habis_pakai: {
+                  readonly column: 'id_stok_barang_habis_pakai';
+                };
+                readonly jenis_mutasi: { readonly column: 'jenis_mutasi' };
+                readonly perubahan_jumlah: { readonly column: 'perubahan_jumlah' };
+              };
+            };
+          };
+          readonly pemasok: {
+            readonly fields: {
+              readonly aktif: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly alamat: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly kode: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly nama: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly nomor_telepon: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly surel: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: 'pemasok';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly aktif: { readonly column: 'aktif' };
+                readonly alamat: { readonly column: 'alamat' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly kode: { readonly column: 'kode' };
+                readonly nama: { readonly column: 'nama' };
+                readonly nomor_telepon: { readonly column: 'nomor_telepon' };
+                readonly surel: { readonly column: 'surel' };
+              };
+            };
+          };
+          readonly pembalikan_pembayaran: {
+            readonly fields: {
+              readonly alasan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibalik_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibalik_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_pembayaran: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly nominal: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/numeric@1';
+                  readonly typeParams: { readonly precision: 14; readonly scale: 2 };
+                };
+              };
+            };
+            readonly relations: {
+              readonly pelaku: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dibalik_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly pembayaran: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pembayaran';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_pembayaran'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'pembalikan_pembayaran';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly alasan: { readonly column: 'alasan' };
+                readonly dibalik_oleh_id_pegawai: { readonly column: 'dibalik_oleh_id_pegawai' };
+                readonly dibalik_pada: { readonly column: 'dibalik_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_pembayaran: { readonly column: 'id_pembayaran' };
+                readonly nominal: { readonly column: 'nominal' };
+              };
+            };
+          };
+          readonly pembayaran: {
+            readonly fields: {
+              readonly dibayar_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly dibuat_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_tagihan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly nominal: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/numeric@1';
+                  readonly typeParams: { readonly precision: 14; readonly scale: 2 };
+                };
+              };
+              readonly referensi_pembayaran: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly pembuat: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly tagihan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'tagihan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_tagihan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'pembayaran';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dibayar_pada: { readonly column: 'dibayar_pada' };
+                readonly dibuat_oleh_id_pegawai: { readonly column: 'dibuat_oleh_id_pegawai' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_tagihan: { readonly column: 'id_tagihan' };
+                readonly nominal: { readonly column: 'nominal' };
+                readonly referensi_pembayaran: { readonly column: 'referensi_pembayaran' };
+              };
+            };
+          };
+          readonly penerimaan_pengadaan: {
+            readonly fields: {
+              readonly catatan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly diterima_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly diterima_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_gudang: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_pengadaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+            };
+            readonly relations: {
+              readonly gudang: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'gudang';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_gudang'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly penerima: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['diterima_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly pengadaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengadaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_pengadaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'penerimaan_pengadaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly catatan: { readonly column: 'catatan' };
+                readonly diterima_oleh_id_pegawai: { readonly column: 'diterima_oleh_id_pegawai' };
+                readonly diterima_pada: { readonly column: 'diterima_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_gudang: { readonly column: 'id_gudang' };
+                readonly id_pengadaan: { readonly column: 'id_pengadaan' };
+              };
+            };
+          };
+          readonly penerimaan_pengiriman: {
+            readonly fields: {
+              readonly catatan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly diterima_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly diterima_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_pengiriman_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+            };
+            readonly relations: {
+              readonly penerima: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['diterima_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly pengiriman: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengiriman_permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_pengiriman_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'penerimaan_pengiriman';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly catatan: { readonly column: 'catatan' };
+                readonly diterima_oleh_id_pegawai: { readonly column: 'diterima_oleh_id_pegawai' };
+                readonly diterima_pada: { readonly column: 'diterima_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_pengiriman_permintaan: { readonly column: 'id_pengiriman_permintaan' };
+              };
+            };
+          };
+          readonly penerimaan_transfer: {
+            readonly fields: {
+              readonly catatan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly diterima_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly diterima_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_transfer_antar_unit: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+            };
+            readonly relations: {
+              readonly penerima: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['diterima_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly transfer: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'transfer_antar_unit';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_transfer_antar_unit'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'penerimaan_transfer';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly catatan: { readonly column: 'catatan' };
+                readonly diterima_oleh_id_pegawai: { readonly column: 'diterima_oleh_id_pegawai' };
+                readonly diterima_pada: { readonly column: 'diterima_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_transfer_antar_unit: { readonly column: 'id_transfer_antar_unit' };
+              };
+            };
+          };
+          readonly pengadaan: {
+            readonly fields: {
+              readonly alur_pengadaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly catatan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly diubah_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aktor: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jenis: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly nomor_pengadaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly aktor: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aktor';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_aktor'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pembuat: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'pengadaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly alur_pengadaan: { readonly column: 'alur_pengadaan' };
+                readonly catatan: { readonly column: 'catatan' };
+                readonly dibuat_oleh_id_pegawai: { readonly column: 'dibuat_oleh_id_pegawai' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly diubah_pada: { readonly column: 'diubah_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_aktor: { readonly column: 'id_aktor' };
+                readonly jenis: { readonly column: 'jenis' };
+                readonly nomor_pengadaan: { readonly column: 'nomor_pengadaan' };
+                readonly status: { readonly column: 'status' };
+              };
+            };
+          };
+          readonly pengguna: {
+            readonly fields: {
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly diubah_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly nama: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: 'pengguna';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly diubah_pada: { readonly column: 'diubah_pada' };
+                readonly id_pegawai: { readonly column: 'id_pegawai' };
+                readonly nama: { readonly column: 'nama' };
+              };
+            };
+          };
+          readonly penghapusan_aset: {
+            readonly fields: {
+              readonly alasan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aktor: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jenis: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly nomor_penghapusan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly aktor: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aktor';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_aktor'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pembuat: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'penghapusan_aset';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly alasan: { readonly column: 'alasan' };
+                readonly dibuat_oleh_id_pegawai: { readonly column: 'dibuat_oleh_id_pegawai' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_aktor: { readonly column: 'id_aktor' };
+                readonly jenis: { readonly column: 'jenis' };
+                readonly nomor_penghapusan: { readonly column: 'nomor_penghapusan' };
+              };
+            };
+          };
+          readonly pengiriman_permintaan: {
+            readonly fields: {
+              readonly dibuat_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly dikirim_pada: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_tempat_tujuan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly nomor_pengiriman: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly pembuat: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly permintaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly tempat_tujuan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'tempat';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_tempat_tujuan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'pengiriman_permintaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dibuat_oleh_id_pegawai: { readonly column: 'dibuat_oleh_id_pegawai' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly dikirim_pada: { readonly column: 'dikirim_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_permintaan: { readonly column: 'id_permintaan' };
+                readonly id_tempat_tujuan: { readonly column: 'id_tempat_tujuan' };
+                readonly nomor_pengiriman: { readonly column: 'nomor_pengiriman' };
+                readonly status: { readonly column: 'status' };
+              };
+            };
+          };
+          readonly permintaan: {
+            readonly fields: {
+              readonly catatan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly diajukan_pada: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly dibuat_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly diubah_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aktor_peminta: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_tempat_tujuan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly nomor_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly aktor_peminta: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aktor';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_aktor_peminta'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pembuat: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly tempat_tujuan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'tempat';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_tempat_tujuan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'permintaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly catatan: { readonly column: 'catatan' };
+                readonly diajukan_pada: { readonly column: 'diajukan_pada' };
+                readonly dibuat_oleh_id_pegawai: { readonly column: 'dibuat_oleh_id_pegawai' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly diubah_pada: { readonly column: 'diubah_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_aktor_peminta: { readonly column: 'id_aktor_peminta' };
+                readonly id_tempat_tujuan: { readonly column: 'id_tempat_tujuan' };
+                readonly nomor_permintaan: { readonly column: 'nomor_permintaan' };
+                readonly status: { readonly column: 'status' };
+              };
+            };
+          };
+          readonly reservasi_aset_tetap: {
+            readonly fields: {
+              readonly dilepas_pada: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly direservasi_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly direservasi_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aset_tetap: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_sumber_pemenuhan_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly aset_tetap: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aset_tetap';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_aset_tetap'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pencatat_reservasi: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['direservasi_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly sumber_pemenuhan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'sumber_pemenuhan_permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_sumber_pemenuhan_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'reservasi_aset_tetap';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dilepas_pada: { readonly column: 'dilepas_pada' };
+                readonly direservasi_oleh_id_pegawai: {
+                  readonly column: 'direservasi_oleh_id_pegawai';
+                };
+                readonly direservasi_pada: { readonly column: 'direservasi_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_aset_tetap: { readonly column: 'id_aset_tetap' };
+                readonly id_sumber_pemenuhan_permintaan: {
+                  readonly column: 'id_sumber_pemenuhan_permintaan';
+                };
+                readonly status: { readonly column: 'status' };
+              };
+            };
+          };
+          readonly reservasi_stok_barang: {
+            readonly fields: {
+              readonly dilepas_pada: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly direservasi_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly direservasi_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_stok_barang_habis_pakai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_sumber_pemenuhan_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly pencatat_reservasi: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['direservasi_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly stok: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'stok_barang_habis_pakai';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_stok_barang_habis_pakai'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly sumber_pemenuhan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'sumber_pemenuhan_permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_sumber_pemenuhan_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'reservasi_stok_barang';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dilepas_pada: { readonly column: 'dilepas_pada' };
+                readonly direservasi_oleh_id_pegawai: {
+                  readonly column: 'direservasi_oleh_id_pegawai';
+                };
+                readonly direservasi_pada: { readonly column: 'direservasi_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_stok_barang_habis_pakai: {
+                  readonly column: 'id_stok_barang_habis_pakai';
+                };
+                readonly id_sumber_pemenuhan_permintaan: {
+                  readonly column: 'id_sumber_pemenuhan_permintaan';
+                };
+                readonly jumlah: { readonly column: 'jumlah' };
+                readonly status: { readonly column: 'status' };
+              };
+            };
+          };
+          readonly retur_permintaan: {
+            readonly fields: {
+              readonly alasan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly catatan_tindak_lanjut: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly ditinjau_oleh_id_pegawai: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly ditinjau_pada: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aset_tetap_pengganti: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_berkas_bukti: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly id_item_penerimaan_pengiriman: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly tindak_lanjut: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly aset_tetap_pengganti: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aset_tetap';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['id_aset_tetap_pengganti'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly berkas_bukti: {
+                readonly to: {
+                  readonly namespace: 'public' & NamespaceId;
+                  readonly model: 'berkas';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['id_berkas_bukti'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly item_penerimaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'item_penerimaan_pengiriman';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_item_penerimaan_pengiriman'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pembuat: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly peninjau: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['ditinjau_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'retur_permintaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly alasan: { readonly column: 'alasan' };
+                readonly catatan_tindak_lanjut: { readonly column: 'catatan_tindak_lanjut' };
+                readonly dibuat_oleh_id_pegawai: { readonly column: 'dibuat_oleh_id_pegawai' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly ditinjau_oleh_id_pegawai: { readonly column: 'ditinjau_oleh_id_pegawai' };
+                readonly ditinjau_pada: { readonly column: 'ditinjau_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_aset_tetap_pengganti: { readonly column: 'id_aset_tetap_pengganti' };
+                readonly id_berkas_bukti: { readonly column: 'id_berkas_bukti' };
+                readonly id_item_penerimaan_pengiriman: {
+                  readonly column: 'id_item_penerimaan_pengiriman';
+                };
+                readonly jumlah: { readonly column: 'jumlah' };
+                readonly status: { readonly column: 'status' };
+                readonly tindak_lanjut: { readonly column: 'tindak_lanjut' };
+              };
+            };
+          };
+          readonly riwayat_status_item_pengadaan: {
+            readonly fields: {
+              readonly catatan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly dilakukan_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_item_pengadaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly status_baru: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly status_sebelumnya: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly item_pengadaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'item_pengadaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_item_pengadaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pelaku: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dilakukan_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'riwayat_status_item_pengadaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly catatan: { readonly column: 'catatan' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly dilakukan_oleh_id_pegawai: {
+                  readonly column: 'dilakukan_oleh_id_pegawai';
+                };
+                readonly id: { readonly column: 'id' };
+                readonly id_item_pengadaan: { readonly column: 'id_item_pengadaan' };
+                readonly status_baru: { readonly column: 'status_baru' };
+                readonly status_sebelumnya: { readonly column: 'status_sebelumnya' };
+              };
+            };
+          };
+          readonly riwayat_status_pengadaan: {
+            readonly fields: {
+              readonly catatan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly dilakukan_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_pengadaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly status_baru: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly status_sebelumnya: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly pelaku: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dilakukan_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly pengadaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengadaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_pengadaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'riwayat_status_pengadaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly catatan: { readonly column: 'catatan' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly dilakukan_oleh_id_pegawai: {
+                  readonly column: 'dilakukan_oleh_id_pegawai';
+                };
+                readonly id: { readonly column: 'id' };
+                readonly id_pengadaan: { readonly column: 'id_pengadaan' };
+                readonly status_baru: { readonly column: 'status_baru' };
+                readonly status_sebelumnya: { readonly column: 'status_sebelumnya' };
+              };
+            };
+          };
+          readonly riwayat_status_permintaan: {
+            readonly fields: {
+              readonly catatan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly dilakukan_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aktor_konteks: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly status_baru: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly status_sebelumnya: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly aktor_konteks: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aktor';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['id_aktor_konteks'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pelaku: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dilakukan_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly permintaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'riwayat_status_permintaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly catatan: { readonly column: 'catatan' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly dilakukan_oleh_id_pegawai: {
+                  readonly column: 'dilakukan_oleh_id_pegawai';
+                };
+                readonly id: { readonly column: 'id' };
+                readonly id_aktor_konteks: { readonly column: 'id_aktor_konteks' };
+                readonly id_permintaan: { readonly column: 'id_permintaan' };
+                readonly status_baru: { readonly column: 'status_baru' };
+                readonly status_sebelumnya: { readonly column: 'status_sebelumnya' };
+              };
+            };
+          };
+          readonly riwayat_status_sumber_pemenuhan: {
+            readonly fields: {
+              readonly catatan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly dilakukan_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aktor_konteks: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_sumber_pemenuhan_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly status_baru: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly status_sebelumnya: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly aktor_konteks: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aktor';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['id_aktor_konteks'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pelaku: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dilakukan_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly sumber_pemenuhan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'sumber_pemenuhan_permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_sumber_pemenuhan_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'riwayat_status_sumber_pemenuhan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly catatan: { readonly column: 'catatan' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly dilakukan_oleh_id_pegawai: {
+                  readonly column: 'dilakukan_oleh_id_pegawai';
+                };
+                readonly id: { readonly column: 'id' };
+                readonly id_aktor_konteks: { readonly column: 'id_aktor_konteks' };
+                readonly id_sumber_pemenuhan_permintaan: {
+                  readonly column: 'id_sumber_pemenuhan_permintaan';
+                };
+                readonly status_baru: { readonly column: 'status_baru' };
+                readonly status_sebelumnya: { readonly column: 'status_sebelumnya' };
+              };
+            };
+          };
+          readonly stok_barang_habis_pakai: {
+            readonly fields: {
+              readonly diubah_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_gudang: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_variasi_aset_merek: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jumlah_saldo: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly gudang: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'gudang';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_gudang'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly variasi_aset_merek: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'variasi_aset_merek';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_variasi_aset_merek'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'stok_barang_habis_pakai';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly diubah_pada: { readonly column: 'diubah_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_gudang: { readonly column: 'id_gudang' };
+                readonly id_variasi_aset_merek: { readonly column: 'id_variasi_aset_merek' };
+                readonly jumlah_saldo: { readonly column: 'jumlah_saldo' };
+              };
+            };
+          };
+          readonly sumber_pemenuhan_permintaan: {
+            readonly fields: {
+              readonly alasan_penolakan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly diubah_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_gudang: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_item_permintaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_katalog_pemasok: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_variasi_aset_merek: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jenis: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly jumlah: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly gudang: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'gudang';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['id_gudang'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly item_permintaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'item_permintaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_item_permintaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly katalog_pemasok: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'katalog_pemasok';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['id_katalog_pemasok'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pembuat: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly variasi_aset_merek: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'variasi_aset_merek';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_variasi_aset_merek'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'sumber_pemenuhan_permintaan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly alasan_penolakan: { readonly column: 'alasan_penolakan' };
+                readonly dibuat_oleh_id_pegawai: { readonly column: 'dibuat_oleh_id_pegawai' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly diubah_pada: { readonly column: 'diubah_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_gudang: { readonly column: 'id_gudang' };
+                readonly id_item_permintaan: { readonly column: 'id_item_permintaan' };
+                readonly id_katalog_pemasok: { readonly column: 'id_katalog_pemasok' };
+                readonly id_variasi_aset_merek: { readonly column: 'id_variasi_aset_merek' };
+                readonly jenis: { readonly column: 'jenis' };
+                readonly jumlah: { readonly column: 'jumlah' };
+                readonly status: { readonly column: 'status' };
+              };
+            };
+          };
+          readonly tagihan: {
+            readonly fields: {
+              readonly dibuat_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_pengadaan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly nominal: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/numeric@1';
+                  readonly typeParams: { readonly precision: 14; readonly scale: 2 };
+                };
+              };
+              readonly nomor_tagihan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly tanggal_tagihan: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/date-string@1' };
+              };
+            };
+            readonly relations: {
+              readonly pembuat: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+              readonly pengadaan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengadaan';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_pengadaan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'tagihan';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dibuat_oleh_id_pegawai: { readonly column: 'dibuat_oleh_id_pegawai' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_pengadaan: { readonly column: 'id_pengadaan' };
+                readonly nominal: { readonly column: 'nominal' };
+                readonly nomor_tagihan: { readonly column: 'nomor_tagihan' };
+                readonly status: { readonly column: 'status' };
+                readonly tanggal_tagihan: { readonly column: 'tanggal_tagihan' };
+              };
+            };
+          };
+          readonly tempat: {
+            readonly fields: {
+              readonly aktif: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly deskripsi: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly diubah_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aktor_pemilik: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_tempat_induk: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly jenis: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly kode: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly nama: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly aktor_pemilik: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aktor';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['id_aktor_pemilik'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly tempat_induk: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'tempat';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['id_tempat_induk'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'tempat';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly aktif: { readonly column: 'aktif' };
+                readonly deskripsi: { readonly column: 'deskripsi' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly diubah_pada: { readonly column: 'diubah_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_aktor_pemilik: { readonly column: 'id_aktor_pemilik' };
+                readonly id_tempat_induk: { readonly column: 'id_tempat_induk' };
+                readonly jenis: { readonly column: 'jenis' };
+                readonly kode: { readonly column: 'kode' };
+                readonly nama: { readonly column: 'nama' };
+              };
+            };
+          };
+          readonly transfer_antar_unit: {
+            readonly fields: {
+              readonly dibuat_oleh_id_pegawai: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly dikirim_pada: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aktor_penerima: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_aktor_pengirim: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_gudang_asal: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_gudang_tujuan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly nomor_transfer: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly aktor_penerima: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aktor';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_aktor_penerima'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly aktor_pengirim: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'aktor';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_aktor_pengirim'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly gudang_asal: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'gudang';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_gudang_asal'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly gudang_tujuan: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'gudang';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_gudang_tujuan'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly pembuat: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'pengguna';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['dibuat_oleh_id_pegawai'];
+                  readonly targetFields: readonly ['id_pegawai'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'transfer_antar_unit';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly dibuat_oleh_id_pegawai: { readonly column: 'dibuat_oleh_id_pegawai' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly dikirim_pada: { readonly column: 'dikirim_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_aktor_penerima: { readonly column: 'id_aktor_penerima' };
+                readonly id_aktor_pengirim: { readonly column: 'id_aktor_pengirim' };
+                readonly id_gudang_asal: { readonly column: 'id_gudang_asal' };
+                readonly id_gudang_tujuan: { readonly column: 'id_gudang_tujuan' };
+                readonly nomor_transfer: { readonly column: 'nomor_transfer' };
+                readonly status: { readonly column: 'status' };
+              };
+            };
+          };
+          readonly variasi_aset: {
+            readonly fields: {
+              readonly aktif: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly dibuat_pada: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_kategori_aset: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly kode: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly nama: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly satuan: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: {
+              readonly kategori_aset: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'kategori_aset';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_kategori_aset'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'variasi_aset';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly aktif: { readonly column: 'aktif' };
+                readonly dibuat_pada: { readonly column: 'dibuat_pada' };
+                readonly id: { readonly column: 'id' };
+                readonly id_kategori_aset: { readonly column: 'id_kategori_aset' };
+                readonly kode: { readonly column: 'kode' };
+                readonly nama: { readonly column: 'nama' };
+                readonly satuan: { readonly column: 'satuan' };
+              };
+            };
+          };
+          readonly variasi_aset_merek: {
+            readonly fields: {
+              readonly aktif: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_merek: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+              readonly id_variasi_aset: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/uuid@1' };
+              };
+            };
+            readonly relations: {
+              readonly merek: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'merek';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_merek'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+              readonly variasi_aset: {
+                readonly to: {
+                  readonly namespace: 'sarpras' & NamespaceId;
+                  readonly model: 'variasi_aset';
+                };
+                readonly cardinality: 'N:1';
+                readonly nullable: false;
+                readonly on: {
+                  readonly localFields: readonly ['id_variasi_aset'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'variasi_aset_merek';
+              readonly namespaceId: 'sarpras';
+              readonly fields: {
+                readonly aktif: { readonly column: 'aktif' };
+                readonly id: { readonly column: 'id' };
+                readonly id_merek: { readonly column: 'id_merek' };
+                readonly id_variasi_aset: { readonly column: 'id_variasi_aset' };
+              };
+            };
           };
         };
       };
@@ -847,21 +12639,403 @@ type ContractBase = Omit<
     readonly mutations: {
       readonly defaults: readonly [
         {
-          readonly onCreate: { readonly id: 'timestampNow'; readonly kind: 'generator' };
-          readonly onUpdate: { readonly id: 'timestampNow'; readonly kind: 'generator' };
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
           readonly ref: {
-            readonly column: 'updatedAt';
-            readonly namespace: 'public';
-            readonly table: 'Post';
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'aktor';
           };
         },
         {
-          readonly onCreate: { readonly id: 'timestampNow'; readonly kind: 'generator' };
-          readonly onUpdate: { readonly id: 'timestampNow'; readonly kind: 'generator' };
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
           readonly ref: {
-            readonly column: 'updatedAt';
-            readonly namespace: 'public';
-            readonly table: 'User';
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'alokasi_item_pengadaan_permintaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'aset_tetap';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'dokumen_pengadaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'gudang';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_mutasi_lokasi_aset_tetap';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_mutasi_lokasi_barang_habis_pakai';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_penerimaan_pengadaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_penerimaan_pengiriman';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_penerimaan_transfer_aset_tetap';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_penerimaan_transfer_barang_habis_pakai';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_pengadaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_penghapusan_aset_tetap';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_penghapusan_barang_habis_pakai';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_pengiriman_aset_tetap';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_pengiriman_barang_habis_pakai';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_pengiriman_permintaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_permintaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_transfer_antar_unit_aset_tetap';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'item_transfer_antar_unit_barang_habis_pakai';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'katalog_pemasok';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'kategori_aset';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'merek';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'mutasi_aset_tetap';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'mutasi_lokasi';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'mutasi_stok_barang';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'pemasok';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'pembalikan_pembayaran';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'pembayaran';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'penerimaan_pengadaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'penerimaan_pengiriman';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'penerimaan_transfer';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'pengadaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'penghapusan_aset';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'pengiriman_permintaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'permintaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'reservasi_aset_tetap';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'reservasi_stok_barang';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'retur_permintaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'riwayat_status_item_pengadaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'riwayat_status_pengadaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'riwayat_status_permintaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'riwayat_status_sumber_pemenuhan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'stok_barang_habis_pakai';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'sumber_pemenuhan_permintaan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'tagihan';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'tempat';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'transfer_antar_unit';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'variasi_aset';
+          };
+        },
+        {
+          readonly onCreate: { readonly id: 'uuidv4'; readonly kind: 'generator' };
+          readonly ref: {
+            readonly column: 'id';
+            readonly namespace: 'sarpras';
+            readonly table: 'variasi_aset_merek';
           };
         },
       ];
