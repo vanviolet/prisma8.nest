@@ -18,6 +18,18 @@ model User {
   updatedAt    temporal.updatedAtString()
 }
 
+model UploadedFile {
+  id           Int       @id @default(autoincrement())
+  originalName String
+  storageName  String    @unique
+  mimeType     String
+  size         Int
+  uploadedById Int
+  createdAt    TimestamptzString @default(now())
+
+  @@index([uploadedById, createdAt])
+}
+
 model Post {
   id        Int      @id @default(autoincrement())
   title     String

@@ -8,6 +8,10 @@
       "model": "Post",
       "namespace": "public"
     },
+    "UploadedFile": {
+      "model": "UploadedFile",
+      "namespace": "public"
+    },
     "User": {
       "model": "User",
       "namespace": "public"
@@ -118,6 +122,87 @@
               },
               "namespaceId": "public",
               "table": "Post"
+            }
+          },
+          "UploadedFile": {
+            "fields": {
+              "createdAt": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-string@1",
+                  "kind": "scalar"
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
+              },
+              "mimeType": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "originalName": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "size": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
+              },
+              "storageName": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "uploadedById": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {},
+            "storage": {
+              "fields": {
+                "createdAt": {
+                  "column": "createdAt"
+                },
+                "id": {
+                  "column": "id"
+                },
+                "mimeType": {
+                  "column": "mimeType"
+                },
+                "originalName": {
+                  "column": "originalName"
+                },
+                "size": {
+                  "column": "size"
+                },
+                "storageName": {
+                  "column": "storageName"
+                },
+                "uploadedById": {
+                  "column": "uploadedById"
+                }
+              },
+              "namespaceId": "public",
+              "table": "UploadedFile"
             }
           },
           "User": {
@@ -318,6 +403,77 @@
               },
               "uniques": []
             },
+            "UploadedFile": {
+              "columns": {
+                "createdAt": {
+                  "codecId": "pg/timestamptz-string@1",
+                  "default": {
+                    "expression": "now()",
+                    "kind": "function"
+                  },
+                  "nativeType": "timestamptz",
+                  "nullable": false
+                },
+                "id": {
+                  "codecId": "pg/int4@1",
+                  "default": {
+                    "expression": "autoincrement()",
+                    "kind": "function"
+                  },
+                  "nativeType": "int4",
+                  "nullable": false
+                },
+                "mimeType": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
+                "originalName": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
+                "size": {
+                  "codecId": "pg/int4@1",
+                  "nativeType": "int4",
+                  "nullable": false
+                },
+                "storageName": {
+                  "codecId": "pg/text@1",
+                  "nativeType": "text",
+                  "nullable": false
+                },
+                "uploadedById": {
+                  "codecId": "pg/int4@1",
+                  "nativeType": "int4",
+                  "nullable": false
+                }
+              },
+              "foreignKeys": [],
+              "indexes": [
+                {
+                  "columns": [
+                    "uploadedById",
+                    "createdAt"
+                  ],
+                  "name": "UploadedFile_uploadedById_createdAt_idx_7e8cc7c7",
+                  "prefix": "UploadedFile_uploadedById_createdAt_idx",
+                  "unique": false
+                }
+              ],
+              "primaryKey": {
+                "columns": [
+                  "id"
+                ]
+              },
+              "uniques": [
+                {
+                  "columns": [
+                    "storageName"
+                  ]
+                }
+              ]
+            },
             "User": {
               "checks": [
                 {
@@ -416,7 +572,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "3a0a23daeb3210f62332cca0ff6f131e79db2f735472dee823066c0bfc41c502"
+    "storageHash": "5ddd441747ecc6edca8e2bc2e0f79bc33ef5d8ff1acd2e777a35540947481de2"
   },
   "execution": {
     "executionHash": "796fa270d853489edb1c3e0d332d596412292127a259b856b495a498c752882a",

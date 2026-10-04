@@ -22,9 +22,14 @@ export class LoggingInterceptor implements NestInterceptor {
     const path = request.url.split("?")[0] ?? request.url;
     const startedAt = Date.now();
 
-    const logRequest = (statusCode: number) => {
+    const logRequest = (statusCode: number, errorMessage?: string) => {
       const duration = Date.now() - startedAt;
-      const message = `${method} ${path} ${statusCode} ${duration}ms`;
+      const message = [
+        `${method} ${path} ${statusCode} ${duration}ms`,
+        errorMessage,
+      ]
+        .filter(Boolean)
+        .join(" - ");
 
       if (statusCode >= 500) {
         this.logger.error(message);
@@ -36,8 +41,16 @@ export class LoggingInterceptor implements NestInterceptor {
     return next.handle().pipe(
       tap({
         next: () => logRequest(response.statusCode),
-        error: (error: unknown) =>
-          logRequest(error instanceof HttpException ? error.getStatus() : 500),
+        error: (error: unknown) => {
+          const statusCode = error instanceof HttpException ? error.getStatus() : 500;
+          const errorMessage = error instanceof Error
+            ? error.message
+            : typeof error === "string"
+              ? error
+              : "Unknown error";
+
+          logRequest(statusCode, errorMessage);
+        },
       }),
     );
   }
