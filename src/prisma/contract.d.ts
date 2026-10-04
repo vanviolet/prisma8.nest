@@ -34,7 +34,7 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'5ddd441747ecc6edca8e2bc2e0f79bc33ef5d8ff1acd2e777a35540947481de2'>;
+  StorageHashBase<'21fe8559a5af9bdbff3cb216ae1d83b303733fc1b733659adecc1cac8753e75b'>;
 export type ExecutionHash =
   ExecutionHashBase<'796fa270d853489edb1c3e0d332d596412292127a259b856b495a498c752882a'>;
 export type ProfileHash =
@@ -250,62 +250,62 @@ type DefaultLiteralValue<CodecId extends string, Encoded> = CodecId extends keyo
 
 export type FieldOutputTypes = {
   readonly public: {
-    readonly Post: {
-      readonly authorId: CodecTypes['pg/int4@1']['output'];
+    readonly post: {
+      readonly author_id: CodecTypes['pg/int4@1']['output'];
       readonly content: CodecTypes['pg/text@1']['output'] | null;
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly created_at: CodecTypes['pg/timestamptz-string@1']['output'];
       readonly id: CodecTypes['pg/int4@1']['output'];
       readonly title: CodecTypes['pg/text@1']['output'];
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly updated_at: CodecTypes['pg/timestamptz-string@1']['output'];
     };
-    readonly UploadedFile: {
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
+    readonly uploaded_file: {
+      readonly created_at: CodecTypes['pg/timestamptz-string@1']['output'];
       readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly mimeType: CodecTypes['pg/text@1']['output'];
-      readonly originalName: CodecTypes['pg/text@1']['output'];
+      readonly mime_type: CodecTypes['pg/text@1']['output'];
+      readonly original_name: CodecTypes['pg/text@1']['output'];
       readonly size: CodecTypes['pg/int4@1']['output'];
-      readonly storageName: CodecTypes['pg/text@1']['output'];
-      readonly uploadedById: CodecTypes['pg/int4@1']['output'];
+      readonly storage_name: CodecTypes['pg/text@1']['output'];
+      readonly uploaded_by_id: CodecTypes['pg/int4@1']['output'];
     };
-    readonly User: {
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
+    readonly user: {
+      readonly created_at: CodecTypes['pg/timestamptz-string@1']['output'];
       readonly email: CodecTypes['pg/text@1']['output'];
       readonly id: CodecTypes['pg/int4@1']['output'];
       readonly name: CodecTypes['pg/text@1']['output'] | null;
-      readonly passwordHash: CodecTypes['pg/text@1']['output'] | null;
+      readonly password_hash: CodecTypes['pg/text@1']['output'] | null;
       readonly role: 'USER' | 'ADMIN';
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly updated_at: CodecTypes['pg/timestamptz-string@1']['output'];
       readonly username: CodecTypes['pg/text@1']['output'] | null;
     };
   };
 };
 export type FieldInputTypes = {
   readonly public: {
-    readonly Post: {
-      readonly authorId: CodecTypes['pg/int4@1']['input'];
+    readonly post: {
+      readonly author_id: CodecTypes['pg/int4@1']['input'];
       readonly content: CodecTypes['pg/text@1']['input'] | null;
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly created_at: CodecTypes['pg/timestamptz-string@1']['input'];
       readonly id: CodecTypes['pg/int4@1']['input'];
       readonly title: CodecTypes['pg/text@1']['input'];
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly updated_at: CodecTypes['pg/timestamptz-string@1']['input'];
     };
-    readonly UploadedFile: {
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
+    readonly uploaded_file: {
+      readonly created_at: CodecTypes['pg/timestamptz-string@1']['input'];
       readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly mimeType: CodecTypes['pg/text@1']['input'];
-      readonly originalName: CodecTypes['pg/text@1']['input'];
+      readonly mime_type: CodecTypes['pg/text@1']['input'];
+      readonly original_name: CodecTypes['pg/text@1']['input'];
       readonly size: CodecTypes['pg/int4@1']['input'];
-      readonly storageName: CodecTypes['pg/text@1']['input'];
-      readonly uploadedById: CodecTypes['pg/int4@1']['input'];
+      readonly storage_name: CodecTypes['pg/text@1']['input'];
+      readonly uploaded_by_id: CodecTypes['pg/int4@1']['input'];
     };
-    readonly User: {
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
+    readonly user: {
+      readonly created_at: CodecTypes['pg/timestamptz-string@1']['input'];
       readonly email: CodecTypes['pg/text@1']['input'];
       readonly id: CodecTypes['pg/int4@1']['input'];
       readonly name: CodecTypes['pg/text@1']['input'] | null;
-      readonly passwordHash: CodecTypes['pg/text@1']['input'] | null;
+      readonly password_hash: CodecTypes['pg/text@1']['input'] | null;
       readonly role: 'USER' | 'ADMIN';
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly updated_at: CodecTypes['pg/timestamptz-string@1']['input'];
       readonly username: CodecTypes['pg/text@1']['input'] | null;
     };
   };
@@ -374,45 +374,45 @@ export type StorageColumnInputTypes = {
 };
 
 export namespace Models {
-  export type public_Post = {
-    authorId: CodecTypes['pg/int4@1']['output'];
+  export type public_post = {
+    author_id: CodecTypes['pg/int4@1']['output'];
     content: CodecTypes['pg/text@1']['output'] | null;
-    createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
+    created_at: CodecTypes['pg/timestamptz-string@1']['output'];
     id: CodecTypes['pg/int4@1']['output'];
     title: CodecTypes['pg/text@1']['output'];
-    updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
-    author: public_User;
+    updated_at: CodecTypes['pg/timestamptz-string@1']['output'];
+    author: public_user;
     readonly [RelationKeys]?: 'author';
   };
-  export type public_UploadedFile = {
-    createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
+  export type public_uploaded_file = {
+    created_at: CodecTypes['pg/timestamptz-string@1']['output'];
     id: CodecTypes['pg/int4@1']['output'];
-    mimeType: CodecTypes['pg/text@1']['output'];
-    originalName: CodecTypes['pg/text@1']['output'];
+    mime_type: CodecTypes['pg/text@1']['output'];
+    original_name: CodecTypes['pg/text@1']['output'];
     size: CodecTypes['pg/int4@1']['output'];
-    storageName: CodecTypes['pg/text@1']['output'];
-    uploadedById: CodecTypes['pg/int4@1']['output'];
+    storage_name: CodecTypes['pg/text@1']['output'];
+    uploaded_by_id: CodecTypes['pg/int4@1']['output'];
     readonly [RelationKeys]?: never;
   };
-  export type public_User = {
-    createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
+  export type public_user = {
+    created_at: CodecTypes['pg/timestamptz-string@1']['output'];
     email: CodecTypes['pg/text@1']['output'];
     id: CodecTypes['pg/int4@1']['output'];
     name: CodecTypes['pg/text@1']['output'] | null;
-    passwordHash: CodecTypes['pg/text@1']['output'] | null;
+    password_hash: CodecTypes['pg/text@1']['output'] | null;
     role: 'USER' | 'ADMIN';
-    updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
+    updated_at: CodecTypes['pg/timestamptz-string@1']['output'];
     username: CodecTypes['pg/text@1']['output'] | null;
-    posts: public_Post[];
+    posts: public_post[];
     readonly [RelationKeys]?: 'posts';
   };
 }
 
 export declare const models: {
   public: {
-    Post: Models.public_Post;
-    UploadedFile: Models.public_UploadedFile;
-    User: Models.public_User;
+    post: Models.public_post;
+    uploaded_file: Models.public_uploaded_file;
+    user: Models.public_user;
   };
 };
 
@@ -545,7 +545,6 @@ type ContractBase = Omit<
               indexes: readonly [
                 {
                   readonly name: 'UploadedFile_uploadedById_createdAt_idx_7e8cc7c7';
-                  readonly prefix: 'UploadedFile_uploadedById_createdAt_idx';
                   readonly columns: readonly ['uploadedById', 'createdAt'];
                   readonly unique: false;
                 },
@@ -611,7 +610,7 @@ type ContractBase = Omit<
             };
           };
           readonly valueSet: {
-            readonly user_role: {
+            readonly UserRole: {
               readonly kind: 'valueSet';
               readonly values: readonly ['USER', 'ADMIN'];
             };
@@ -626,20 +625,20 @@ type ContractBase = Omit<
   readonly target: 'postgres';
   readonly targetFamily: 'sql';
   readonly roots: {
-    readonly Post: { readonly namespace: 'public' & NamespaceId; readonly model: 'Post' };
+    readonly Post: { readonly namespace: 'public' & NamespaceId; readonly model: 'post' };
     readonly UploadedFile: {
       readonly namespace: 'public' & NamespaceId;
-      readonly model: 'UploadedFile';
+      readonly model: 'uploaded_file';
     };
-    readonly User: { readonly namespace: 'public' & NamespaceId; readonly model: 'User' };
+    readonly User: { readonly namespace: 'public' & NamespaceId; readonly model: 'user' };
   };
   readonly domain: {
     readonly namespaces: {
       readonly public: {
         readonly models: {
-          readonly Post: {
+          readonly post: {
             readonly fields: {
-              readonly authorId: {
+              readonly author_id: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
               };
@@ -647,7 +646,7 @@ type ContractBase = Omit<
                 readonly nullable: true;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly createdAt: {
+              readonly created_at: {
                 readonly nullable: false;
                 readonly type: {
                   readonly kind: 'scalar';
@@ -662,7 +661,7 @@ type ContractBase = Omit<
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly updatedAt: {
+              readonly updated_at: {
                 readonly nullable: false;
                 readonly type: {
                   readonly kind: 'scalar';
@@ -672,11 +671,11 @@ type ContractBase = Omit<
             };
             readonly relations: {
               readonly author: {
-                readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'User' };
+                readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'user' };
                 readonly cardinality: 'N:1';
                 readonly nullable: false;
                 readonly on: {
-                  readonly localFields: readonly ['authorId'];
+                  readonly localFields: readonly ['author_id'];
                   readonly targetFields: readonly ['id'];
                 };
               };
@@ -685,18 +684,18 @@ type ContractBase = Omit<
               readonly table: 'Post';
               readonly namespaceId: 'public';
               readonly fields: {
-                readonly authorId: { readonly column: 'authorId' };
+                readonly author_id: { readonly column: 'authorId' };
                 readonly content: { readonly column: 'content' };
-                readonly createdAt: { readonly column: 'createdAt' };
+                readonly created_at: { readonly column: 'createdAt' };
                 readonly id: { readonly column: 'id' };
                 readonly title: { readonly column: 'title' };
-                readonly updatedAt: { readonly column: 'updatedAt' };
+                readonly updated_at: { readonly column: 'updatedAt' };
               };
             };
           };
-          readonly UploadedFile: {
+          readonly uploaded_file: {
             readonly fields: {
-              readonly createdAt: {
+              readonly created_at: {
                 readonly nullable: false;
                 readonly type: {
                   readonly kind: 'scalar';
@@ -707,11 +706,11 @@ type ContractBase = Omit<
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
               };
-              readonly mimeType: {
+              readonly mime_type: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly originalName: {
+              readonly original_name: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
@@ -719,11 +718,11 @@ type ContractBase = Omit<
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
               };
-              readonly storageName: {
+              readonly storage_name: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly uploadedById: {
+              readonly uploaded_by_id: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
               };
@@ -733,19 +732,19 @@ type ContractBase = Omit<
               readonly table: 'UploadedFile';
               readonly namespaceId: 'public';
               readonly fields: {
-                readonly createdAt: { readonly column: 'createdAt' };
+                readonly created_at: { readonly column: 'createdAt' };
                 readonly id: { readonly column: 'id' };
-                readonly mimeType: { readonly column: 'mimeType' };
-                readonly originalName: { readonly column: 'originalName' };
+                readonly mime_type: { readonly column: 'mimeType' };
+                readonly original_name: { readonly column: 'originalName' };
                 readonly size: { readonly column: 'size' };
-                readonly storageName: { readonly column: 'storageName' };
-                readonly uploadedById: { readonly column: 'uploadedById' };
+                readonly storage_name: { readonly column: 'storageName' };
+                readonly uploaded_by_id: { readonly column: 'uploadedById' };
               };
             };
           };
-          readonly User: {
+          readonly user: {
             readonly fields: {
-              readonly createdAt: {
+              readonly created_at: {
                 readonly nullable: false;
                 readonly type: {
                   readonly kind: 'scalar';
@@ -764,7 +763,7 @@ type ContractBase = Omit<
                 readonly nullable: true;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly passwordHash: {
+              readonly password_hash: {
                 readonly nullable: true;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
@@ -772,7 +771,7 @@ type ContractBase = Omit<
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly updatedAt: {
+              readonly updated_at: {
                 readonly nullable: false;
                 readonly type: {
                   readonly kind: 'scalar';
@@ -786,11 +785,11 @@ type ContractBase = Omit<
             };
             readonly relations: {
               readonly posts: {
-                readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'Post' };
+                readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'post' };
                 readonly cardinality: '1:N';
                 readonly on: {
                   readonly localFields: readonly ['id'];
-                  readonly targetFields: readonly ['authorId'];
+                  readonly targetFields: readonly ['author_id'];
                 };
               };
             };
@@ -798,20 +797,20 @@ type ContractBase = Omit<
               readonly table: 'User';
               readonly namespaceId: 'public';
               readonly fields: {
-                readonly createdAt: { readonly column: 'createdAt' };
+                readonly created_at: { readonly column: 'createdAt' };
                 readonly email: { readonly column: 'email' };
                 readonly id: { readonly column: 'id' };
                 readonly name: { readonly column: 'name' };
-                readonly passwordHash: { readonly column: 'passwordHash' };
+                readonly password_hash: { readonly column: 'passwordHash' };
                 readonly role: { readonly column: 'role' };
-                readonly updatedAt: { readonly column: 'updatedAt' };
+                readonly updated_at: { readonly column: 'updatedAt' };
                 readonly username: { readonly column: 'username' };
               };
             };
           };
         };
         readonly enum: {
-          readonly user_role: {
+          readonly UserRole: {
             readonly codecId: 'pg/text@1';
             readonly members: readonly [
               { readonly name: 'USER'; readonly value: 'USER' },

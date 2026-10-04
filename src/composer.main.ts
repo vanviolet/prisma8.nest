@@ -2,13 +2,13 @@ import "reflect-metadata";
 
 import { Logger } from "@nestjs/common";
 import service from "../service.ts";
-import { bootstrapApplication } from "./bootstrap";
-import { parseEnvironment } from "./config/env.schema";
+import { bootstrap_application } from "./bootstrap";
+import { parse_environment } from "./config/schema.env";
 
-async function bootstrapComposerApplication(): Promise<void> {
+async function bootstrap_composer_application(): Promise<void> {
   service.load();
   const input = service.input();
-  const environment = parseEnvironment({
+  const environment = parse_environment({
     NODE_ENV: input.nodeEnv,
     PORT: service.port(),
     JWT_SECRET: input.jwtSecret.expose(),
@@ -16,10 +16,10 @@ async function bootstrapComposerApplication(): Promise<void> {
     CORS_ORIGIN: input.corsOrigin,
   });
 
-  await bootstrapApplication(environment);
+  await bootstrap_application(environment);
 }
 
-bootstrapComposerApplication().catch(() => {
+bootstrap_composer_application().catch(() => {
   Logger.error(
     "Application failed to start; check Composer bindings and database configuration",
     undefined,

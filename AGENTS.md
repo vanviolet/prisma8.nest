@@ -27,21 +27,21 @@ Di setiap feature module, simpan DTO sesuai jenisnya:
 - d.request/ untuk body/request DTO.
 - d.response/ untuk response DTO.
 
-Contoh nama file entity-first: user.query.dto.ts, user.create.dto.ts, user.update.dto.ts, user.response.dto.ts, users.response.dto.ts. Gunakan lowercase dan titik sebagai pemisah. DTO bersama tetap berada di src/common/dto/.
+Nama file memakai kategori di depan dan titik sebagai pemisah, misalnya `dto.user.query.ts`, `dto.user.create.ts`, `dto.user.response.ts`, `enum.user.role.ts`, dan `decorator.api.endpoint.ts`. Ganti tanda hubung pada nama file dengan titik. DTO bersama tetap berada di `src/common/dto/`.
 
 - Gunakan class untuk DTO request agar validation, transformation, dan Swagger bekerja.
-- Pakai decorator dari src/common/decorators/field.decorator.ts untuk field DTO. Hindari menumpuk decorator Swagger dan validator yang melakukan hal sama.
+- Pakai decorator PascalCase dari `src/common/decorators/decorator.field.ts` untuk field DTO. Hindari menumpuk decorator Swagger dan validator yang melakukan hal sama.
 - Jangan gunakan model Prisma sebagai response DTO. Mapping database ke response dilakukan di mapper.
 
 ## API dan Swagger
 
 OpenAPI adalah kontrak publik.
 
-- Gunakan ApiEndpoint untuk operation summary, operationId, dan metadata auth. Letakkan @ApiEndpoint di atas @Roles atau @Public agar metadata akses terbaca.
-- Gunakan decorator response yang ada di api.response.decorator.ts.
+- Gunakan `@ApiEndpoint` untuk operation summary, operationId, dan metadata auth. Letakkan di atas `@Roles` atau `@Public` agar metadata akses terbaca.
+- Gunakan decorator response yang ada di `decorator.api.response.ts`.
 - Beri enum yang diekspos schema name stabil.
-- Gunakan bentuk response project: single { data }, collection { data, meta }, message { message }, dan error berisi statusCode, code, message, timestamp, serta path.
-- Collection memakai page, limit, search, sortBy, dan sortOrder bila relevan. Sorting wajib memakai whitelist.
+- Gunakan bentuk response project: single { data }, collection { data, meta }, message { message }, dan error berisi status_code, code, message, timestamp, serta path.
+- Collection memakai page, limit, search, sort_by, dan sort_order bila relevan. Sorting wajib memakai whitelist.
 - Jangan mengubah route, operationId, status, atau schema tanpa alasan requirement.
 
 ## Prisma dan database
@@ -49,9 +49,19 @@ OpenAPI adalah kontrak publik.
 Project memakai Prisma 8. Sebelum menulis query atau mengubah contract/migration, baca skill yang sesuai di .agents/skills/prisma-8/ dan referensi versinya. Verifikasi versi package dan contract artifacts terlebih dahulu.
 
 - Semua query domain berada di repository dan mengikuti API Prisma 8 yang terpasang.
-- Jangan expose error Prisma/SQL atau informasi internal kepada client; gunakan ErrorCode aplikasi.
+- Jangan expose error Prisma/SQL atau informasi internal kepada client; gunakan enum `ErrorCode` aplikasi.
 - Perubahan schema harus konsisten dengan contract, migration, repository, DTO, mapper, dan Swagger.
 - Jangan mengedit contract.json, contract.d.ts, atau file generated secara manual; ubah sumbernya lalu jalankan generator yang sesuai.
+
+## Konvensi penamaan
+
+- Gunakan `snake_case` huruf kecil untuk fungsi, method, variabel, parameter, properti dan field DTO yang didefinisikan project. Contoh: `findMany` menjadi `find_many` dan `updatedAt` menjadi `updated_at`.
+- Gunakan `PascalCase` untuk class, interface, type alias, enum TypeScript/Prisma, dan nama decorator seperti `ApiEndpoint`, `CurrentUser`, serta `StringField`. Enum member TypeScript memakai `snake_case`; member Prisma mengikuti kontrak database.
+- Gunakan `snake_case` untuk model dan field Prisma. Contoh: `model UploadedFile` menjadi `model uploaded_file`.
+- Pertahankan ejaan identifier yang diwajibkan framework atau dependency agar cocok dengan kontrak eksternal, misalnya lifecycle method `onModuleInit`, method interceptor `intercept`, dan decorator NestJS `UploadedFile`.
+- Untuk nama file, letakkan kategori di depan dan pisahkan semua bagian dengan titik; jangan gunakan tanda hubung.
+- Nama environment variable dan nama fisik database yang dipertahankan lewat `@map`/`@@map` mengikuti kontrak eksternalnya.
+- Nama field DTO dan parameter query publik menggunakan `snake_case`. Pertahankan route, status, dan `operationId` OpenAPI yang sudah ada kecuali requirement meminta perubahan.
 
 ## TypeScript, validasi, dan keamanan
 

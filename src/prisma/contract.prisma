@@ -1,41 +1,46 @@
 // use prisma-8
 
-enum user_role {
+enum UserRole {
   @@type("pg/text@1")
   USER  = "USER"
   ADMIN = "ADMIN"
 }
 
-model User {
-  id           Int       @id @default(autoincrement())
-  email        String    @unique
-  username     String?
-  name         String?
-  passwordHash String?
-  role         user_role @default(USER)
-  posts        Post[]
-  createdAt    TimestamptzString @default(now())
-  updatedAt    temporal.updatedAtString()
+model user {
+  id            Int       @id @default(autoincrement())
+  email         String    @unique
+  username      String?
+  name          String?
+  password_hash String?   @map("passwordHash")
+  role          UserRole @default(USER)
+  posts         post[]
+  created_at    TimestamptzString @default(now()) @map("createdAt")
+  updated_at    temporal.updatedAtString() @map("updatedAt")
+
+  @@map("User")
 }
 
-model UploadedFile {
-  id           Int       @id @default(autoincrement())
-  originalName String
-  storageName  String    @unique
-  mimeType     String
-  size         Int
-  uploadedById Int
-  createdAt    TimestamptzString @default(now())
+model uploaded_file {
+  id              Int       @id @default(autoincrement())
+  original_name   String    @map("originalName")
+  storage_name    String    @unique @map("storageName")
+  mime_type       String    @map("mimeType")
+  size            Int
+  uploaded_by_id  Int       @map("uploadedById")
+  created_at      TimestamptzString @default(now()) @map("createdAt")
 
-  @@index([uploadedById, createdAt])
+  @@index([uploaded_by_id, created_at], map: "UploadedFile_uploadedById_createdAt_idx_7e8cc7c7")
+  @@map("UploadedFile")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String?
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int
-  createdAt TimestamptzString @default(now())
-  updatedAt temporal.updatedAtString()
+model post {
+  id         Int      @id @default(autoincrement())
+  title      String
+  content    String?
+  author     user     @relation(fields: [author_id], references: [id])
+  author_id  Int      @map("authorId")
+  created_at TimestamptzString @default(now()) @map("createdAt")
+  updated_at temporal.updatedAtString() @map("updatedAt")
+
+  @@map("Post")
 }

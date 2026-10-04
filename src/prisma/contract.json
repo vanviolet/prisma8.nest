@@ -5,15 +5,15 @@
   "profileHash": "3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2",
   "roots": {
     "Post": {
-      "model": "Post",
+      "model": "post",
       "namespace": "public"
     },
     "UploadedFile": {
-      "model": "UploadedFile",
+      "model": "uploaded_file",
       "namespace": "public"
     },
     "User": {
-      "model": "User",
+      "model": "user",
       "namespace": "public"
     }
   },
@@ -21,7 +21,7 @@
     "namespaces": {
       "public": {
         "enum": {
-          "user_role": {
+          "UserRole": {
             "codecId": "pg/text@1",
             "members": [
               {
@@ -36,9 +36,9 @@
           }
         },
         "models": {
-          "Post": {
+          "post": {
             "fields": {
-              "authorId": {
+              "author_id": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/int4@1",
@@ -52,7 +52,7 @@
                   "kind": "scalar"
                 }
               },
-              "createdAt": {
+              "created_at": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/timestamptz-string@1",
@@ -73,7 +73,7 @@
                   "kind": "scalar"
                 }
               },
-              "updatedAt": {
+              "updated_at": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/timestamptz-string@1",
@@ -87,27 +87,27 @@
                 "nullable": false,
                 "on": {
                   "localFields": [
-                    "authorId"
+                    "author_id"
                   ],
                   "targetFields": [
                     "id"
                   ]
                 },
                 "to": {
-                  "model": "User",
+                  "model": "user",
                   "namespace": "public"
                 }
               }
             },
             "storage": {
               "fields": {
-                "authorId": {
+                "author_id": {
                   "column": "authorId"
                 },
                 "content": {
                   "column": "content"
                 },
-                "createdAt": {
+                "created_at": {
                   "column": "createdAt"
                 },
                 "id": {
@@ -116,7 +116,7 @@
                 "title": {
                   "column": "title"
                 },
-                "updatedAt": {
+                "updated_at": {
                   "column": "updatedAt"
                 }
               },
@@ -124,9 +124,9 @@
               "table": "Post"
             }
           },
-          "UploadedFile": {
+          "uploaded_file": {
             "fields": {
-              "createdAt": {
+              "created_at": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/timestamptz-string@1",
@@ -140,14 +140,14 @@
                   "kind": "scalar"
                 }
               },
-              "mimeType": {
+              "mime_type": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/text@1",
                   "kind": "scalar"
                 }
               },
-              "originalName": {
+              "original_name": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/text@1",
@@ -161,14 +161,14 @@
                   "kind": "scalar"
                 }
               },
-              "storageName": {
+              "storage_name": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/text@1",
                   "kind": "scalar"
                 }
               },
-              "uploadedById": {
+              "uploaded_by_id": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/int4@1",
@@ -179,25 +179,25 @@
             "relations": {},
             "storage": {
               "fields": {
-                "createdAt": {
+                "created_at": {
                   "column": "createdAt"
                 },
                 "id": {
                   "column": "id"
                 },
-                "mimeType": {
+                "mime_type": {
                   "column": "mimeType"
                 },
-                "originalName": {
+                "original_name": {
                   "column": "originalName"
                 },
                 "size": {
                   "column": "size"
                 },
-                "storageName": {
+                "storage_name": {
                   "column": "storageName"
                 },
-                "uploadedById": {
+                "uploaded_by_id": {
                   "column": "uploadedById"
                 }
               },
@@ -205,9 +205,9 @@
               "table": "UploadedFile"
             }
           },
-          "User": {
+          "user": {
             "fields": {
-              "createdAt": {
+              "created_at": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/timestamptz-string@1",
@@ -235,7 +235,7 @@
                   "kind": "scalar"
                 }
               },
-              "passwordHash": {
+              "password_hash": {
                 "nullable": true,
                 "type": {
                   "codecId": "pg/text@1",
@@ -250,12 +250,12 @@
                 },
                 "valueSet": {
                   "entityKind": "enum",
-                  "entityName": "user_role",
+                  "entityName": "UserRole",
                   "namespaceId": "public",
                   "plane": "domain"
                 }
               },
-              "updatedAt": {
+              "updated_at": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/timestamptz-string@1",
@@ -278,18 +278,18 @@
                     "id"
                   ],
                   "targetFields": [
-                    "authorId"
+                    "author_id"
                   ]
                 },
                 "to": {
-                  "model": "Post",
+                  "model": "post",
                   "namespace": "public"
                 }
               }
             },
             "storage": {
               "fields": {
-                "createdAt": {
+                "created_at": {
                   "column": "createdAt"
                 },
                 "email": {
@@ -301,13 +301,13 @@
                 "name": {
                   "column": "name"
                 },
-                "passwordHash": {
+                "password_hash": {
                   "column": "passwordHash"
                 },
                 "role": {
                   "column": "role"
                 },
-                "updatedAt": {
+                "updated_at": {
                   "column": "updatedAt"
                 },
                 "username": {
@@ -457,7 +457,6 @@
                     "createdAt"
                   ],
                   "name": "UploadedFile_uploadedById_createdAt_idx_7e8cc7c7",
-                  "prefix": "UploadedFile_uploadedById_createdAt_idx",
                   "unique": false
                 }
               ],
@@ -526,7 +525,7 @@
                   "nullable": false,
                   "valueSet": {
                     "entityKind": "valueSet",
-                    "entityName": "user_role",
+                    "entityName": "UserRole",
                     "namespaceId": "public",
                     "plane": "storage"
                   }
@@ -559,7 +558,7 @@
             }
           },
           "valueSet": {
-            "user_role": {
+            "UserRole": {
               "kind": "valueSet",
               "values": [
                 "USER",
@@ -572,7 +571,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "5ddd441747ecc6edca8e2bc2e0f79bc33ef5d8ff1acd2e777a35540947481de2"
+    "storageHash": "21fe8559a5af9bdbff3cb216ae1d83b303733fc1b733659adecc1cac8753e75b"
   },
   "execution": {
     "executionHash": "796fa270d853489edb1c3e0d332d596412292127a259b856b495a498c752882a",

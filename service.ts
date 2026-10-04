@@ -4,7 +4,7 @@ import { postgres } from "@prisma/composer-prisma-cloud/orm";
 import { type } from "arktype";
 import { secretString } from "@prisma/composer/arktype";
 
-import { appContract } from "./src/prisma/composer.ts";
+import { app_contract } from "./src/prisma/composer.ts";
 
 export default compute({
   name: "app",
@@ -15,7 +15,7 @@ export default compute({
     "nodeEnv?": "string",
   }),
   deps: {
-    database: postgres(appContract),
+    database: postgres(app_contract),
   },
   build: node({ module: import.meta.url, entry: "./dist/composer-server.mjs" }),
 });

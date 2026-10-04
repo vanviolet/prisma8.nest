@@ -1,6 +1,6 @@
 import { definePrismaConfig } from "prisma/config";
 import { defineConfig as ormConfig } from "@prisma/orm-postgres/config";
-import { getDatabaseUrl } from "./src/config/database.config";
+import { get_database_url } from "./src/config/config.database";
 
 export default definePrismaConfig({
   skills: {
@@ -9,7 +9,7 @@ export default definePrismaConfig({
   orm: ormConfig({
     contract: "./src/prisma/contract.prisma",
     db: {
-      connection: getDatabaseUrl()!,
+      connection: get_database_url()!,
     },
   }),
   composer: {
