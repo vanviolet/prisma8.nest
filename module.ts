@@ -2,14 +2,14 @@ import { module } from "@prisma/composer";
 import { envParam, envSecret } from "@prisma/composer-prisma-cloud";
 import { postgres } from "@prisma/composer-prisma-cloud/orm";
 
-import { appContract } from "./src/prisma/composer.ts";
+import { app_contract } from "./src/prisma/composer.ts";
 import app from "./service.ts";
 
 export default module("nest-template", ({ provision }) => {
   const database = provision(
     postgres({
       name: "database",
-      contract: appContract,
+      contract: app_contract,
       config: "./prisma.config.ts",
     }),
     { id: "database" },

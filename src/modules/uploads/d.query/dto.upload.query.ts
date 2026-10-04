@@ -1,7 +1,7 @@
-import { EnumField, StringField } from "../../../common/decorators/decorator.field";
-import { PaginationQueryDto } from "../../../common/dto/dto.pagination.query";
-import { SortOrder } from "../../../common/enums/enum.sort.order";
-import { upload_sort_fields, type UploadSortField } from "../constants.uploads";
+import { EnumField, StringField } from "@/common/decorators/decorator.field";
+import { PaginationQueryDto } from "@/common/dto/dto.pagination.query";
+import { SortOrder } from "@/common/enums/enum.sort.order";
+import { upload_sort_fields, type UploadSortField } from "@/modules/uploads/constants.uploads";
 
 export class UploadQueryDto extends PaginationQueryDto {
   @StringField({ required: false, max_length: 100 })

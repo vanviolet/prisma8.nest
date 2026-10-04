@@ -1,10 +1,10 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import type { CanActivate, ExecutionContext } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
-import type { RequestContext } from "../../../common/types/type.request.context";
-import { is_public_key } from "../../../common/decorators/decorator.public";
-import { authorization_scheme } from "../constant.auth";
-import { AuthService } from "../service.auth";
+import type { RequestContext } from "@/common/types/type.request.context";
+import { is_public_key } from "@/common/decorators/decorator.public";
+import { authorization_scheme } from "@/modules/auth/constant.auth";
+import { AuthService } from "@/modules/auth/service.auth";
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {

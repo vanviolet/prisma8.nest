@@ -3,8 +3,8 @@ import {
   EnumField,
   IntField,
   StringField,
-} from "../../../common/decorators/decorator.field";
-import { user_role, type UserRole } from "../../../common/enums/enum.user.role";
+} from "@/common/decorators/decorator.field";
+import { user_role, type UserRole } from "@/common/enums/enum.user.role";
 
 export class UserResponseDto {
   @IntField({ example: 42 })

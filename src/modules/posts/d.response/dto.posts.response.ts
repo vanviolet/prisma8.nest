@@ -1,5 +1,5 @@
-import { NestedField } from "../../../common/decorators/decorator.field";
-import { PaginationMetaDto } from "../../../common/dto/dto.pagination.meta";
+import { NestedField } from "@/common/decorators/decorator.field";
+import { PaginationMetaDto } from "@/common/dto/dto.pagination.meta";
 import { PostResponseDto } from "./dto.post.response";
 
 export class PostsResponseDto {

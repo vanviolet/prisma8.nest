@@ -1,4 +1,4 @@
-import { IntField, StringField } from "../../../common/decorators/decorator.field";
+import { IntField, StringField } from "@/common/decorators/decorator.field";
 
 export class LoginResponseDto {
   @StringField({ example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", max_length: 4096 })

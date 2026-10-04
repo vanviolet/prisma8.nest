@@ -1,4 +1,4 @@
-import { StringField } from "../../../common/decorators/decorator.field";
+import { StringField } from "@/common/decorators/decorator.field";
 
 export class CreatePostDto {
   @StringField({ example: "First post", max_length: 255 })

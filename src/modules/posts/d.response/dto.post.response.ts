@@ -1,7 +1,7 @@
 import {
   IntField,
   StringField,
-} from "../../../common/decorators/decorator.field";
+} from "@/common/decorators/decorator.field";
 
 export class PostResponseDto {
   @IntField({ example: 42 })

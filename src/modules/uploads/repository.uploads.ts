@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { or } from "@prisma/orm-postgres/orm-client";
-import { PrismaService } from "../../prisma/service.prisma";
-import type { Models } from "../../prisma/contract.d.ts";
+import { PrismaService } from "@/prisma/service.prisma";
+import type { Models } from "@/prisma/contract.d.ts";
 import type { UploadQueryDto } from "./d.query/dto.upload.query";
 
 type UploadRecord = Pick<

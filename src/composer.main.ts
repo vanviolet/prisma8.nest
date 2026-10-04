@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import { Logger } from "@nestjs/common";
-import service from "../service.ts";
+import service from "@service";
 import { bootstrap_application } from "./bootstrap";
 import { parse_environment } from "./config/schema.env";
 

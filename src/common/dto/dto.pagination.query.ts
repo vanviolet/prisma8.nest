@@ -1,4 +1,4 @@
-import { IntField } from "../decorators/decorator.field";
+import { IntField } from "@/common/decorators/decorator.field";
 
 export class PaginationQueryDto {
   @IntField({ required: false, min: 1, default: 1 })

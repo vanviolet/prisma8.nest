@@ -1,9 +1,18 @@
-import { EnumField, StringField } from "../../../common/decorators/decorator.field";
-import { PaginationQueryDto } from "../../../common/dto/dto.pagination.query";
-import { user_role, type UserRole } from "../../../common/enums/enum.user.role";
-import { SortOrder } from "../../../common/enums/enum.sort.order";
+import {
+  EnumField,
+  StringField,
+} from "@/common/decorators/decorator.field";
+import { PaginationQueryDto } from "@/common/dto/dto.pagination.query";
+import { user_role, type UserRole } from "@/common/enums/enum.user.role";
+import { SortOrder } from "@/common/enums/enum.sort.order";
 
-export const user_sort_fields = ["created_at", "email", "name", "username", "role"] as const;
+export const user_sort_fields = [
+  "created_at",
+  "email",
+  "name",
+  "username",
+  "role",
+] as const;
 export type UserSortField = (typeof user_sort_fields)[number];
 
 export class UserQueryDto extends PaginationQueryDto {

@@ -1,6 +1,6 @@
-import { EnumField, StringField } from "../../../common/decorators/decorator.field";
-import { PaginationQueryDto } from "../../../common/dto/dto.pagination.query";
-import { SortOrder } from "../../../common/enums/enum.sort.order";
+import { EnumField, StringField } from "@/common/decorators/decorator.field";
+import { PaginationQueryDto } from "@/common/dto/dto.pagination.query";
+import { SortOrder } from "@/common/enums/enum.sort.order";
 
 export const post_sort_fields = ["created_at", "title"] as const;
 export type PostSortField = (typeof post_sort_fields)[number];

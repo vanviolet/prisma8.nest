@@ -3,8 +3,8 @@ import {
   IntField,
   NestedField,
   StringField,
-} from "../decorators/decorator.field";
-import { ErrorCode } from "../enums/enum.error.code";
+} from "@/common/decorators/decorator.field";
+import { ErrorCode } from "@/common/enums/enum.error.code";
 
 export class ValidationErrorDto {
   @StringField({ example: "email" })

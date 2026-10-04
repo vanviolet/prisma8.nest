@@ -1,8 +1,8 @@
 import { HttpStatus, Injectable } from "@nestjs/common";
-import { AppException } from "../../common/exceptions/exception.app";
-import { ErrorCode } from "../../common/enums/enum.error.code";
-import { hash_password } from "../../common/utils/util.password";
-import { normalize_email } from "../../common/utils/util.string";
+import { AppException } from "@/common/exceptions/exception.app";
+import { ErrorCode } from "@/common/enums/enum.error.code";
+import { hash_password } from "@/common/utils/util.password";
+import { normalize_email } from "@/common/utils/util.string";
 import type { UserQueryDto } from "./d.query/dto.user.query";
 import type { CreateUserDto } from "./d.request/dto.user.create";
 import type { UpdateUserDto } from "./d.request/dto.user.update";
@@ -30,7 +30,11 @@ export class UsersService {
   async get_user(id: number) {
     const user = await this.users_repository.find_by_id(id);
     if (!user) {
-      throw new AppException(ErrorCode.user_not_found, HttpStatus.NOT_FOUND, "User not found");
+      throw new AppException(
+        ErrorCode.user_not_found,
+        HttpStatus.NOT_FOUND,
+        "User not found",
+      );
     }
     return map_user(user);
   }
@@ -68,15 +72,25 @@ export class UsersService {
 
     const existing_user = await this.users_repository.find_by_id(id);
     if (!existing_user) {
-      throw new AppException(ErrorCode.user_not_found, HttpStatus.NOT_FOUND, "User not found");
+      throw new AppException(
+        ErrorCode.user_not_found,
+        HttpStatus.NOT_FOUND,
+        "User not found",
+      );
     }
 
     const updated_user = await this.users_repository.update(id, {
       ...(input.name === undefined ? {} : { name: input.name }),
-      ...(input.password === undefined ? {} : { password_hash: await hash_password(input.password) }),
+      ...(input.password === undefined
+        ? {}
+        : { password_hash: await hash_password(input.password) }),
     });
     if (!updated_user) {
-      throw new AppException(ErrorCode.user_not_found, HttpStatus.NOT_FOUND, "User not found");
+      throw new AppException(
+        ErrorCode.user_not_found,
+        HttpStatus.NOT_FOUND,
+        "User not found",
+      );
     }
 
     return map_user(updated_user);
@@ -85,7 +99,11 @@ export class UsersService {
   async delete_user(id: number): Promise<{ message: string }> {
     const existing_user = await this.users_repository.find_by_id(id);
     if (!existing_user) {
-      throw new AppException(ErrorCode.user_not_found, HttpStatus.NOT_FOUND, "User not found");
+      throw new AppException(
+        ErrorCode.user_not_found,
+        HttpStatus.NOT_FOUND,
+        "User not found",
+      );
     }
 
     await this.users_repository.delete(id);

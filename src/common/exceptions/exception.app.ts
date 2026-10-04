@@ -1,6 +1,6 @@
 import { HttpException } from "@nestjs/common";
-import { ErrorCode } from "../enums/enum.error.code";
-import type { ValidationErrorDto } from "../dto/dto.error.response";
+import { ErrorCode } from "@/common/enums/enum.error.code";
+import type { ValidationErrorDto } from "@/common/dto/dto.error.response";
 
 export class AppException extends HttpException {
   constructor(

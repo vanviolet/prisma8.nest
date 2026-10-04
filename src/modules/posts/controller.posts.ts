@@ -1,17 +1,17 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { ApiEndpoint } from "../../common/decorators/decorator.api.endpoint";
+import { ApiEndpoint } from "@/common/decorators/decorator.api.endpoint";
 import {
   ApiDataResponse,
   ApiErrorResponses,
   ApiMessageResponse,
   ApiPaginatedResponse,
-} from "../../common/decorators/decorator.api.response";
-import { CurrentUser } from "../../common/decorators/decorator.current.user";
-import { Public } from "../../common/decorators/decorator.public";
-import { Roles } from "../../common/decorators/decorator.roles";
-import { user_role } from "../../common/enums/enum.user.role";
-import type { AuthenticatedUser } from "../../common/types/type.request.context";
+} from "@/common/decorators/decorator.api.response";
+import { CurrentUser } from "@/common/decorators/decorator.current.user";
+import { Public } from "@/common/decorators/decorator.public";
+import { Roles } from "@/common/decorators/decorator.roles";
+import { user_role } from "@/common/enums/enum.user.role";
+import type { AuthenticatedUser } from "@/common/types/type.request.context";
 import { PostQueryDto } from "./d.query/dto.post.query";
 import { CreatePostDto } from "./d.request/dto.post.create";
 import { UpdatePostDto } from "./d.request/dto.post.update";

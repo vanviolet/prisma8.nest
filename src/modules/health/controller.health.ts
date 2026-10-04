@@ -1,8 +1,8 @@
 import { Controller, Get } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { ApiEndpoint } from "../../common/decorators/decorator.api.endpoint";
-import { ApiDataResponse, ApiErrorResponses } from "../../common/decorators/decorator.api.response";
-import { Public } from "../../common/decorators/decorator.public";
+import { ApiEndpoint } from "@/common/decorators/decorator.api.endpoint";
+import { ApiDataResponse, ApiErrorResponses } from "@/common/decorators/decorator.api.response";
+import { Public } from "@/common/decorators/decorator.public";
 import { HealthResponseDto } from "./d.response/dto.health.response";
 
 @ApiTags("Health")

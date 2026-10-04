@@ -12,18 +12,24 @@ import {
   StreamableFile,
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { ApiBody, ApiConsumes, ApiProduces, ApiResponse, ApiTags } from "@nestjs/swagger";
+import {
+  ApiBody,
+  ApiConsumes,
+  ApiProduces,
+  ApiResponse,
+  ApiTags,
+} from "@nestjs/swagger";
 import { createReadStream } from "node:fs";
-import { ErrorResponseDto } from "../../common/dto/dto.error.response";
-import { ApiEndpoint } from "../../common/decorators/decorator.api.endpoint";
+import { ErrorResponseDto } from "@/common/dto/dto.error.response";
+import { ApiEndpoint } from "@/common/decorators/decorator.api.endpoint";
 import {
   ApiDataResponse,
   ApiErrorResponses,
   ApiMessageResponse,
   ApiPaginatedResponse,
-} from "../../common/decorators/decorator.api.response";
-import { CurrentUser } from "../../common/decorators/decorator.current.user";
-import type { AuthenticatedUser } from "../../common/types/type.request.context";
+} from "@/common/decorators/decorator.api.response";
+import { CurrentUser } from "@/common/decorators/decorator.current.user";
+import type { AuthenticatedUser } from "@/common/types/type.request.context";
 import { UploadQueryDto } from "./d.query/dto.upload.query";
 import { UploadCreateDto } from "./d.request/dto.upload.create";
 import { UploadResponseDto } from "./d.response/dto.upload.response";
@@ -98,7 +104,9 @@ export class UploadsController {
   ): Promise<StreamableFile> {
     const download = await this.uploads_service.get_download(id, user);
     return new StreamableFile(createReadStream(download.path), {
-      type: is_valid_mime_type(download.mime_type) ? download.mime_type : "application/octet-stream",
+      type: is_valid_mime_type(download.mime_type)
+        ? download.mime_type
+        : "application/octet-stream",
       disposition: `attachment; filename*=UTF-8''${encode_file_name(download.original_name)}`,
       length: download.size,
     });
@@ -117,8 +125,9 @@ export class UploadsController {
 }
 
 function encode_file_name(file_name: string): string {
-  return encodeURIComponent(file_name).replace(/[!'()*]/g, (character) =>
-    `%${character.charCodeAt(0).toString(16).toUpperCase()}`,
+  return encodeURIComponent(file_name).replace(
+    /[!'()*]/g,
+    (character) => `%${character.charCodeAt(0).toString(16).toUpperCase()}`,
   );
 }
 

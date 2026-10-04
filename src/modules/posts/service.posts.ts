@@ -1,6 +1,6 @@
 import { HttpStatus, Injectable } from "@nestjs/common";
-import { AppException } from "../../common/exceptions/exception.app";
-import { ErrorCode } from "../../common/enums/enum.error.code";
+import { AppException } from "@/common/exceptions/exception.app";
+import { ErrorCode } from "@/common/enums/enum.error.code";
 import type { PostQueryDto } from "./d.query/dto.post.query";
 import type { CreatePostDto } from "./d.request/dto.post.create";
 import type { UpdatePostDto } from "./d.request/dto.post.update";

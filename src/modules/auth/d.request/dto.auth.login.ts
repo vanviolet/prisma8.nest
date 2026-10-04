@@ -1,4 +1,4 @@
-import { EmailField, PasswordField } from "../../../common/decorators/decorator.field";
+import { EmailField, PasswordField } from "@/common/decorators/decorator.field";
 
 export class LoginDto {
   @EmailField({ example: "alex@example.com", max_length: 254 })

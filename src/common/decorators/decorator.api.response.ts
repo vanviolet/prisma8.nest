@@ -4,9 +4,9 @@ import {
   ApiResponse,
   getSchemaPath,
 } from "@nestjs/swagger";
-import { ErrorResponseDto } from "../dto/dto.error.response";
-import { PaginationMetaDto } from "../dto/dto.pagination.meta";
-import { MessageResponseDto } from "../dto/dto.message.response";
+import { ErrorResponseDto } from "@/common/dto/dto.error.response";
+import { PaginationMetaDto } from "@/common/dto/dto.pagination.meta";
+import { MessageResponseDto } from "@/common/dto/dto.message.response";
 
 export function ApiDataResponse(model: Type<unknown>, status = 200, description?: string) {
   return applyDecorators(

@@ -1,13 +1,13 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { Injectable, UnauthorizedException } from "@nestjs/common";
-import { environment } from "../../config/config.env";
-import type { AuthenticatedUser } from "../../common/types/type.request.context";
-import { verify_password } from "../../common/utils/util.password";
-import { normalize_email } from "../../common/utils/util.string";
-import type { UserResponseDto } from "../users/d.response/dto.user.response";
+import { environment } from "@/config/config.env";
+import type { AuthenticatedUser } from "@/common/types/type.request.context";
+import { verify_password } from "@/common/utils/util.password";
+import { normalize_email } from "@/common/utils/util.string";
+import type { UserResponseDto } from "@/modules/users/d.response/dto.user.response";
 import type { LoginDto } from "./d.request/dto.auth.login";
 import { auth_token_type } from "./constant.auth";
-import { UsersService } from "../users/service.users";
+import { UsersService } from "@/modules/users/service.users";
 
 interface JwtPayload extends AuthenticatedUser {
   iat: number;

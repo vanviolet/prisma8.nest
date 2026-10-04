@@ -1,4 +1,4 @@
-import { IntField } from "../decorators/decorator.field";
+import { IntField } from "@/common/decorators/decorator.field";
 
 export class PaginationMetaDto {
   @IntField({ example: 1, min: 1 })

@@ -1,5 +1,5 @@
-import type { Models } from "../../../prisma/contract.d.ts";
-import type { UploadResponseDto } from "../d.response/dto.upload.response";
+import type { Models } from "@/prisma/contract.d.ts";
+import type { UploadResponseDto } from "@/modules/uploads/d.response/dto.upload.response";
 
 type UploadFields = Pick<
   Models.public_uploaded_file,

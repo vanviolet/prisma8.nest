@@ -1,4 +1,7 @@
-import { PasswordField, StringField } from "../../../common/decorators/decorator.field";
+import {
+  PasswordField,
+  StringField,
+} from "@/common/decorators/decorator.field";
 
 export class UpdateUserDto {
   @StringField({

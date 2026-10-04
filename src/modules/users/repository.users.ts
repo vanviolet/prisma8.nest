@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { or } from "@prisma/orm-postgres/orm-client";
-import { PrismaService } from "../../prisma/service.prisma";
+import { PrismaService } from "@/prisma/service.prisma";
 import type { UserQueryDto } from "./d.query/dto.user.query";
 import type { UserResponseDto } from "./d.response/dto.user.response";
 

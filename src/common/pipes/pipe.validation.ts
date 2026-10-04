@@ -1,7 +1,7 @@
 import { HttpStatus, ValidationPipe } from "@nestjs/common";
 import type { ValidationError } from "class-validator";
-import { AppException } from "../exceptions/exception.app";
-import { ErrorCode } from "../enums/enum.error.code";
+import { AppException } from "@/common/exceptions/exception.app";
+import { ErrorCode } from "@/common/enums/enum.error.code";
 
 function flatten_validation_errors(
   validation_errors: ValidationError[],

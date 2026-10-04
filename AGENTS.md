@@ -60,6 +60,7 @@ Project memakai Prisma 8. Sebelum menulis query atau mengubah contract/migration
 - Gunakan `snake_case` untuk model dan field Prisma. Contoh: `model UploadedFile` menjadi `model uploaded_file`.
 - Pertahankan ejaan identifier yang diwajibkan framework atau dependency agar cocok dengan kontrak eksternal, misalnya lifecycle method `onModuleInit`, method interceptor `intercept`, dan decorator NestJS `UploadedFile`.
 - Untuk nama file, letakkan kategori di depan dan pisahkan semua bagian dengan titik; jangan gunakan tanda hubung.
+- Gunakan alias `@/*` dari `tsconfig.json` untuk import lintas direktori di `src`; hindari import relatif bertingkat seperti `../../..`. Import file dalam direktori yang sama boleh memakai `./`.
 - Nama environment variable dan nama fisik database yang dipertahankan lewat `@map`/`@@map` mengikuti kontrak eksternalnya.
 - Nama field DTO dan parameter query publik menggunakan `snake_case`. Pertahankan route, status, dan `operationId` OpenAPI yang sudah ada kecuali requirement meminta perubahan.
 

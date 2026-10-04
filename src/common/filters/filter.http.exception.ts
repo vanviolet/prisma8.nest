@@ -1,8 +1,8 @@
 import { Catch, HttpException, HttpStatus } from "@nestjs/common";
 import type { ArgumentsHost, ExceptionFilter } from "@nestjs/common";
-import type { RequestContext } from "../types/type.request.context";
-import { AppException } from "../exceptions/exception.app";
-import { ErrorCode } from "../enums/enum.error.code";
+import type { RequestContext } from "@/common/types/type.request.context";
+import { AppException } from "@/common/exceptions/exception.app";
+import { ErrorCode } from "@/common/enums/enum.error.code";
 
 interface HttpResponse {
   status(status_code: number): HttpResponse;

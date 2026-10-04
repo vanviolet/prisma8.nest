@@ -1,5 +1,5 @@
-import type { Models } from "../../../prisma/contract.d.ts";
-import type { PostResponseDto } from "../d.response/dto.post.response";
+import type { Models } from "@/prisma/contract.d.ts";
+import type { PostResponseDto } from "@/modules/posts/d.response/dto.post.response";
 
 type PostFields = Pick<
   Models.public_post,

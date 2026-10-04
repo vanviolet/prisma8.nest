@@ -1,4 +1,4 @@
-import type { UserRole } from "../enums/enum.user.role";
+import type { UserRole } from "@/common/enums/enum.user.role";
 
 export interface AuthenticatedUser {
   sub: number;

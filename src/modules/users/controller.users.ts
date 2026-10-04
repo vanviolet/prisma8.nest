@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { ApiEndpoint } from "../../common/decorators/decorator.api.endpoint";
-import { ApiDataResponse, ApiErrorResponses, ApiMessageResponse, ApiPaginatedResponse } from "../../common/decorators/decorator.api.response";
-import { Public } from "../../common/decorators/decorator.public";
-import { Roles } from "../../common/decorators/decorator.roles";
-import { user_role } from "../../common/enums/enum.user.role";
+import { ApiEndpoint } from "@/common/decorators/decorator.api.endpoint";
+import { ApiDataResponse, ApiErrorResponses, ApiMessageResponse, ApiPaginatedResponse } from "@/common/decorators/decorator.api.response";
+import { Public } from "@/common/decorators/decorator.public";
+import { Roles } from "@/common/decorators/decorator.roles";
+import { user_role } from "@/common/enums/enum.user.role";
 import { UserQueryDto } from "./d.query/dto.user.query";
 import { CreateUserDto } from "./d.request/dto.user.create";
 import { UpdateUserDto } from "./d.request/dto.user.update";
@@ -23,7 +23,7 @@ export class UsersController {
   @ApiPaginatedResponse(UserResponseDto)
   @ApiErrorResponses()
   get_users(@Query() query: UserQueryDto): Promise<UsersResponseDto> {
-    return this.users_service.get_users(query);
+       return this.users_service.get_users(query);
   }
 
   @Get("users/:id")
